@@ -1,5 +1,5 @@
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Github, ChevronRight, AlertTriangle, CheckCircle, Zap, Layers, Code } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Github, ChevronRight, AlertTriangle, CheckCircle, Layers, Code } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -167,22 +167,6 @@ const ProjectDetail = () => {
 
             {/* Right column - Sidebar */}
             <aside className="space-y-6">
-              {/* Impact */}
-              <div className="glass-card p-5">
-                <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider flex items-center gap-2">
-                  <Zap size={16} className="text-primary" />
-                  Measurable Impact
-                </h3>
-                <ul className="space-y-2">
-                  {project.impact.map((item, index) => (
-                    <li key={index} className="flex items-start gap-2 text-muted-foreground text-sm">
-                      <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
-                      <span>{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
               {/* Tech Stack */}
               <div className="glass-card p-5">
                 <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">Tech Stack</h3>
@@ -237,6 +221,21 @@ const ProjectDetail = () => {
                   )}
                 </div>
               )}
+
+              {/* Measurable Impact - Last */}
+              <div className="glass-card p-5">
+                <h3 className="text-sm font-semibold text-foreground mb-4 uppercase tracking-wider">
+                  Measurable Impact
+                </h3>
+                <ul className="space-y-2">
+                  {project.impact.map((item, index) => (
+                    <li key={index} className="flex items-start gap-2 text-muted-foreground text-sm">
+                      <ChevronRight size={14} className="text-primary mt-0.5 shrink-0" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </aside>
           </div>
         </div>
