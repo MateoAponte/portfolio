@@ -54,6 +54,7 @@ export const PortfolioSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const handleProjectClick = (projectId: string) => {
+    window.scrollTo(0, 0);
     navigate(`/project/${projectId}`);
   };
 
