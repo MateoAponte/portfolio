@@ -7,8 +7,8 @@
 
 @layer base {
   :root {
-    /* Dark UI - Deep blue background with warm orange accents */
-    --background: 220 33% 26%;
+    /* Dark UI - Deep navy background with warm orange accents */
+    --background: 222 47% 7%;
     --foreground: 30 20% 95%;
 
     --card: 15 18% 8%;
