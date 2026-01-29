@@ -99,7 +99,7 @@ export const HeroSection = () => {
           {/* Right - Profile Photo */}
           <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+              <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[28rem] lg:h-[28rem]">
                 {/* Outer decorative ring */}
                 <div className="absolute inset-0 rounded-full border border-primary/20" />
                 
@@ -108,7 +108,7 @@ export const HeroSection = () => {
                   <img 
                     src={profilePhoto} 
                     alt="Profile photo" 
-                    className="w-full h-full object-cover object-top scale-110"
+                    className="w-full h-full object-cover object-center scale-105"
                   />
                 </div>
                 
