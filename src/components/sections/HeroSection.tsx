@@ -104,11 +104,11 @@ export const HeroSection = () => {
                 <div className="absolute inset-0 rounded-full border border-primary/20" />
                 
                 {/* Profile image container - circular crop */}
-                <div className="absolute inset-3 rounded-full overflow-hidden border-2 border-primary/30">
+                <div className="absolute inset-0 rounded-full overflow-hidden">
                   <img 
                     src={profilePhoto} 
                     alt="Profile photo" 
-                    className="w-full h-full object-cover object-top scale-110"
+                    className="w-full h-full object-cover object-center"
                   />
                 </div>
                 
