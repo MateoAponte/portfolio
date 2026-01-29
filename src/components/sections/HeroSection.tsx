@@ -99,7 +99,7 @@ export const HeroSection = () => {
           {/* Right - Profile Photo */}
           <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
-              <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
+              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
                 {/* Outer decorative ring */}
                 <div className="absolute inset-0 rounded-full border border-primary/20" />
                 
