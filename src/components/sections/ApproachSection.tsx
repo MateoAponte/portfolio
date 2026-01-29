@@ -47,7 +47,7 @@ export const ApproachSection = () => {
       
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             Enfoque
           </span>
@@ -60,21 +60,21 @@ export const ApproachSection = () => {
         </div>
 
         {/* Principles Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 max-w-6xl mx-auto">
           {principles.map((principle, index) => {
             const Icon = principle.icon;
             
             return (
               <div
                 key={principle.title}
-                className={`glass-card p-6 ${isVisible ? `animate-fade-up stagger-${Math.min(index + 3, 6)}` : 'opacity-0'}`}
+                className={`glass-card p-5 ${isVisible ? `animate-fade-up stagger-${Math.min(index + 3, 6)}` : 'opacity-0'}`}
               >
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 text-primary shrink-0">
-                    <Icon size={22} />
+                <div className="flex items-start gap-3">
+                  <div className="p-2.5 rounded-md bg-primary/10 text-primary shrink-0">
+                    <Icon size={18} />
                   </div>
                   <div>
-                    <h3 className="text-lg font-semibold text-foreground mb-2">
+                    <h3 className="text-base font-semibold text-foreground mb-2">
                       {principle.title}
                     </h3>
                     <p className="text-muted-foreground text-sm leading-relaxed">

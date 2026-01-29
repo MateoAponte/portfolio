@@ -14,7 +14,7 @@ export const ContactSection = () => {
       
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             Contacto
           </span>
@@ -26,14 +26,14 @@ export const ContactSection = () => {
           </p>
         </div>
 
-        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
+        <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-10">
           {/* Contact Info */}
           <div className={isVisible ? 'animate-slide-right stagger-3' : 'opacity-0'}>
-            <h3 className="text-xl font-semibold text-foreground mb-6">
+            <h3 className="text-lg font-semibold text-foreground mb-5">
               Conversemos sobre
             </h3>
             
-            <div className="space-y-3 mb-8">
+            <div className="space-y-2.5 mb-8">
               {[
                 'Arquitectura de sistemas distribuidos',
                 'Migración de monolitos a microservicios',
@@ -41,61 +41,61 @@ export const ContactSection = () => {
                 'Deuda técnica y refactoring estratégico',
                 'MVPs con base sólida para escalar'
               ].map((topic, index) => (
-                <div key={index} className="flex items-center gap-3 text-muted-foreground">
-                  <MessageCircle size={16} className="text-primary shrink-0" />
+                <div key={index} className="flex items-center gap-2.5 text-muted-foreground text-sm">
+                  <MessageCircle size={14} className="text-primary shrink-0" />
                   <span>{topic}</span>
                 </div>
               ))}
             </div>
             
-            <div className="space-y-4">
+            <div className="space-y-3">
               <a
                 href="mailto:hello@developer.com"
-                className="flex items-center gap-4 p-4 glass-card hover:border-primary/30 transition-colors"
+                className="flex items-center gap-3 p-4 glass-card hover:border-primary/25 transition-colors"
               >
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                  <Mail size={20} />
+                <div className="p-2.5 rounded-md bg-primary/10 text-primary">
+                  <Mail size={18} />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Email</p>
-                  <p className="text-foreground font-medium">hello@developer.com</p>
+                  <p className="text-xs text-muted-foreground">Email</p>
+                  <p className="text-foreground text-sm font-medium">hello@developer.com</p>
                 </div>
               </a>
 
-              <div className="flex items-center gap-4 p-4 glass-card">
-                <div className="p-3 rounded-lg bg-primary/10 text-primary">
-                  <MapPin size={20} />
+              <div className="flex items-center gap-3 p-4 glass-card">
+                <div className="p-2.5 rounded-md bg-primary/10 text-primary">
+                  <MapPin size={18} />
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Ubicación</p>
-                  <p className="text-foreground font-medium">Remoto / Global</p>
+                  <p className="text-xs text-muted-foreground">Ubicación</p>
+                  <p className="text-foreground text-sm font-medium">Remoto / Global</p>
                 </div>
               </div>
             </div>
 
             {/* Social Links */}
             <div className="mt-8">
-              <h4 className="text-sm font-medium text-muted-foreground mb-4 uppercase tracking-wider">
+              <h4 className="text-xs font-medium text-muted-foreground mb-3 uppercase tracking-wider">
                 También en
               </h4>
-              <div className="flex gap-4">
+              <div className="flex gap-3">
                 <a
                   href="https://github.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
+                  className="p-2.5 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
                   aria-label="GitHub"
                 >
-                  <Github size={24} />
+                  <Github size={20} />
                 </a>
                 <a
                   href="https://linkedin.com"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="p-3 rounded-lg bg-secondary/50 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
+                  className="p-2.5 rounded-md bg-secondary/60 text-muted-foreground hover:text-foreground hover:bg-secondary transition-all duration-200"
                   aria-label="LinkedIn"
                 >
-                  <Linkedin size={24} />
+                  <Linkedin size={20} />
                 </a>
               </div>
             </div>
@@ -103,7 +103,7 @@ export const ContactSection = () => {
 
           {/* Contact Form */}
           <div className={isVisible ? 'animate-slide-left stagger-4' : 'opacity-0'}>
-            <form className="glass-card p-6 space-y-6">
+            <form className="glass-card p-5 space-y-5">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-foreground mb-2">
                   Nombre
@@ -113,7 +113,7 @@ export const ContactSection = () => {
                   id="name"
                   name="name"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
                   placeholder="Tu nombre"
                 />
               </div>
@@ -127,7 +127,7 @@ export const ContactSection = () => {
                   id="email"
                   name="email"
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+                  className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all"
                   placeholder="tu@email.com"
                 />
               </div>
@@ -141,13 +141,13 @@ export const ContactSection = () => {
                   name="message"
                   rows={4}
                   required
-                  className="w-full px-4 py-3 rounded-lg bg-secondary/50 border border-border text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
+                  className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all resize-none"
                   placeholder="Cuéntame sobre el problema técnico que quieres resolver..."
                 />
               </div>
 
-              <button type="submit" className="btn-primary w-full">
-                <Send size={18} />
+              <button type="submit" className="btn-primary w-full py-2.5">
+                <Send size={16} />
                 Iniciar Conversación
               </button>
             </form>

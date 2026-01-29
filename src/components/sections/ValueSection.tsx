@@ -32,7 +32,7 @@ export const ValueSection = () => {
       
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-14">
           <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
             Propuesta de Valor
           </span>
@@ -45,7 +45,7 @@ export const ValueSection = () => {
         </div>
 
         {/* Values Grid */}
-        <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {values.map((value, index) => {
             const Icon = value.icon;
             
@@ -54,15 +54,15 @@ export const ValueSection = () => {
                 key={value.title}
                 className={`text-center ${isVisible ? `animate-fade-up stagger-${index + 3}` : 'opacity-0'}`}
               >
-                <div className="inline-flex p-4 rounded-2xl bg-gradient-to-br from-primary/20 to-accent/20 mb-6">
-                  <Icon size={32} className="text-primary" />
+                <div className="inline-flex p-4 rounded-lg bg-gradient-to-br from-primary/15 to-accent/10 mb-5">
+                  <Icon size={28} className="text-primary" />
                 </div>
                 
-                <h3 className="text-xl font-semibold text-foreground mb-3">
+                <h3 className="text-lg font-semibold text-foreground mb-2">
                   {value.title}
                 </h3>
                 
-                <p className="text-muted-foreground leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   {value.description}
                 </p>
               </div>
@@ -70,15 +70,15 @@ export const ValueSection = () => {
           })}
         </div>
 
-        {/* Stats or CTA */}
-        <div className={`mt-20 glass-card p-8 md:p-12 text-center max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
-          <div className="inline-flex p-3 rounded-xl bg-primary/10 text-primary mb-6">
-            <MessageSquare size={28} />
+        {/* CTA Card */}
+        <div className={`mt-16 glass-card p-8 md:p-10 text-center max-w-3xl mx-auto ${isVisible ? 'animate-fade-up stagger-6' : 'opacity-0'}`}>
+          <div className="inline-flex p-3 rounded-lg bg-primary/10 text-primary mb-5">
+            <MessageSquare size={24} />
           </div>
-          <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
+          <h3 className="text-xl md:text-2xl font-bold text-foreground mb-3">
             ¿Enfrentas desafíos técnicos complejos?
           </h3>
-          <p className="text-muted-foreground mb-8 max-w-xl mx-auto">
+          <p className="text-muted-foreground mb-6 max-w-xl mx-auto text-sm leading-relaxed">
             Escalabilidad, deuda técnica, arquitectura de sistemas distribuidos o MVPs con proyección real. Hablemos de cómo resolver problemas, no solo de escribir código.
           </p>
           <a href="#contacto" className="btn-primary">
