@@ -7,18 +7,18 @@
 
 @layer base {
   :root {
-    /* Dark UI - Dark blue base with pastel orange accents */
-    --background: 220 30% 6%;
+    /* Dark UI - Dark blue base with warm orange accents */
+    --background: 220 30% 8%;
     --foreground: 210 20% 95%;
 
-    --card: 220 25% 10%;
+    --card: 220 25% 11%;
     --card-foreground: 210 20% 95%;
 
-    --popover: 220 25% 10%;
+    --popover: 220 25% 11%;
     --popover-foreground: 210 20% 95%;
 
-    --primary: 25 70% 65%;
-    --primary-foreground: 220 30% 98%;
+    --primary: 24 85% 55%;
+    --primary-foreground: 0 0% 100%;
 
     --secondary: 220 20% 14%;
     --secondary-foreground: 210 20% 95%;
@@ -26,35 +26,35 @@
     --muted: 220 18% 16%;
     --muted-foreground: 215 15% 55%;
 
-    --accent: 30 65% 60%;
-    --accent-foreground: 220 30% 98%;
+    --accent: 28 80% 50%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 210 20% 95%;
 
     --border: 220 20% 18%;
     --input: 220 20% 18%;
-    --ring: 25 70% 65%;
+    --ring: 24 85% 55%;
 
     --radius: 0.625rem;
 
-    /* Pastel orange custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(25 70% 65%), hsl(30 65% 60%));
-    --gradient-hero: linear-gradient(180deg, hsl(220 25% 10%) 0%, hsl(220 30% 6%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(220 25% 12% / 0.9), hsl(220 30% 8% / 0.6));
+    /* Warm orange custom tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(24 85% 55%), hsl(28 80% 50%));
+    --gradient-hero: linear-gradient(180deg, hsl(220 25% 11%) 0%, hsl(220 30% 8%) 100%);
+    --gradient-card: linear-gradient(145deg, hsl(220 25% 13% / 0.9), hsl(220 30% 9% / 0.6));
     
     /* Section gradients - dark blue tones */
-    --gradient-section-hero: radial-gradient(ellipse 100% 60% at 50% -10%, hsl(25 70% 65% / 0.08), transparent 70%);
-    --gradient-section-portfolio: linear-gradient(180deg, hsl(220 30% 6%) 0%, hsl(220 28% 9%) 50%, hsl(220 30% 6%) 100%);
-    --gradient-section-skills: radial-gradient(ellipse 80% 60% at 80% 30%, hsl(30 65% 60% / 0.04), transparent 60%);
-    --gradient-section-approach: radial-gradient(ellipse 70% 50% at 20% 70%, hsl(25 70% 65% / 0.05), transparent 60%);
-    --gradient-section-value: linear-gradient(180deg, hsl(220 30% 6%) 0%, hsl(220 28% 8%) 50%, hsl(220 30% 6%) 100%);
-    --gradient-section-contact: radial-gradient(ellipse 80% 80% at 50% 100%, hsl(25 70% 65% / 0.05), transparent 60%);
+    --gradient-section-hero: radial-gradient(ellipse 100% 60% at 50% -10%, hsl(24 85% 55% / 0.1), transparent 70%);
+    --gradient-section-portfolio: linear-gradient(180deg, hsl(220 30% 8%) 0%, hsl(220 28% 10%) 50%, hsl(220 30% 8%) 100%);
+    --gradient-section-skills: radial-gradient(ellipse 80% 60% at 80% 30%, hsl(28 80% 50% / 0.06), transparent 60%);
+    --gradient-section-approach: radial-gradient(ellipse 70% 50% at 20% 70%, hsl(24 85% 55% / 0.07), transparent 60%);
+    --gradient-section-value: linear-gradient(180deg, hsl(220 30% 8%) 0%, hsl(220 28% 9%) 50%, hsl(220 30% 8%) 100%);
+    --gradient-section-contact: radial-gradient(ellipse 80% 80% at 50% 100%, hsl(24 85% 55% / 0.07), transparent 60%);
     
     /* Soft shadows */
-    --shadow-glow: 0 0 50px hsl(25 70% 65% / 0.12);
+    --shadow-glow: 0 0 50px hsl(24 85% 55% / 0.15);
     --shadow-card: 0 4px 20px hsl(220 40% 2% / 0.5);
-    --shadow-hover: 0 8px 40px hsl(25 70% 65% / 0.1);
+    --shadow-hover: 0 8px 40px hsl(24 85% 55% / 0.12);
     --shadow-soft: 0 2px 12px hsl(220 40% 2% / 0.4);
     
     /* Animation tokens */
