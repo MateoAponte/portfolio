@@ -97,26 +97,25 @@ export const HeroSection = () => {
           </div>
 
           {/* Right - Profile Photo */}
-          <div className={`order-1 lg:order-2 flex justify-center lg:justify-end ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            <div className="relative">
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
+          <div className={`order-1 lg:order-2 flex justify-center lg:justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+            <div className="relative -ml-8 lg:-ml-16">
+              {/* Image container - rectangular to show full photo with < > symbols */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px]">
                 {/* Outer decorative ring */}
-                <div className="absolute inset-0 rounded-full border border-primary/20" />
+                <div className="absolute inset-6 rounded-full border border-primary/20" />
                 
-                {/* Profile image container */}
-                <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
-                  <img 
-                    src={profilePhoto} 
-                    alt="Profile photo" 
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
+                {/* Profile image - full photo without cropping */}
+                <img 
+                  src={profilePhoto} 
+                  alt="Profile photo" 
+                  className="w-full h-full object-contain object-center relative z-10"
+                />
                 
-                {/* Decorative dots */}
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary/60" />
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent/60" />
-                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/40" />
-                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/40" />
+                {/* Decorative dots on the ring */}
+                <div className="absolute top-5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 z-20" />
+                <div className="absolute bottom-5 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 z-20" />
+                <div className="absolute top-1/2 left-5 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 z-20" />
+                <div className="absolute top-1/2 right-5 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 z-20" />
               </div>
               
               {/* Subtle glow behind */}
