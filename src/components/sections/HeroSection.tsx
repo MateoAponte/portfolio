@@ -1,7 +1,6 @@
 import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-
-const profilePhoto = '/images/profile-photo.png';
+import profilePhoto from '@/assets/profile-photo.png';
 export const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
