@@ -108,7 +108,7 @@ export const HeroSection = () => {
                   <img 
                     src={profilePhoto} 
                     alt="Profile photo" 
-                    className="w-full h-full object-cover object-top scale-110"
+                    className="w-full h-full object-cover object-center scale-125"
                   />
                 </div>
                 
