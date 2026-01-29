@@ -17,7 +17,7 @@
     --popover: 15 18% 8%;
     --popover-foreground: 30 20% 95%;
 
-    --primary: #fc714a;
+    --primary: 13 97% 68%;
     --primary-foreground: 15 20% 5%;
 
     --secondary: 15 15% 12%;
@@ -26,7 +26,7 @@
     --muted: 15 12% 14%;
     --muted-foreground: 20 10% 50%;
 
-    --accent: 25 90% 50%;
+    --accent: 13 97% 68%;
     --accent-foreground: 15 20% 5%;
 
     --destructive: 0 72% 51%;
@@ -34,12 +34,12 @@
 
     --border: 15 12% 16%;
     --input: 15 12% 16%;
-    --ring: 15 85% 55%;
+    --ring: 13 97% 68%;
 
     --radius: 0.625rem;
 
     /* Warm orange custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(15 85% 55%), hsl(25 90% 50%));
+    --gradient-primary: linear-gradient(135deg, hsl(13 97% 68%), hsl(20 95% 60%));
     --gradient-hero: linear-gradient(180deg, hsl(15 18% 8%) 0%, hsl(15 20% 5%) 100%);
     --gradient-card: linear-gradient(145deg, hsl(15 18% 10% / 0.9), hsl(15 20% 6% / 0.6));
 
