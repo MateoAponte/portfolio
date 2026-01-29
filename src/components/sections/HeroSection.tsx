@@ -99,28 +99,17 @@ export const HeroSection = () => {
           {/* Right - Profile Photo */}
           <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
-              <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                {/* Outer decorative ring */}
-                <div className="absolute inset-0 rounded-full border border-primary/20" />
-                
-                {/* Profile image container - circular crop */}
-                <div className="absolute inset-0 rounded-full overflow-hidden">
-                  <img 
-                    src={profilePhoto} 
-                    alt="Profile photo" 
-                    className="w-full h-full object-cover object-center"
-                  />
-                </div>
-                
-                {/* Decorative dots on the ring */}
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
-                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
+              {/* Profile image - already contains decorative rings and < > symbols */}
+              <div className="relative w-80 h-80 md:w-96 md:h-96 lg:w-[420px] lg:h-[420px]">
+                <img 
+                  src={profilePhoto} 
+                  alt="Profile photo" 
+                  className="w-full h-full object-contain"
+                />
               </div>
               
               {/* Subtle glow behind */}
-              <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10" />
+              <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10" />
             </div>
           </div>
         </div>
