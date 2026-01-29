@@ -1,4 +1,3 @@
-import { useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
@@ -50,12 +49,11 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
 };
 
 export const PortfolioSection = () => {
-  const navigate = useNavigate();
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   const handleProjectClick = (projectId: string) => {
     window.scrollTo(0, 0);
-    navigate(`/project/${projectId}`);
+    window.location.href = `/project/${projectId}`;
   };
 
   return (
