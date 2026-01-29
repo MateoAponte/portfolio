@@ -1,4 +1,4 @@
-import { Target, Zap, Wrench, Boxes } from 'lucide-react';
+import { Target, Zap, Wrench, Boxes, Code2, Database, Layers } from 'lucide-react';
 import { skillTiers, architecturePatterns } from '@/data/skills';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -10,7 +10,6 @@ const iconMap: Record<string, React.ElementType> = {
 
 export const SkillsSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
-
   return (
     <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
@@ -20,17 +19,71 @@ export const SkillsSection = () => {
       />
       
       <div ref={ref} className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
-            Skills
-          </span>
-          <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
-            Technical Stack by Expertise Level
-          </h2>
-          <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Technologies organized by depth of experience and technical responsibility.
-          </p>
+        {/* Section Header with Visual Element */}
+        <div className="grid lg:grid-cols-2 gap-12 items-center mb-14">
+          {/* Text Content */}
+          <div className="text-center lg:text-left">
+            <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+              Skills
+            </span>
+            <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
+              Technical Stack by Expertise Level
+            </h2>
+            <p className={`mt-4 text-muted-foreground max-w-2xl ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+              Technologies organized by depth of experience and technical responsibility.
+            </p>
+          </div>
+          
+          {/* Geometric Visual Element (moved from Hero) */}
+          <div className={`hidden lg:flex justify-center lg:justify-end ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+            <div className="relative w-56 h-56">
+              {/* Outer ring */}
+              <div className="absolute inset-0 rounded-full border border-border/30" />
+              
+              {/* Middle ring with gradient */}
+              <div className="absolute inset-3 rounded-full border border-primary/20">
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary/40" />
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent/40" />
+              </div>
+              
+              {/* Inner content area */}
+              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-card via-card/80 to-card/60 border border-border/40 flex items-center justify-center overflow-hidden">
+                {/* Floating icons */}
+                <div className="relative w-full h-full">
+                  <div className="absolute top-1/4 left-1/4 p-2 rounded-lg bg-primary/10 text-primary animate-float">
+                    <Code2 size={18} />
+                  </div>
+                  <div className="absolute top-1/2 right-1/4 p-2 rounded-lg bg-accent/10 text-accent animate-float" style={{ animationDelay: '1s' }}>
+                    <Database size={18} />
+                  </div>
+                  <div className="absolute bottom-1/4 left-1/3 p-2 rounded-lg bg-primary/10 text-primary animate-float" style={{ animationDelay: '2s' }}>
+                    <Layers size={18} />
+                  </div>
+                </div>
+              </div>
+              
+              {/* Decorative arcs */}
+              <svg className="absolute inset-0 w-full h-full -rotate-45" viewBox="0 0 100 100">
+                <path
+                  d="M 15 50 A 35 35 0 0 1 85 50"
+                  fill="none"
+                  stroke="hsl(var(--primary) / 0.15)"
+                  strokeWidth="0.5"
+                  strokeLinecap="round"
+                />
+                <path
+                  d="M 20 50 A 30 30 0 0 1 80 50"
+                  fill="none"
+                  stroke="hsl(var(--accent) / 0.1)"
+                  strokeWidth="0.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+              
+              {/* Subtle glow behind */}
+              <div className="absolute inset-0 bg-primary/5 rounded-full blur-2xl -z-10" />
+            </div>
+          </div>
         </div>
 
         {/* Skills Grid - Card per tier */}

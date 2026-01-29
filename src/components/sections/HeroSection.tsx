@@ -1,6 +1,6 @@
-import { ArrowDown, Github, Linkedin, Mail, Code2, Database, Layers } from 'lucide-react';
+import { ArrowDown, Github, Linkedin, Mail } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
-
+import profilePhoto from '@/assets/profile-photo.png';
 export const HeroSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
@@ -96,57 +96,31 @@ export const HeroSection = () => {
             </div>
           </div>
 
-          {/* Right - Visual Element */}
+          {/* Right - Profile Photo */}
           <div className={`order-1 lg:order-2 flex justify-center lg:justify-end ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
-              {/* Abstract geometric visual */}
               <div className="relative w-72 h-72 md:w-80 md:h-80 lg:w-96 lg:h-96">
-                {/* Outer ring */}
-                <div className="absolute inset-0 rounded-full border border-border/30" />
+                {/* Outer decorative ring */}
+                <div className="absolute inset-0 rounded-full border border-primary/20" />
                 
-                {/* Middle ring with gradient */}
-                <div className="absolute inset-4 rounded-full border border-primary/20">
-                  <div className="absolute -top-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-primary/40" />
-                  <div className="absolute -bottom-1.5 left-1/2 -translate-x-1/2 w-3 h-3 rounded-full bg-accent/40" />
+                {/* Profile image container */}
+                <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
+                  <img 
+                    src={profilePhoto} 
+                    alt="Profile photo" 
+                    className="w-full h-full object-cover object-center"
+                  />
                 </div>
                 
-                {/* Inner content area */}
-                <div className="absolute inset-10 rounded-full bg-gradient-to-br from-card via-card/80 to-card/60 border border-border/40 flex items-center justify-center overflow-hidden">
-                  {/* Floating icons */}
-                  <div className="relative w-full h-full">
-                    <div className="absolute top-1/4 left-1/4 p-3 rounded-lg bg-primary/10 text-primary animate-float">
-                      <Code2 size={24} />
-                    </div>
-                    <div className="absolute top-1/2 right-1/4 p-3 rounded-lg bg-accent/10 text-accent animate-float" style={{ animationDelay: '1s' }}>
-                      <Database size={24} />
-                    </div>
-                    <div className="absolute bottom-1/4 left-1/3 p-3 rounded-lg bg-primary/10 text-primary animate-float" style={{ animationDelay: '2s' }}>
-                      <Layers size={24} />
-                    </div>
-                  </div>
-                </div>
-                
-                {/* Decorative arcs */}
-                <svg className="absolute inset-0 w-full h-full -rotate-45" viewBox="0 0 100 100">
-                  <path
-                    d="M 15 50 A 35 35 0 0 1 85 50"
-                    fill="none"
-                    stroke="hsl(var(--primary) / 0.15)"
-                    strokeWidth="0.5"
-                    strokeLinecap="round"
-                  />
-                  <path
-                    d="M 20 50 A 30 30 0 0 1 80 50"
-                    fill="none"
-                    stroke="hsl(var(--accent) / 0.1)"
-                    strokeWidth="0.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
+                {/* Decorative dots */}
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary/60" />
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent/60" />
+                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/40" />
+                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2 h-2 rounded-full bg-primary/40" />
               </div>
               
               {/* Subtle glow behind */}
-              <div className="absolute inset-0 bg-primary/5 rounded-full blur-3xl -z-10" />
+              <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10" />
             </div>
           </div>
         </div>
