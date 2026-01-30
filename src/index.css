@@ -227,8 +227,8 @@
   
   .ambient-glow::before {
     content: '';
-    @apply absolute w-[600px] h-[600px] rounded-full blur-[120px] opacity-100;
-    background: hsl(var(--primary) / 0.03);
+    @apply absolute w-[800px] h-[800px] rounded-full blur-[150px] opacity-100;
+    background: hsl(var(--primary) / 0.07);
   }
   
   .ambient-glow-left::before {
