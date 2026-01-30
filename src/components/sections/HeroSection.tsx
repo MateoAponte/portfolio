@@ -122,8 +122,8 @@ export const HeroSection = () => {
           <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
               <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
-                {/* Outer decorative ring */}
-                <div className="absolute inset-0 rounded-full border border-primary/20" />
+                {/* Outer decorative ring with slow rotation */}
+                <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
                 
                 {/* Profile image container - circular crop */}
                 <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
@@ -134,11 +134,11 @@ export const HeroSection = () => {
                   />
                 </div>
                 
-                {/* Decorative dots on the ring */}
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
-                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
-                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
+                {/* Decorative dots on the ring with pulse animation */}
+                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse" />
+                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse [animation-delay:0.5s]" />
+                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1s]" />
+                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1.5s]" />
               </div>
               
               {/* Subtle glow behind */}
