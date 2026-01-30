@@ -108,7 +108,9 @@ export const ApproachSection = () => {
             </div>
             
             {/* Right column - offset down */}
-            <div className="relative md:mt-12">
+            <div className="relative md:mt-16">
+              {/* Vertical line for right column */}
+              <div className="hidden md:block absolute left-0 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
               {principles.filter((_, i) => i % 2 === 1).map((principle, idx) => {
                 const Icon = principle.icon;
                 const originalIndex = idx * 2 + 1;

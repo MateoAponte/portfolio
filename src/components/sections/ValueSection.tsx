@@ -56,15 +56,13 @@ export const ValueSection = () => {
                 
                 return (
                   <div key={value.title} className="relative text-center">
-                    {/* Stepper dot on the line */}
-                    <div className="relative inline-flex mb-5">
-                      {/* Outer ring */}
-                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-background border-2 border-primary z-20" />
-                      {/* Inner dot */}
-                      <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary z-30" />
-                      
-                      {/* Icon below the line */}
-                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background mt-6 md:mt-8">
+                    {/* Stepper dot on the line - positioned at y=5 to align with line */}
+                    <div className="hidden md:block absolute top-[0.3rem] left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-background border-2 border-primary z-20" />
+                    <div className="hidden md:block absolute top-[0.55rem] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary z-30" />
+                    
+                    {/* Icon below the line */}
+                    <div className="relative inline-flex mb-5 mt-8 md:mt-10">
+                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background">
                         <Icon size={20} className="text-primary" />
                       </div>
                     </div>
