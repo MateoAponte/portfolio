@@ -113,7 +113,7 @@ export const SkillsSection = () => {
                   {tier.skills.map((skill) => (
                     <span 
                       key={skill} 
-                      className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate"
+                      className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-primary/20 text-center truncate"
                     >
                       {skill}
                     </span>
@@ -141,7 +141,7 @@ export const SkillsSection = () => {
               </p>
               <div className="grid grid-cols-2 gap-1.5">
                 {architecturePatterns.map((pattern) => (
-                  <span key={pattern} className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-border/30 text-center truncate">
+                  <span key={pattern} className="px-2 py-1.5 rounded text-xs font-medium bg-secondary/50 text-muted-foreground border border-primary/20 text-center truncate">
                     {pattern}
                   </span>
                 ))}
