@@ -74,8 +74,6 @@ export const PortfolioSection = () => {
 
   return (
     <>
-      {/* Transition fade to next section */}
-      <div className="absolute mt-16 bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
       <section
         id="portfolio"
         className="py-24 md:py-32 relative overflow-hidden section-separator"
