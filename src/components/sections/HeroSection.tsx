@@ -29,7 +29,7 @@ export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="w-full h-full relative min-h-screen flex items-center overflow-hidden bg-secondary/50"
+      className="w-full h-full relative min-h-screen flex items-center overflow-hidden "
     >
       <div className="hero-container w-full h-full min-h-screen bg-gradient-to-br from-primary/20 via-card to-accent/20">
         {/* Subtle grid pattern */}
@@ -183,9 +183,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Transition fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
     </section>
   );
 };
