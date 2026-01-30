@@ -47,6 +47,18 @@ export const HeroSection = () => {
       {/* Decorative elements */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-3xl" />
       <div className="absolute bottom-1/3 left-1/3 w-[400px] h-[400px] bg-accent/[0.02] rounded-full blur-3xl" />
+      
+      {/* Floating particles */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[15%] left-[10%] w-1 h-1 rounded-full bg-primary/40 animate-[float_8s_ease-in-out_infinite]" />
+        <div className="absolute top-[25%] right-[15%] w-1.5 h-1.5 rounded-full bg-primary/30 animate-[float_10s_ease-in-out_infinite_1s]" />
+        <div className="absolute top-[45%] left-[5%] w-1 h-1 rounded-full bg-primary/25 animate-[float_12s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-[60%] right-[8%] w-0.5 h-0.5 rounded-full bg-primary/35 animate-[float_9s_ease-in-out_infinite_0.5s]" />
+        <div className="absolute top-[70%] left-[20%] w-1 h-1 rounded-full bg-primary/20 animate-[float_11s_ease-in-out_infinite_3s]" />
+        <div className="absolute top-[35%] right-[25%] w-0.5 h-0.5 rounded-full bg-primary/30 animate-[float_7s_ease-in-out_infinite_1.5s]" />
+        <div className="absolute top-[80%] right-[20%] w-1 h-1 rounded-full bg-primary/25 animate-[float_13s_ease-in-out_infinite_2.5s]" />
+        <div className="absolute top-[20%] left-[30%] w-0.5 h-0.5 rounded-full bg-primary/35 animate-[float_9s_ease-in-out_infinite_4s]" />
+      </div>
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
@@ -122,8 +134,15 @@ export const HeroSection = () => {
           <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
             <div className="relative">
               <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
-                {/* Outer decorative ring with slow rotation */}
-                <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
+                {/* Outer decorative ring with dots - all rotating together */}
+                <div className="absolute inset-0 animate-[spin_20s_linear_infinite]">
+                  <div className="absolute inset-0 rounded-full border border-primary/20" />
+                  {/* Decorative dots on the ring */}
+                  <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse" />
+                  <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse [animation-delay:0.5s]" />
+                  <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1s]" />
+                  <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1.5s]" />
+                </div>
                 
                 {/* Profile image container - circular crop */}
                 <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
@@ -133,12 +152,6 @@ export const HeroSection = () => {
                     className="w-full h-full object-cover object-[center_30%]"
                   />
                 </div>
-                
-                {/* Decorative dots on the ring with pulse animation */}
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse" />
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70 animate-pulse [animation-delay:0.5s]" />
-                <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1s]" />
-                <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50 animate-pulse [animation-delay:1.5s]" />
               </div>
               
               {/* Subtle glow behind */}
