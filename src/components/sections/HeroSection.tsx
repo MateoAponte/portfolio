@@ -12,7 +12,7 @@ export const HeroSection = () => {
       const scrollY = window.scrollY;
       const fadeStart = 50;
       const fadeEnd = 200;
-      
+
       if (scrollY <= fadeStart) {
         setScrollOpacity(1);
       } else if (scrollY >= fadeEnd) {
@@ -32,17 +32,20 @@ export const HeroSection = () => {
       className="relative min-h-screen flex items-center pt-20 overflow-hidden"
     >
       {/* Background gradient */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'var(--gradient-section-hero)' }}
       />
-      
+
       {/* Subtle grid pattern */}
-      <div className="absolute inset-0 opacity-[0.015]" style={{
-        backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
+      <div
+        className="absolute inset-0 opacity-[0.015]"
+        style={{
+          backgroundImage: `linear-gradient(hsl(var(--primary)) 1px, transparent 1px),
                           linear-gradient(90deg, hsl(var(--primary)) 1px, transparent 1px)`,
-        backgroundSize: '80px 80px'
-      }} />
+          backgroundSize: '80px 80px',
+        }}
+      />
 
       {/* Decorative elements */}
       <div className="absolute top-1/4 right-1/4 w-[500px] h-[500px] bg-primary/[0.03] rounded-full blur-3xl" />
@@ -61,19 +64,27 @@ export const HeroSection = () => {
             </div>
 
             {/* Main Heading */}
-            <h1 className={`mt-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
+            <h1
+              className={`mt-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
+            >
               <span className="text-foreground">Fullstack</span>
               <span className="gradient-text block mt-1">Developer</span>
             </h1>
-            
+
             {/* Role emphasis */}
-            <div className={`mt-4 flex items-center gap-3 ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+            <div
+              className={`mt-4 flex items-center gap-3 ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            >
               <div className="h-px w-8 bg-primary/50" />
-              <span className="text-lg font-medium text-muted-foreground">TypeScript Expert</span>
+              <span className="text-lg font-medium text-muted-foreground">
+                TypeScript Expert
+              </span>
             </div>
 
             {/* Description */}
-            <p className={`mt-6 text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+            <p
+              className={`mt-6 text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            >
               I build robust and scalable solutions with a focus on{' '}
               <span className="text-foreground">clean architecture</span>,{' '}
               <span className="text-foreground">best practices</span> and{' '}
@@ -81,7 +92,9 @@ export const HeroSection = () => {
             </p>
 
             {/* CTA Button */}
-            <div className={`mt-10 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}>
+            <div
+              className={`mt-10 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
+            >
               <a href="#portfolio" className="btn-primary">
                 View Technical Decisions
                 <ArrowDown size={16} />
@@ -89,58 +102,59 @@ export const HeroSection = () => {
             </div>
 
             {/* Social Links */}
-            <div className={`mt-12 flex items-center gap-3 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}>
+            <div
+              className={`mt-12 flex items-center gap-3 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}
+            >
               <a
                 href="https://github.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-4 py-4 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Github size={14} />
-                <span>GitHub</span>
+                <Github size={20} />
               </a>
               <a
                 href="https://linkedin.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-4 py-4 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Linkedin size={14} />
-                <span>LinkedIn</span>
+                <Linkedin size={20} />
               </a>
               <a
                 href="mailto:hello@developer.com"
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
+                className="inline-flex items-center gap-1.5 px-4 py-4 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
               >
-                <Mail size={14} />
-                <span>Email</span>
+                <Mail size={20} />
               </a>
             </div>
           </div>
 
           {/* Right - Profile Photo */}
-          <div className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
+          <div
+            className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+          >
             <div className="relative">
-              <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-80 lg:h-80">
+              <div className="relative w-64 h-64 md:w-72 md:h-72 lg:h-96 lg:w-96">
                 {/* Outer decorative ring */}
                 <div className="absolute inset-0 rounded-full border border-primary/20" />
-                
+
                 {/* Profile image container - circular crop */}
                 <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
-                  <img 
-                    src={profilePhoto} 
-                    alt="Profile photo" 
+                  <img
+                    src={profilePhoto}
+                    alt="Profile photo"
                     className="w-full h-full object-cover object-[center_30%]"
                   />
                 </div>
-                
+
                 {/* Decorative dots on the ring */}
                 <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
                 <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary/70" />
                 <div className="absolute top-1/2 -left-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
                 <div className="absolute top-1/2 -right-1 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-primary/50" />
               </div>
-              
+
               {/* Subtle glow behind */}
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-3xl -z-10" />
             </div>
@@ -148,14 +162,16 @@ export const HeroSection = () => {
         </div>
 
         {/* Scroll Indicator */}
-        <div 
-          className={`hidden lg:flex absolute bottom-12 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-300 ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}
+        <div
+          className={`hidden lg:flex absolute -bottom-36 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-300 ${isVisible ? 'animate-fade-up stagger-5' : 'opacity-0'}`}
           style={{ opacity: isVisible ? scrollOpacity : 0 }}
         >
           <div className="w-5 h-8 rounded-full border border-border/50 flex items-start justify-center p-1">
             <div className="w-1 h-2 rounded-full bg-primary/60 animate-bounce" />
           </div>
-          <span className="text-xs font-medium uppercase tracking-wider">Scroll</span>
+          <span className="text-xs font-medium uppercase tracking-wider">
+            Scroll
+          </span>
         </div>
       </div>
     </section>
