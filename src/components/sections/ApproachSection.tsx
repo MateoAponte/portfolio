@@ -51,7 +51,10 @@ export const ApproachSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="approach" className="py-24 md:py-32 relative overflow-hidden section-separator">
+    <section
+      id="approach"
+      className="py-24 md:py-32 relative overflow-hidden section-separator"
+    >
       {/* Ambient background glow */}
       <div className="ambient-glow ambient-glow-right" />
 
@@ -183,6 +186,16 @@ export const ApproachSection = () => {
             </div>
           </div>
         </div>
+      </div>
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute top-[10%] left-[20%] w-1.5 h-1.5 rounded-full bg-primary/80 animate-[float_8s_ease-in-out_infinite]" />
+        <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_2s]" />
+        <div className="absolute top-[15%] right-[8%] w-1 h-1 rounded-full bg-primary/40 animate-[float_10s_ease-in-out_infinite_1.5s]" />
+        <div className="absolute top-[50%] left-[8%] w-1 h-1 rounded-full bg-primary/70 animate-[float_10s_ease-in-out_infinite_3s]" />
+        <div className="absolute top-[80%] right-[8%] w-2 h-2 rounded-full bg-primary/80 animate-[float_10s_ease-in-out_infinite]" />
+        <div className="absolute top-[93%] right-[15%] w-1 h-1 rounded-full bg-primary/40 animate-[float_10s_ease-in-out_infinite_1.5s]" />
+        <div className="absolute top-[80%] left-[25%] w-1 h-1 rounded-full bg-primary/50 animate-[float_10s_ease-in-out_infinite_2.5s]" />
+        <div className="absolute top-[20%] left-[35%] w-1.5 h-1.5 rounded-full bg-primary/80 animate-[float_10s_ease-in-out_infinite_3s]" />
       </div>
     </section>
   );

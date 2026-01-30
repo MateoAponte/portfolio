@@ -39,13 +39,13 @@ const ProjectCard = ({
         {project.stack.slice(0, 3).map((tech) => (
           <span
             key={tech}
-            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20"
+            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20"
           >
             {tech}
           </span>
         ))}
         {project.stack.length > 3 && (
-          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20">
+          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20">
             +{project.stack.length - 3}
           </span>
         )}
@@ -73,50 +73,66 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 relative overflow-hidden section-separator">
-      {/* Ambient background glow */}
-      <div className="ambient-glow ambient-glow-right" />
+    <>
+      {/* Transition fade to next section */}
+      <div className="absolute mt-16 bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background via-background/30 to-transparent pointer-events-none" />
+      <section
+        id="portfolio"
+        className="py-24 md:py-32 relative overflow-hidden section-separator"
+      >
+        {/* Ambient background glow */}
+        <div className="ambient-glow ambient-glow-right" />
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <span
-            className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
-          >
-            Portfolio
-          </span>
-          <h2
-            className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
-          >
-            Technical Decisions in Production
-          </h2>
-          <p
-            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
-          >
-            Projects where architecture, trade-offs and technical judgment were
-            key to success.
-          </p>
-        </div>
-
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project, index) => (
-            <div
-              key={project.id}
-              className={
-                isVisible
-                  ? `animate-fade-up stagger-${Math.min(index + 3, 6)}`
-                  : 'opacity-0'
-              }
+        <div ref={ref} className="container mx-auto px-6 relative z-10">
+          {/* Section Header */}
+          <div className="text-center mb-14">
+            <span
+              className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
             >
-              <ProjectCard
-                project={project}
-                onClick={() => handleProjectClick(project.id)}
-              />
-            </div>
-          ))}
+              Portfolio
+            </span>
+            <h2
+              className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
+            >
+              Technical Decisions in Production
+            </h2>
+            <p
+              className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            >
+              Projects where architecture, trade-offs and technical judgment
+              were key to success.
+            </p>
+          </div>
+
+          {/* Projects Grid */}
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {projects.map((project, index) => (
+              <div
+                key={project.id}
+                className={
+                  isVisible
+                    ? `animate-fade-up stagger-${Math.min(index + 3, 6)}`
+                    : 'opacity-0'
+                }
+              >
+                <ProjectCard
+                  project={project}
+                  onClick={() => handleProjectClick(project.id)}
+                />
+              </div>
+            ))}
+          </div>
         </div>
-      </div>
-    </section>
+
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <div className="absolute top-[15%] left-[30%] w-1.5 h-1.5 rounded-full bg-primary/80 animate-[float_8s_ease-in-out_infinite]" />
+          <div className="absolute top-[25%] right-[25%] w-1.5 h-1.5 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_1s]" />
+          <div className="absolute top-[45%] left-[5%] w-1 h-1 rounded-full bg-primary/50 animate-[float_12s_ease-in-out_infinite_2s]" />
+          <div className="absolute top-[60%] right-[2%] w-0.5 h-0.5 rounded-full bg-primary/80 animate-[float_9s_ease-in-out_infinite_0.5s]" />
+          <div className="absolute top-[80%] right-[10%] w-1 h-1 rounded-full bg-primary/50 animate-[float_13s_ease-in-out_infinite_2.5s]" />
+          <div className="absolute top-[80%] left-[12%] w-0.5 h-0.5 rounded-full bg-primary/80 animate-[float_9s_ease-in-out_infinite_4s]" />
+        </div>
+      </section>
+    </>
   );
 };

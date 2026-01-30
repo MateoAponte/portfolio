@@ -29,9 +29,9 @@ export const HeroSection = () => {
   return (
     <section
       id="home"
-      className="w-full h-full relative min-h-screen flex items-center overflow-hidden bg-secondary/50"
+      className="w-full h-full relative min-h-screen flex items-center overflow-hidden "
     >
-      <div className="w-full h-full py-48 min-h-screen bg-gradient-to-br from-primary/20 via-card to-accent/20">
+      <div className="hero-container w-full h-full min-h-screen bg-gradient-to-br from-primary/20 via-card to-accent/20">
         {/* Subtle grid pattern */}
         <div
           className="absolute inset-0 opacity-[0.015]"
@@ -72,7 +72,7 @@ export const HeroSection = () => {
 
               {/* Main Heading */}
               <h1
-                className={`mt-8 text-4xl md:text-5xl lg:text-6xl font-bold leading-[1.1] ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
+                className={`hero-title mt-8 text-4xl md:text-4xl lg:text-6xl font-bold leading-[1.1] ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
               >
                 <span className="text-foreground">Fullstack</span>
                 <span className="gradient-text block mt-1">Developer</span>
@@ -102,10 +102,7 @@ export const HeroSection = () => {
               <div
                 className={`mt-10 ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
               >
-                <a
-                  href="#portfolio"
-                  className="btn-primary lg:text-base text-sm"
-                >
+                <a href="#portfolio" className="btn-primary text-sm">
                   Know more about my approach
                   <ArrowDown size={16} />
                 </a>
@@ -145,7 +142,7 @@ export const HeroSection = () => {
               className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
             >
               <div className="relative">
-                <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-[31rem] lg:h-[31rem]">
+                <div className="image-container relative w-64 h-64 lg:w-[29rem] lg:h-[29rem]">
                   {/* Outer decorative ring with dots - all rotating together */}
                   <div className="absolute inset-0 animate-[spin_35s_linear_infinite]">
                     <div className="absolute inset-0 rounded-full border border-primary/20" />
@@ -174,7 +171,7 @@ export const HeroSection = () => {
 
           {/* Scroll Indicator */}
           <div
-            className="hidden lg:flex absolute -bottom-36 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-500 "
+            className="icon-scroll hidden lg:flex absolute -bottom-4 left-1/2 -translate-x-1/2 flex-col items-center gap-2 text-muted-foreground transition-opacity duration-500 "
             style={{ opacity: scrollOpacity }}
           >
             <div className="w-5 h-8 rounded-full border border-border/50 flex items-start justify-center p-1 ">
@@ -186,9 +183,6 @@ export const HeroSection = () => {
           </div>
         </div>
       </div>
-      
-      {/* Transition fade to next section */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-background via-background/80 to-transparent pointer-events-none" />
     </section>
   );
 };
