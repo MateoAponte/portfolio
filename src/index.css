@@ -217,6 +217,22 @@
   }
 }
 
+@media (min-height: 900px) {
+  .hero-container {
+    @apply py-48 !important;
+  }
+  .hero-title {
+    @apply text-5xl !important;
+  }
+  .icon-scroll {
+    @apply -bottom-48 !important;
+  }
+}
+
+.hero-container {
+  @apply py-20;
+}
+
 @layer utilities {
   .animate-fade-up {
     animation: fadeUp 0.6s ease-out forwards;

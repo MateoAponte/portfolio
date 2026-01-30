@@ -56,7 +56,7 @@ export const Header = () => {
           {/* CTA Button */}
           <a
             href="#contact"
-            className="hidden md:inline-flex btn-primary lg:text-base text-sm py-2 px-5"
+            className="hidden md:inline-flex btn-primary text-sm py-2 px-5"
           >
             Let's Talk
           </a>
