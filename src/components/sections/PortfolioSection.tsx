@@ -73,11 +73,12 @@ export const PortfolioSection = () => {
   };
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 relative overflow-hidden bg-background">
-      {/* Subtle top fade from hero */}
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-secondary/30 to-transparent pointer-events-none" />
-      {/* Ambient glow */}
-      <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] bg-primary/[0.02] rounded-full blur-3xl pointer-events-none" />
+    <section id="portfolio" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-portfolio)' }}
+      />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}

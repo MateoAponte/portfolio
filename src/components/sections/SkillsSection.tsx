@@ -19,10 +19,12 @@ const iconMap: Record<string, React.ElementType> = {
 export const SkillsSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
   return (
-    <section id="skills" className="py-24 md:py-32 relative overflow-hidden bg-background">
-      {/* Subtle ambient glow */}
-      <div className="absolute top-1/3 right-0 w-[500px] h-[500px] bg-primary/[0.02] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute bottom-0 left-1/4 w-[300px] h-[300px] bg-accent/[0.015] rounded-full blur-3xl pointer-events-none" />
+    <section id="skills" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-skills)' }}
+      />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header with Visual Element */}

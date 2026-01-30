@@ -145,7 +145,7 @@ export const HeroSection = () => {
               className={`order-1 lg:order-2 flex justify-center ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
             >
               <div className="relative">
-                <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-[28rem] lg:h-[28rem] xl:w-[31rem] xl:h-[31rem] 2xl:w-[34rem] 2xl:h-[34rem] lg:max-h-[calc(100vh-16rem)]" style={{ aspectRatio: '1/1' }}>
+                <div className="relative w-64 h-64 md:w-72 md:h-72 lg:w-[31rem] lg:h-[31rem]">
                   {/* Outer decorative ring with dots - all rotating together */}
                   <div className="absolute inset-0 animate-[spin_35s_linear_infinite]">
                     <div className="absolute inset-0 rounded-full border border-primary/20" />

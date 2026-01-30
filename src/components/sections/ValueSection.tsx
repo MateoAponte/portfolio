@@ -26,9 +26,12 @@ export const ValueSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="value" className="py-24 md:py-32 relative overflow-hidden bg-background">
-      {/* Subtle ambient glow */}
-      <div className="absolute bottom-1/4 right-1/4 w-[350px] h-[350px] bg-primary/[0.02] rounded-full blur-3xl pointer-events-none" />
+    <section id="value" className="py-24 md:py-32 relative overflow-hidden">
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-value)' }}
+      />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}

@@ -14,11 +14,13 @@ export const ContactSection = () => {
   return (
     <section
       id="contact"
-      className="py-24 md:py-32 relative overflow-hidden bg-background"
+      className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-primary/10 via-card to-accent/10 flex"
     >
-      {/* Subtle ambient glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-primary/[0.03] rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-1/4 right-0 w-[300px] h-[300px] bg-accent/[0.02] rounded-full blur-3xl pointer-events-none" />
+      {/* Background gradient */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{ background: 'var(--gradient-section-contact)' }}
+      />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
