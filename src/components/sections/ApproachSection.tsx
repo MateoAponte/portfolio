@@ -51,12 +51,9 @@ export const ApproachSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="approach" className="py-24 md:py-32 relative overflow-hidden">
-      {/* Background gradient */}
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{ background: 'var(--gradient-section-approach)' }}
-      />
+    <section id="approach" className="py-24 md:py-32 relative overflow-hidden section-separator">
+      {/* Ambient background glow */}
+      <div className="ambient-glow ambient-glow-right" />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
