@@ -39,13 +39,13 @@ const ProjectCard = ({
         {project.stack.slice(0, 3).map((tech) => (
           <span
             key={tech}
-            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20"
+            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20"
           >
             {tech}
           </span>
         ))}
         {project.stack.length > 3 && (
-          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20">
+          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20">
             +{project.stack.length - 3}
           </span>
         )}
