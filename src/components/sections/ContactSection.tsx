@@ -12,7 +12,10 @@ export const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
+    <section
+      id="contact"
+      className="py-24 md:py-32 relative overflow-hidden bg-gradient-to-br from-primary/10 via-card to-accent/10 flex"
+    >
       {/* Background gradient */}
       <div
         className="absolute inset-0 pointer-events-none"
@@ -33,7 +36,7 @@ export const ContactSection = () => {
             Let's Talk Architecture
           </h2>
           <p
-            className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
             Have a technical challenge? I'm interested in hearing about
             scalability issues, technical debt or architectural decisions.
@@ -88,12 +91,12 @@ export const ContactSection = () => {
                 <div>
                   <p className="text-xs text-muted-foreground">Email</p>
                   <p className="text-foreground text-sm font-medium">
-                    hello@developer.com
+                    mateo2aponte@hotmail.com
                   </p>
                 </div>
               </a>
 
-              <div className="flex items-center gap-3 p-4 glass-card">
+              <div className="flex items-center gap-3 p-4 glass-card hover:border-primary/25 transition-colors">
                 <div className="p-2.5 rounded-md bg-primary/10 text-primary">
                   <MapPin size={18} />
                 </div>

@@ -72,7 +72,7 @@ export const ApproachSection = () => {
             How I Make Technical Decisions
           </h2>
           <p
-            className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
             Principles that guide my work and define how I approach complex
             problems.
@@ -81,9 +81,9 @@ export const ApproachSection = () => {
 
         {/* Principles with stepper/timeline design - staggered columns */}
         <div
-          className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
+          className={`max-w-4xl w-full min-w-full ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
         >
-          <div className="grid md:grid-cols-2 gap-x-12 gap-y-0">
+          <div className="grid md:grid-cols-2 lg:gap-x-24 gap-x-12 gap-y-0">
             {/* Left column */}
             <div className="relative">
               {/* Vertical line for left column */}
@@ -122,10 +122,10 @@ export const ApproachSection = () => {
                         </div>
 
                         <div className="flex-1 pt-1">
-                          <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                          <h3 className="lg:text-lg text-md font-semibold text-foreground mb-1.5">
                             {principle.title}
                           </h3>
-                          <p className="text-muted-foreground text-xs leading-relaxed">
+                          <p className="text-muted-foreground lg:text-base text-sm leading-relaxed">
                             {principle.description}
                           </p>
                         </div>
@@ -136,7 +136,7 @@ export const ApproachSection = () => {
             </div>
 
             {/* Right column - offset down */}
-            <div className="relative md:mt-16">
+            <div className="relative lg:mt-24 mt-20">
               {/* Vertical line for right column */}
               <div className="hidden md:block absolute left-0 top-0 w-px h-full bg-gradient-to-b from-border/50 via-border to-border/50" />
               {principles
@@ -172,10 +172,10 @@ export const ApproachSection = () => {
                         </div>
 
                         <div className="flex-1 pt-1">
-                          <h3 className="text-sm font-semibold text-foreground mb-1.5">
+                          <h3 className="lg:text-lg text-md font-semibold text-foreground mb-1.5">
                             {principle.title}
                           </h3>
-                          <p className="text-muted-foreground text-xs leading-relaxed">
+                          <p className="text-muted-foreground lg:text-base text-sm leading-relaxed">
                             {principle.description}
                           </p>
                         </div>

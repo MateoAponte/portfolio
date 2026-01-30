@@ -47,7 +47,7 @@ export const ValueSection = () => {
             What I Offer
           </h2>
           <p
-            className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
             More than code: a comprehensive approach to solving complex problems
             with elegant solutions.
@@ -79,11 +79,11 @@ export const ValueSection = () => {
                       </div>
                     </div>
 
-                    <h3 className="text-base font-semibold text-foreground mb-2">
+                    <h3 className="lg:text-lg text-md font-semibold text-foreground mb-2">
                       {value.title}
                     </h3>
 
-                    <p className="text-muted-foreground text-sm leading-relaxed">
+                    <p className="text-muted-foreground lg:text-base text-sm leading-relaxed">
                       {value.description}
                     </p>
                   </div>
