@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
@@ -39,17 +39,55 @@
     --radius: 0.625rem;
 
     /* Warm orange custom tokens */
-    --gradient-primary: linear-gradient(135deg, hsl(13 97% 68%), hsl(20 95% 60%));
-    --gradient-hero: linear-gradient(180deg, hsl(15 18% 8%) 0%, hsl(15 20% 5%) 100%);
-    --gradient-card: linear-gradient(145deg, hsl(215 25% 16% / 0.9), hsl(215 22% 12% / 0.6));
+    --gradient-primary: linear-gradient(
+      135deg,
+      hsl(13 97% 68%),
+      hsl(20 95% 60%)
+    );
+    --gradient-hero: linear-gradient(
+      180deg,
+      hsl(15 18% 8%) 0%,
+      hsl(15 20% 5%) 100%
+    );
+    --gradient-card: linear-gradient(
+      145deg,
+      hsl(215 25% 16% / 0.9),
+      hsl(215 22% 12% / 0.6)
+    );
 
     /* Section gradients - warm tones */
-    --gradient-section-hero: radial-gradient(ellipse 100% 60% at 50% -10%, hsl(15 85% 55% / 0.1), transparent 70%);
-    --gradient-section-portfolio: linear-gradient(180deg, hsl(215 22% 8%) 0%, hsl(215 24% 12%) 50%, hsl(215 22% 8%) 100%);
-    --gradient-section-skills: radial-gradient(ellipse 80% 60% at 80% 30%, hsl(25 90% 50% / 0.05), transparent 60%);
-    --gradient-section-approach: radial-gradient(ellipse 70% 50% at 20% 70%, hsl(15 85% 55% / 0.06), transparent 60%);
-    --gradient-section-value: linear-gradient(180deg, hsl(215 22% 8%) 0%, hsl(215 24% 11%) 50%, hsl(215 22% 8%) 100%);
-    --gradient-section-contact: radial-gradient(ellipse 80% 80% at 50% 100%, hsl(15 85% 55% / 0.06), transparent 60%);
+    --gradient-section-hero: radial-gradient(
+      ellipse 100% 60% at 50% -10%,
+      hsl(15 85% 55% / 0.1),
+      transparent 70%
+    );
+    --gradient-section-portfolio: linear-gradient(
+      180deg,
+      hsl(215 22% 8%) 0%,
+      hsl(215 24% 12%) 50%,
+      hsl(215 22% 8%) 100%
+    );
+    --gradient-section-skills: radial-gradient(
+      ellipse 80% 60% at 80% 30%,
+      hsl(25 90% 50% / 0.05),
+      transparent 60%
+    );
+    --gradient-section-approach: radial-gradient(
+      ellipse 70% 50% at 20% 70%,
+      hsl(15 85% 55% / 0.06),
+      transparent 60%
+    );
+    --gradient-section-value: linear-gradient(
+      180deg,
+      hsl(215 22% 8%) 0%,
+      hsl(215 24% 11%) 50%,
+      hsl(215 22% 8%) 100%
+    );
+    --gradient-section-contact: radial-gradient(
+      ellipse 80% 80% at 50% 100%,
+      hsl(15 85% 55% / 0.06),
+      transparent 60%
+    );
 
     /* Warm shadows */
     --shadow-glow: 0 0 50px hsl(15 85% 55% / 0.15);
@@ -79,7 +117,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.01em;
   }
 
@@ -89,7 +127,7 @@
   h4,
   h5,
   h6 {
-    font-family: "Plus Jakarta Sans", "Inter", system-ui, sans-serif;
+    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
     letter-spacing: -0.02em;
   }
 }
@@ -120,7 +158,7 @@
   }
 
   .gradient-border::before {
-    content: "";
+    content: '';
     @apply absolute inset-0 rounded-lg p-[1px];
     background: var(--gradient-primary);
     -webkit-mask:
@@ -279,20 +317,14 @@
 }
 
 @keyframes float {
-  0%, 100% {
+  0%,
+  100% {
     transform: translateY(0) translateX(0);
     opacity: 0.3;
   }
-  25% {
-    transform: translateY(-20px) translateX(10px);
-    opacity: 0.6;
-  }
-  50% {
-    transform: translateY(-10px) translateX(-5px);
-    opacity: 0.4;
-  }
+
   75% {
-    transform: translateY(-25px) translateX(5px);
+    transform: translateY(-15px) translateX(5px);
     opacity: 0.5;
   }
 }

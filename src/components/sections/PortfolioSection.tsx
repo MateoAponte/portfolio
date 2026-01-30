@@ -3,7 +3,13 @@ import { ChevronRight } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
-const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => void }) => {
+const ProjectCard = ({
+  project,
+  onClick,
+}: {
+  project: Project;
+  onClick: () => void;
+}) => {
   return (
     <article
       onClick={onClick}
@@ -12,38 +18,46 @@ const ProjectCard = ({ project, onClick }: { project: Project; onClick: () => vo
       {/* Project visual */}
       <div className="aspect-[16/10] rounded-md bg-secondary/50 mb-5 overflow-hidden relative">
         <div className="w-full h-full bg-gradient-to-br from-primary/10 via-card to-accent/10 flex items-center justify-center">
-          <span className="text-4xl font-bold gradient-text opacity-60">{project.title.charAt(0)}</span>
+          <span className="text-4xl font-bold gradient-text opacity-60">
+            {project.title.charAt(0)}
+          </span>
         </div>
         {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
-      
+
       <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
         {project.title}
       </h3>
-      
-      <p className="text-muted-foreground text-sm mb-4 line-clamp-2 leading-relaxed">
+
+      <p className="text-muted-foreground lg:text-base text-sm mb-4 line-clamp-2 leading-relaxed">
         {project.shortDescription}
       </p>
-      
+
       {/* Stack tags */}
       <div className="flex flex-wrap gap-1.5 mb-4">
         {project.stack.slice(0, 3).map((tech) => (
-          <span key={tech} className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30">
+          <span
+            key={tech}
+            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20"
+          >
             {tech}
           </span>
         ))}
         {project.stack.length > 3 && (
-          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30">
+          <span className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/30 hover:text-primary/80 hover:border-primary/20">
             +{project.stack.length - 3}
           </span>
         )}
       </div>
-      
+
       {/* CTA */}
       <div className="flex items-center text-primary text-sm font-medium gap-1 group-hover:gap-2 transition-all">
         View technical decisions
-        <ChevronRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+        <ChevronRight
+          size={14}
+          className="group-hover:translate-x-0.5 transition-transform"
+        />
       </div>
     </article>
   );
@@ -61,22 +75,29 @@ export const PortfolioSection = () => {
   return (
     <section id="portfolio" className="py-24 md:py-32 relative overflow-hidden">
       {/* Background gradient */}
-      <div 
+      <div
         className="absolute inset-0 pointer-events-none"
         style={{ background: 'var(--gradient-section-portfolio)' }}
       />
-      
+
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <span className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+          <span
+            className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
+          >
             Portfolio
           </span>
-          <h2 className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}>
+          <h2
+            className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
+          >
             Technical Decisions in Production
           </h2>
-          <p className={`mt-4 text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}>
-            Projects where architecture, trade-offs and technical judgment were key to success.
+          <p
+            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
+          >
+            Projects where architecture, trade-offs and technical judgment were
+            key to success.
           </p>
         </div>
 
@@ -85,7 +106,11 @@ export const PortfolioSection = () => {
           {projects.map((project, index) => (
             <div
               key={project.id}
-              className={isVisible ? `animate-fade-up stagger-${Math.min(index + 3, 6)}` : 'opacity-0'}
+              className={
+                isVisible
+                  ? `animate-fade-up stagger-${Math.min(index + 3, 6)}`
+                  : 'opacity-0'
+              }
             >
               <ProjectCard
                 project={project}

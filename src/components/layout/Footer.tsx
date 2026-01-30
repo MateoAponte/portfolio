@@ -13,38 +13,6 @@ export const Footer = () => {
             <Heart size={12} className="text-primary fill-primary" />
             <span>and TypeScript</span>
           </div>
-
-          {/* Social Links */}
-          <div className="flex items-center gap-2">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
-              aria-label="GitHub"
-            >
-              <Github size={14} />
-              <span>GitHub</span>
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
-              aria-label="LinkedIn"
-            >
-              <Linkedin size={14} />
-              <span>LinkedIn</span>
-            </a>
-            <a
-              href="mailto:hello@developer.com"
-              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
-              aria-label="Email"
-            >
-              <Mail size={14} />
-              <span>Email</span>
-            </a>
-          </div>
         </div>
       </div>
     </footer>
