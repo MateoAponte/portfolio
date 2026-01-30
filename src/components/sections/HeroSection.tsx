@@ -140,7 +140,7 @@ export const HeroSection = () => {
                 <div className="absolute inset-0 rounded-full border border-primary/20 animate-[spin_20s_linear_infinite]" />
 
                 {/* Profile image container - circular crop */}
-                <div className="absolute inset-4 rounded-full overflow-hidden border-2 border-primary/30">
+                <div className="absolute inset-4 rounded-full overflow-hidden">
                   <img
                     src={profilePhoto}
                     alt="Profile photo"
