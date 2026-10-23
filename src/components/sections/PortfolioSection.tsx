@@ -2,6 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronRight } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
+import { TechIcon } from '@/components/TechIcon';
 
 const ProjectCard = ({
   project,
@@ -17,16 +18,18 @@ const ProjectCard = ({
     >
       {/* Project visual */}
       <div className="aspect-[16/10] rounded-md bg-secondary/50 mb-5 overflow-hidden relative">
-        <div className="w-full h-full bg-gradient-to-br from-primary/10 via-card to-accent/10 flex items-center justify-center">
+        {project.thumbnail || project.appShowcase || project.image !== '/placeholder.svg' ? (
+          <img src={project.thumbnail ?? project.appShowcase ?? project.image} alt={`${project.title} interface preview`} loading="lazy" decoding="async" className="h-full w-full object-contain p-2" />
+        ) : <div className="w-full h-full bg-gradient-to-br from-primary/10 via-card to-accent/10 flex items-center justify-center">
           <span className="text-4xl font-bold gradient-text opacity-60">
             {project.title.charAt(0)}
           </span>
-        </div>
+        </div>}
         {/* Subtle overlay on hover */}
         <div className="absolute inset-0 bg-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
       </div>
 
-      <h3 className="text-lg font-semibold text-foreground mb-2 group-hover:text-primary transition-colors">
+      <h3 className="text-xl font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
         {project.title}
       </h3>
 
@@ -39,9 +42,9 @@ const ProjectCard = ({
         {project.stack.slice(0, 3).map((tech) => (
           <span
             key={tech}
-            className="px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20"
+            className="inline-flex items-center gap-1.5 px-2 py-1 rounded text-xs font-medium bg-secondary/60 text-muted-foreground border border-border/80 hover:text-primary/80 hover:border-primary/20"
           >
-            {tech}
+            <TechIcon tech={tech} />{tech}
           </span>
         ))}
         {project.stack.length > 3 && (
