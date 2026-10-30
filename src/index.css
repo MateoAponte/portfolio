@@ -1,11 +1,118 @@
+@font-face {
+  font-family: 'Figtree';
+  src: url('/fonts/figtree.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Fraunces';
+  src: url('/fonts/fraunces.woff2') format('woff2');
+  font-weight: 400 800;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'JetBrains Mono';
+  src: url('/fonts/jetbrains-mono.woff2') format('woff2');
+  font-weight: 400 600;
+  font-style: normal;
+  font-display: swap;
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
-
 @layer base {
+  /* The home palette stays local; project detail pages retain their own theme. */
+  .nature-main {
+    --background: 156 27% 8%;
+    --foreground: 83 25% 94%;
+    --card: 153 24% 12%;
+    --card-foreground: 83 25% 94%;
+    --secondary: 151 20% 17%;
+    --secondary-foreground: 83 25% 94%;
+    --muted: 151 17% 22%;
+    --muted-foreground: 143 12% 74%;
+    --primary: 87 28% 72%;
+    --primary-foreground: 156 38% 6%;
+    --accent: 157 40% 72%;
+    --accent-foreground: 156 38% 6%;
+    --border: 151 17% 27%;
+    --input: 151 17% 27%;
+    --ring: 157 40% 72%;
+    --nature-link: #a4d9c6;
+    --nature-link-hover: #d0eee2;
+    --nature-cta: #f5c874;
+    --nature-cta-hover: #ffdda0;
+    --nature-active: #f5c874;
+    --shadow-soft: 0 2px 12px rgb(0 0 0 / 0.18);
+    --shadow-hover: 0 8px 24px rgb(0 0 0 / 0.22);
+    --shadow-glow: 0 4px 16px rgb(0 0 0 / 0.2);
+  }
+
+  .nature-main ::selection {
+    background: #b9cba3;
+    color: #0a1614;
+  }
+
+  .nature-main :is(a, button, input, textarea):focus-visible {
+    outline: 2px solid var(--nature-link);
+    outline-offset: 4px;
+  }
+
+  .nature-main nav a[aria-current] {
+    color: var(--nature-active);
+    background-color: #323224;
+    border-color: #927c4e;
+  }
+
+  .nature-main nav a:hover {
+    color: var(--nature-link-hover);
+    background-color: #253e34;
+  }
+
+  .nature-main nav a[aria-current]:hover {
+    color: var(--nature-cta-hover);
+    background-color: #3d3b29;
+  }
+
+  .nature-main .btn-primary {
+    background: var(--nature-cta);
+    color: #0a1614;
+    transition-property: background-color, transform;
+  }
+
+  .nature-main .btn-primary:hover {
+    background: #dfad55;
+    box-shadow: none;
+  }
+
+  .nature-main .btn-primary:active {
+    background: #e3b45d;
+    transform: scale(0.96);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .nature-main .btn-primary,
+    .nature-main .btn-primary:hover,
+    .nature-main .btn-primary:active {
+      transition: none;
+      transform: none;
+    }
+  }
+
+  .nature-main .section-separator::after {
+    display: none;
+  }
+
+  .nature-main > footer {
+    border-top: 0;
+  }
+
   :root {
     /* Dark UI - Deep navy background with warm orange accents */
     --background: 222 47% 7%;
@@ -103,7 +210,7 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-family: 'Figtree', system-ui, sans-serif;
     letter-spacing: -0.01em;
   }
 
@@ -113,8 +220,18 @@
   h4,
   h5,
   h6 {
-    font-family: 'Plus Jakarta Sans', 'Inter', system-ui, sans-serif;
+    font-family: 'Fraunces', Georgia, serif;
+    font-optical-sizing: auto;
     letter-spacing: -0.02em;
+  }
+}
+
+@layer base {
+  code,
+  pre,
+  kbd,
+  samp {
+    font-family: 'JetBrains Mono', ui-monospace, monospace;
   }
 }
 
@@ -408,4 +525,44 @@
 
 :root {
   --card: 216, 20%, 8%;
+}
+
+/* Informational surfaces keep their reading semantics; hover adds quiet emphasis. */
+.skill-panel { transition: border-color 150ms ease-out; }
+.skill-chip { transition: border-color 150ms ease-out, color 150ms ease-out; }
+.approach-hover { transition: transform 200ms ease-out; }
+.value-hover { transition: transform 200ms ease-out; }
+
+@media (hover: hover) and (pointer: fine) {
+  .skill-panel:hover { border-color: hsl(var(--primary) / 0.25); }
+  .skill-chip:hover { border-color: var(--nature-active); color: var(--nature-active); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .approach-item:hover .approach-hover { transform: scale(1.025); }
+  .value-item:hover .value-hover { transform: translateX(6px); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .approach-hover, .value-hover { transition: none; }
+}
+
+.project-card { transition: border-color 150ms ease-out, background-color 150ms ease-out; }
+.project-image { transition: transform 350ms cubic-bezier(0.2, 0, 0, 1); transform-origin: center; }
+.project-plants { opacity: 0; transition: opacity 150ms ease-out; }
+.project-plants :is(path, circle) { stroke-dasharray: 1; stroke-dashoffset: 1; transition: stroke-dashoffset 200ms ease-out; }
+.project-card:focus-visible { border-color: #b9cba3; }
+.project-card:focus-visible .project-plants { opacity: 1; }
+.project-card:focus-visible .project-plants :is(path, circle) { stroke-dashoffset: 0; transition-duration: var(--draw-duration); transition-delay: var(--draw-delay); }
+@media (hover: hover) and (pointer: fine) {
+  .project-card:hover { border-color: #b9cba3; }
+  .project-card:hover .project-plants { opacity: 1; }
+  .project-card:hover .project-plants :is(path, circle) { stroke-dashoffset: 0; transition-duration: var(--draw-duration); transition-delay: var(--draw-delay); }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .project-card:focus-visible .project-image { transform: scale(1.05); }
+}
+@media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+  .project-card:hover .project-image { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-image, .project-plants, .project-card .project-plants :is(path, circle) { transition: none; }
 }

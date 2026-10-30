@@ -1,4 +1,26 @@
-import { Code2 } from 'lucide-react';
+import { Activity, BookOpen, Boxes, CircuitBoard, Cloud, Code2, Database, FlaskConical, GitBranch, Layers, Network, Route, Shield, Split, Theater, Waves, Workflow } from 'lucide-react';
+
+// Semantic icons for tools without a bundled brand asset and architecture concepts.
+const conceptIcons: Record<string, typeof Code2> = {
+  'Event Sourcing': GitBranch,
+  CQRS: Split,
+  Microservices: Network,
+  'API Design': Route,
+  MongoDB: Database,
+  AWS: Cloud,
+  'Framer Motion': Waves,
+  Vitest: FlaskConical,
+  Playwright: Theater,
+  'GitHub Actions': Workflow,
+  Terraform: Boxes,
+  'Domain-Driven Design': BookOpen,
+  'Hexagonal Architecture': Boxes,
+  'Saga Pattern': Workflow,
+  'Circuit Breaker': CircuitBoard,
+  'API Gateway': Shield,
+  'Event-Driven Architecture': Activity,
+  'Repository Pattern': Layers,
+};
 
 const techIcons: Record<string, string> = {
   TypeScript: 'typescript',
@@ -26,7 +48,10 @@ const techIcons: Record<string, string> = {
 export const TechIcon = ({ tech }: { tech: string }) => {
   const icon = techIcons[tech];
 
-  if (!icon) return <Code2 size={20} className="shrink-0" aria-hidden="true" />;
+  if (!icon) {
+    const Icon = conceptIcons[tech] ?? Code2;
+    return <Icon size={20} className="shrink-0" aria-hidden="true" />;
+  }
 
   const source = `url("/icons/tech/${icon}.svg")`;
   return (

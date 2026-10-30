@@ -1,195 +1,52 @@
-import {
-  Target,
-  Zap,
-  Wrench,
-  Boxes,
-  Code2,
-  Database,
-  Layers,
-} from 'lucide-react';
+import { Target, Zap, Layers, Wrench, type LucideIcon } from 'lucide-react';
+import { TechIcon } from '@/components/TechIcon';
+import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
+import { ContourWaves } from '@/components/BotanicalContours';
 import { skillTiers, architecturePatterns } from '@/data/skills';
-import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
-const iconMap: Record<string, React.ElementType> = {
-  Target,
-  Zap,
-  Wrench,
-};
+interface SkillGroupProps {
+  title: string;
+  description: string;
+  skills: string[];
+  icon: LucideIcon;
+}
+
+const SkillGroup = ({ title, description, skills, icon: Icon }: SkillGroupProps) => (
+  <article className="skill-panel min-w-0 rounded-2xl border border-border/50 bg-[#17271f] p-6 sm:p-8">
+    <div className="flex items-start gap-4">
+      <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#23392e] text-[#a4d9c6]">
+        <Icon size={20} strokeWidth={1.7} aria-hidden="true" />
+      </div>
+      <div className="min-w-0 flex-1">
+        <h3 className="text-xl min-[360px]:text-2xl font-semibold leading-tight text-[#f0f3eb] [text-wrap:balance]">{title}</h3>
+        <p className="mt-2 max-w-[42ch] text-sm leading-relaxed text-[#bccdc3] [text-wrap:pretty]">{description}</p>
+      </div>
+    </div>
+    <ul aria-label={title} className="mt-7 flex flex-wrap gap-2">
+      {skills.map(skill => (
+        <li key={skill} className="skill-chip inline-flex min-h-10 max-w-full items-center gap-2 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm font-medium leading-snug text-[#c7ded2] [&>svg]:h-4 [&>svg]:w-4 [&>span[aria-hidden]]:h-4 [&>span[aria-hidden]]:w-4">
+          <TechIcon tech={skill} />
+          <span className="min-w-0 [overflow-wrap:anywhere]">{skill}</span>
+        </li>
+      ))}
+    </ul>
+  </article>
+);
 
 export const SkillsSection = () => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
+  const [roots, trunk, leaves] = skillTiers;
   return (
-    <section
-      id="skills"
-      className="py-24 md:py-32 relative overflow-hidden section-separator"
-    >
-      {/* Ambient background glow */}
-      <div className="ambient-glow ambient-glow-left" />
-
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        {/* Section Header with Visual Element */}
-        <div className="grid lg:grid-cols-2 gap-12 items-center mb-14">
-          {/* Text Content */}
-          <div className="text-center lg:text-left">
-            <span
-              className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
-            >
-              Skills
-            </span>
-            <h2
-              className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
-            >
-              Technical Stack by Expertise Level
-            </h2>
-            <p
-              className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
-            >
-              Technologies organized by depth of experience and technical
-              responsibility.
-            </p>
-          </div>
-
-          {/* Geometric Visual Element (moved from Hero) */}
-          <div
-            className={`hidden lg:flex justify-center lg:justify-end ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
-          >
-            <div className="relative w-56 h-56">
-              {/* Outer ring */}
-              <div className="absolute inset-0 rounded-full border border-border/30" />
-
-              {/* Middle ring with gradient */}
-              <div className="absolute inset-3 rounded-full border border-primary/20">
-                <div className="absolute -top-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-primary/40" />
-                <div className="absolute -bottom-1 left-1/2 -translate-x-1/2 w-2 h-2 rounded-full bg-accent/40" />
-              </div>
-
-              {/* Inner content area */}
-              <div className="absolute inset-8 rounded-full bg-gradient-to-br from-card via-card/80 to-card/60 border border-border/40 flex items-center justify-center overflow-hidden">
-                {/* Floating icons */}
-                <div className="relative w-full h-full">
-                  <div className="absolute top-1/4 left-1/4 p-2 rounded-lg bg-primary/10 text-primary animate-float">
-                    <Code2 size={18} />
-                  </div>
-                  <div
-                    className="absolute top-1/2 right-6 p-2 rounded-lg bg-accent/10 text-accent animate-float"
-                    style={{ animationDelay: '1s' }}
-                  >
-                    <Database size={18} />
-                  </div>
-                  <div
-                    className="absolute bottom-7 left-1/3 p-2 rounded-lg bg-primary/10 text-primary animate-float"
-                    style={{ animationDelay: '2s' }}
-                  >
-                    <Layers size={18} />
-                  </div>
-                </div>
-              </div>
-
-              {/* Decorative arcs */}
-              <svg
-                className="absolute inset-0 w-full h-full -rotate-45"
-                viewBox="0 0 100 100"
-              >
-                <path
-                  d="M 15 50 A 35 35 0 0 1 85 50"
-                  fill="none"
-                  stroke="hsl(var(--primary) / 0.15)"
-                  strokeWidth="0.5"
-                  strokeLinecap="round"
-                />
-                <path
-                  d="M 20 50 A 30 30 0 0 1 80 50"
-                  fill="none"
-                  stroke="hsl(var(--accent) / 0.1)"
-                  strokeWidth="0.5"
-                  strokeLinecap="round"
-                />
-              </svg>
-
-              {/* Subtle glow behind */}
-              <div className="absolute inset-0 bg-primary/5 rounded-full blur-2xl -z-10" />
-            </div>
-          </div>
+    <section id="skills" aria-labelledby="skills-heading" className="relative isolate overflow-hidden py-20 md:py-28">
+      <ContourWaves className="-right-20 bottom-0 -z-10 w-[700px] text-[#b69b5e]/20" />
+      <div className="container mx-auto px-6 sm:px-10 xl:px-12">
+        <BotanicalSectionTag label="Skills" className="mb-6" />
+        <h2 id="skills-heading" className="mb-10 text-3xl font-bold leading-tight text-foreground md:mb-12 md:text-4xl">My development toolkit</h2>
+        <div className="grid items-stretch gap-5 md:grid-cols-2 lg:gap-6">
+          <SkillGroup title={roots.name} description={roots.description} skills={roots.skills} icon={Target} />
+          <SkillGroup title={trunk.name} description={trunk.description} skills={trunk.skills} icon={Zap} />
+          <SkillGroup title="Architectural Patterns" description="Patterns I study and apply according to the problem and its constraints." skills={architecturePatterns} icon={Layers} />
+          <SkillGroup title={leaves.name} description={leaves.description} skills={leaves.skills} icon={Wrench} />
         </div>
-
-        {/* Skills Grid - Card per tier */}
-        <div
-          className={`grid xl:grid-cols-3 gap-6 w-full ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
-        >
-          {skillTiers.map((tier) => {
-            const Icon = iconMap[tier.icon] || Target;
-
-            return (
-              <div key={tier.id} className="glass-card-hover p-5">
-                {/* Tier Header */}
-                <div className="flex items-start gap-3 mb-4">
-                  <div className="w-10 h-10 shrink-0 aspect-square rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-                    <Icon size={18} className="text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="lg:text-lg text-md font-semibold text-foreground">
-                      {tier.name}
-                    </h3>
-                    <p className="lg:text-base text-sm text-muted-foreground">
-                      {tier.description}
-                    </p>
-                  </div>
-                </div>
-
-                {/* Skills as compact grid */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 xl:grid-cols-2 gap-2 auto-rows-fr">
-                  {tier.skills.map((skill) => (
-                    <span
-                      key={skill}
-                      className="min-w-0 flex items-center justify-center px-2 py-2 rounded text-sm leading-snug font-medium bg-secondary/50 text-muted-foreground border border-border/80 text-center [overflow-wrap:anywhere]"
-                    >
-                      {skill}
-                    </span>
-                  ))}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Architecture Patterns - Card */}
-        <div
-          className={`glass-card-hover p-5 mt-6 ${isVisible ? 'animate-fade-up stagger-4' : 'opacity-0'}`}
-        >
-          <div className="flex items-start gap-3 mb-4">
-            <div className="w-10 h-10 shrink-0 aspect-square rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center">
-              <Boxes size={18} className="text-accent" />
-            </div>
-            <div>
-              <h3 className="lg:text-lg text-md font-semibold text-foreground">
-                Architectural Patterns
-              </h3>
-              <p className="lg:text-base text-sm text-muted-foreground">
-                Patterns implemented in production systems
-              </p>
-            </div>
-          </div>
-          <div className="flex items-start gap-3">
-            <div className="grid w-full lg:grid-cols-4 grid-cols-2 gap-2 auto-rows-fr">
-              {architecturePatterns.map((pattern) => (
-                <span
-                  key={pattern}
-                  className="min-w-0 flex items-center justify-center px-2 py-2 rounded text-sm leading-snug font-medium bg-secondary/50 text-muted-foreground border border-border/40 text-center [overflow-wrap:anywhere]"
-                >
-                  {pattern}
-                </span>
-              ))}
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[15%] left-[10%] w-1.5 h-1.5 rounded-full bg-primary/80 animate-[float_8s_ease-in-out_infinite]" />
-        <div className="absolute top-[29%] right-[50%] w-1.5 h-1.5 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_2s]" />
-        <div className="absolute top-[10%] left-[70%] w-1.5 h-1.5 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_1s]" />
-        <div className="absolute top-[70%] right-[10%] w-1 h-1 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_1.5s]" />
-        <div className="absolute top-[35%] left-[25%] w-1 h-1 rounded-full bg-primary/30 animate-[float_10s_ease-in-out_infinite_2.5s]" />
-        <div className="absolute top-[75%] left-[5%] w-2 h-2 rounded-full bg-primary/80 animate-[float_10s_ease-in-out_infinite_2.5s]" />
       </div>
     </section>
   );

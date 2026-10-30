@@ -1,3 +1,5 @@
+import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
+import { BranchHero } from '@/components/BotanicalContours';
 import {
   Mail,
   Github,
@@ -25,21 +27,16 @@ export const ContactSection = () => {
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <span
-            className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
-          >
-            Contact
-          </span>
+          <BotanicalSectionTag label="Contact" />
           <h2
             className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
           >
-            Let's Talk Architecture
+            Let’s work together
           </h2>
           <p
             className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
-            Have a technical challenge? I'm interested in hearing about
-            scalability issues, technical debt or architectural decisions.
+            Have a project in mind or a role on your team? Tell me what you are building and where you need help.
           </p>
         </div>
 
@@ -51,7 +48,7 @@ export const ContactSection = () => {
             }
           >
             <h3 className="text-lg font-semibold text-foreground mb-5">
-              Let's discuss
+              What we can talk about
             </h3>
 
             {/* Topics with vertical stepper */}
@@ -61,11 +58,11 @@ export const ContactSection = () => {
 
               <div className="space-y-3">
                 {[
-                  'Distributed systems architecture',
-                  'Monolith to microservices migration',
-                  'Scalability and performance',
-                  'Technical debt and strategic refactoring',
-                  'MVPs with solid foundation to scale',
+                  'Full-stack development roles',
+                  'Frontend interfaces and user flows',
+                  'Backend services and API integrations',
+                  'Code reviews and technical decisions',
+                  'Prototypes and product development',
                 ].map((topic, index) => (
                   <div
                     key={index}
@@ -181,7 +178,7 @@ export const ContactSection = () => {
                   htmlFor="message"
                   className="block text-sm font-medium text-foreground mb-2"
                 >
-                  What technical challenge are you facing?
+                  What would you like to discuss?
                 </label>
                 <textarea
                   id="message"
@@ -189,18 +186,19 @@ export const ContactSection = () => {
                   rows={4}
                   required
                   className="w-full px-4 py-2.5 rounded-md bg-secondary/50 border border-border/50 text-foreground text-sm placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-transparent transition-all resize-none"
-                  placeholder="Tell me about the technical problem you want to solve..."
+                  placeholder="Tell me about your project, team or opportunity..."
                 />
               </div>
 
               <button type="submit" className="btn-primary w-full py-2.5">
                 <Send size={16} />
-                Start Conversation
+                Send message
               </button>
             </form>
           </div>
         </div>
       </div>
+      <BranchHero flip="x" className="-right-40 bottom-0 h-[520px] w-[440px] text-[#a5ad80]/25" />
     </section>
   );
 };
