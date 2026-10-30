@@ -24,84 +24,31 @@ const values = [
 
 export const ValueSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
-
   return (
-    <section
-      id="value"
-      className="py-24 md:py-32 relative overflow-hidden section-separator"
-    >
-      {/* Ambient background glow */}
-      <div className="ambient-glow ambient-glow-center" />
-
+    <section id="value" className="py-20 md:py-28 relative overflow-hidden bg-secondary/20">
       <div ref={ref} className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-14">
-          <span
-            className={`section-badge ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}
-          >
-            Value Proposition
-          </span>
-          <h2
-            className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
-          >
-            What I Offer
-          </h2>
-          <p
-            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
-          >
-            More than code: a comprehensive approach to solving complex problems
-            with elegant solutions.
-          </p>
-        </div>
-
-        {/* Values with horizontal stepper line */}
-        <div
-          className={`max-w-4xl mx-auto ${isVisible ? 'animate-fade-up stagger-3' : 'opacity-0'}`}
-        >
-          <div className="relative">
-            {/* Horizontal stepper line connecting all values */}
-            <div className="hidden md:block absolute top-5 left-[16.66%] right-[16.66%] h-0.5 bg-gradient-to-r from-primary/60 via-primary to-primary/60" />
-
-            <div className="grid md:grid-cols-3 gap-8">
-              {values.map((value, index) => {
-                const Icon = value.icon;
-
-                return (
-                  <div key={value.title} className="relative text-center">
-                    {/* Stepper dot on the line - positioned at y=5 to align with line */}
-                    <div className="hidden md:block absolute top-[0.65rem] left-1/2 -translate-x-1/2 w-5 h-5 rounded-full bg-background border-2 border-primary z-20" />
-                    <div className="hidden md:block absolute top-[0.95rem] left-1/2 -translate-x-1/2 w-2.5 h-2.5 rounded-full bg-primary z-30" />
-
-                    {/* Icon below the line */}
-                    <div className="relative inline-flex mb-5 mt-8 md:mt-10">
-                      <div className="w-10 h-10 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center relative z-10 bg-background">
-                        <Icon size={20} className="text-primary" />
-                      </div>
-                    </div>
-
-                    <h3 className="lg:text-lg text-md font-semibold text-foreground mb-2">
-                      {value.title}
-                    </h3>
-
-                    <p className="text-muted-foreground lg:text-base text-sm leading-relaxed">
-                      {value.description}
-                    </p>
+        <div className={`grid lg:grid-cols-[1fr_1.25fr] gap-10 lg:gap-20 items-start ${isVisible ? 'animate-fade-up' : 'opacity-0'}`}>
+          <div>
+            <h2 className="text-3xl md:text-4xl font-bold text-foreground">What I Offer</h2>
+            <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-lg leading-relaxed">
+              More than code: a comprehensive approach to solving complex problems with elegant solutions.
+            </p>
+          </div>
+          <div className="space-y-8 md:space-y-10">
+            {values.map(value => {
+              const Icon = value.icon;
+              return (
+                <div key={value.title} className="flex items-start gap-4">
+                  <Icon size={24} className="text-primary mt-1 shrink-0" aria-hidden="true" />
+                  <div>
+                    <h3 className="text-lg font-semibold text-foreground">{value.title}</h3>
+                    <p className="mt-2 text-base text-muted-foreground leading-relaxed max-w-xl">{value.description}</p>
                   </div>
-                );
-              })}
-            </div>
+                </div>
+              );
+            })}
           </div>
         </div>
-      </div>
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-[10%] left-[20%] w-1.5 h-1.5 rounded-full bg-primary/80 animate-[float_8s_ease-in-out_infinite]" />
-        <div className="absolute top-[25%] right-[20%] w-1.5 h-1.5 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_2s]" />
-        <div className="absolute top-[50%] right-[14%] w-2 h-2 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_2.5s]" />
-        <div className="absolute top-[20%] left-[14%] w-1 h-1 rounded-full bg-primary/40 animate-[float_10s_ease-in-out_infinite]" />
-        <div className="absolute top-[85%] left-[12%] w-1 h-1 rounded-full bg-primary/60 animate-[float_10s_ease-in-out_infinite_1.5s]" />
-        <div className="absolute top-[78%] left-[58%] w-1.5 h-1.5 rounded-full bg-primary/70 animate-[float_10s_ease-in-out_infinite_2.5s]" />
-        <div className="absolute top-[50%] left-[18%] w-1 h-1 rounded-full bg-primary/70 animate-[float_10s_ease-in-out_infinite_3.5s]" />
-        <div className="absolute top-[30%] right-[40%] w-1 h-1 rounded-full bg-primary/70 animate-[float_10s_ease-in-out_infinite_2s]" />
       </div>
     </section>
   );

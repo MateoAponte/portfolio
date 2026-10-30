@@ -36,11 +36,11 @@ export const HomeNavigation = () => {
     <header className="fixed inset-x-0 top-0 z-50 border-b border-border/40 bg-background/90 backdrop-blur-xl lg:inset-y-0 lg:right-auto lg:w-36 lg:border-b-0 lg:border-r xl:w-44">
       <nav aria-label="Main navigation" className="flex h-full flex-col lg:justify-center lg:px-3 xl:px-5">
         <a href="#home" aria-label="Mateo, home" className="hidden px-3 py-8 font-mono text-sm font-semibold text-primary lg:absolute lg:top-0 lg:block">{'<Mateo />'}</a>
-        <ul className="flex w-full overflow-x-auto px-2 py-2 lg:flex-col lg:gap-2 lg:overflow-visible lg:p-0">
+        <ul className="grid grid-cols-3 sm:flex w-full gap-1 sm:gap-0 px-2 py-2 lg:flex-col lg:gap-2 lg:p-0">
           {links.map(({ id, label, icon: Icon }) => (
             <li key={id} className="min-w-0 flex-1 lg:flex-none">
-              <a href={`#${id}`} aria-current={active === id ? 'location' : undefined} className={`flex min-h-14 flex-col items-center justify-center gap-1 rounded-lg border px-2 py-2 text-[10px] font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring sm:text-xs lg:min-h-12 lg:flex-row lg:justify-start lg:gap-3 lg:px-3 lg:text-xs xl:text-sm ${active === id ? 'border-primary/40 bg-primary/10 text-primary' : 'border-transparent text-muted-foreground hover:bg-primary/5 hover:text-primary'}`}>
-                <Icon size={20} strokeWidth={1.6} className="shrink-0" aria-hidden="true" /><span className="whitespace-nowrap">{label}</span>
+              <a href={`#${id}`} aria-current={active === id ? 'location' : undefined} className={`flex min-h-11 sm:min-h-14 flex-row sm:flex-col items-center justify-center gap-1.5 rounded-lg border px-1 sm:px-2 py-2 text-xs font-medium transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring lg:min-h-12 lg:flex-row lg:justify-start lg:gap-3 lg:px-3 xl:text-sm ${active === id ? 'border-primary/40 bg-primary/10 text-primary' : 'border-transparent text-muted-foreground hover:bg-primary/5 hover:text-primary'}`}>
+                <Icon size={20} strokeWidth={1.6} className="h-4 w-4 sm:h-5 sm:w-5 shrink-0" aria-hidden="true" /><span className="whitespace-nowrap">{label}</span>
               </a>
             </li>
           ))}

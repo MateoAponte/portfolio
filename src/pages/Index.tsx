@@ -9,7 +9,7 @@ import { ContactSection } from '@/components/sections/ContactSection';
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background lg:pl-36 xl:pl-44 [&_main>section]:scroll-mt-24 lg:[&_main>section]:scroll-mt-0">
+    <div className="min-h-screen bg-background lg:pl-36 xl:pl-44 [&_main>section]:scroll-mt-32 sm:[&_main>section]:scroll-mt-24 lg:[&_main>section]:scroll-mt-0">
       <HomeNavigation />
       <main>
         <HeroSection />
