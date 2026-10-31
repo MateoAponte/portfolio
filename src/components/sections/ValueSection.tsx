@@ -6,21 +6,21 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const values = [
   {
     icon: Target,
-    title: 'Connected interfaces and services',
+    title: 'From interface to integration',
     description:
-      'I work across frontend and backend to connect screens, APIs and the data behind each user flow.',
+      'I connect interfaces, backend services and AI integrations so your team can deliver complete user flows.',
   },
   {
     icon: Brain,
-    title: 'Decisions your team can follow',
+    title: 'A consistent user experience',
     description:
-      'I document system boundaries and technical choices so the team has context when requirements change.',
+      'I turn product requirements into interfaces and workflows that help people navigate your application and complete their tasks.',
   },
   {
     icon: Users,
-    title: 'A second pair of eyes',
+    title: 'Hands-on collaboration',
     description:
-      'I review code and user flows, share actionable feedback and help bring the pieces of an application together.',
+      'I contribute code, review user flows and coordinate work across the team, with clear feedback that helps turn decisions into working software.',
   },
 ];
 
@@ -49,8 +49,9 @@ export const ValueSection = () => {
             <BotanicalSectionTag label="My Value" className="mb-6" />
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">What I bring to a team</h2>
             <p className="mt-5 text-base lg:text-lg text-muted-foreground max-w-lg leading-relaxed">
-              I contribute through implementation, technical documentation and reviews that help the team move work forward.
+              I bring experience across IT support, system design and project leadership to help your team connect user needs with technical decisions.
             </p>
+            <p className="mt-4 max-w-lg text-base leading-relaxed text-muted-foreground">I work across the application, from how it feels to use to how its services fit together, keeping future changes in mind.</p>
           </div>
           <div className="space-y-8 md:space-y-10">
             {values.map(value => <ValueItem key={value.title} value={value} />)}

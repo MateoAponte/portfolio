@@ -7,15 +7,15 @@ export const ProjectScreenshots = ({ screenshots, name, format = 'mobile' }: { s
     <h3 className="mb-5 text-lg font-semibold text-foreground">{format === 'desktop' ? 'Interface screens' : 'App screens'}</h3>
     <div className="grid gap-6 sm:grid-cols-2">
       {screenshots.map(screen => (
-        <figure key={screen.src} className="glass-card overflow-hidden">
+        <figure key={screen.src} className="glass-card detail-screen detail-border-feedback overflow-hidden">
           <Dialog>
             <DialogTrigger asChild>
               <button type="button" aria-label={`Enlarge ${screen.title} screen`} className="group relative block w-full bg-secondary/20 p-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">
-                <img src={screen.src} alt={`${name} ${screen.title} interface`} loading="lazy" decoding="async" className={format === 'desktop' ? 'aspect-video w-full rounded-lg border border-border/60 bg-white object-contain' : 'mx-auto h-auto w-full max-w-64 rounded-xl border border-border/60'} />
-                <span className="absolute bottom-6 right-6 rounded-md border border-border bg-background/90 p-2 text-muted-foreground group-hover:text-primary"><Maximize2 size={16} aria-hidden="true" /></span>
+                <img src={screen.src} alt={`${name} ${screen.title} interface`} loading="lazy" decoding="async" className={format === 'desktop' ? 'detail-screen-image aspect-video w-full rounded-lg border border-border/60 bg-white object-contain' : 'detail-screen-image mx-auto h-auto w-full max-w-64 rounded-xl border border-border/60'} />
+                <span className="detail-screen-enlarge absolute bottom-6 right-6 rounded-md border border-border bg-background/90 p-2 text-muted-foreground group-hover:text-primary"><Maximize2 size={16} aria-hidden="true" /></span>
               </button>
             </DialogTrigger>
-            <DialogContent className="flex h-[90svh] max-h-[90svh] w-[calc(100%-2rem)] max-w-3xl flex-col gap-3 overflow-hidden p-4 sm:p-6">
+            <DialogContent className="nature-main project-detail flex h-[90svh] max-h-[90svh] w-[calc(100%-2rem)] max-w-3xl flex-col gap-3 overflow-hidden p-4 sm:p-6">
               <DialogTitle className="shrink-0 pr-8 leading-normal">{name} / {screen.title}</DialogTitle>
               <DialogDescription className="shrink-0">{screen.description}</DialogDescription>
               <div className="min-h-0 flex-1 rounded-lg bg-secondary/20 p-2">

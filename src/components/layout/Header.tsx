@@ -33,10 +33,10 @@ export const Header = () => {
         <nav className="flex items-center justify-between h-16 md:h-18">
           {/* Logo */}
           <a
-            href="#home"
+            href="/#home"
             className="text-lg font-bold text-foreground hover:text-primary transition-colors"
           >
-            {'<Dev />'}
+            {'<Mateo />'}
           </a>
 
           {/* Desktop Navigation */}
@@ -55,7 +55,7 @@ export const Header = () => {
 
           {/* CTA Button */}
           <a
-            href="#contact"
+            href="/#contact"
             className="hidden md:inline-flex btn-primary text-sm py-2 px-5"
           >
             Let's Talk
@@ -64,8 +64,10 @@ export const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2 text-foreground"
-            aria-label="Toggle menu"
+            className="md:hidden flex h-11 w-11 items-center justify-center text-foreground"
+            aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-expanded={isMobileMenuOpen}
+            aria-controls="project-mobile-navigation"
           >
             {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
@@ -73,7 +75,7 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/40">
+          <div id="project-mobile-navigation" className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/40">
             <ul className="flex flex-col py-3">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -88,7 +90,7 @@ export const Header = () => {
               ))}
               <li className="px-6 py-3">
                 <a
-                  href="#contact"
+                  href="/#contact"
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="btn-primary w-full text-center text-sm"
                 >

@@ -22,7 +22,7 @@ const DiagramFigure = ({ diagram, index }: { diagram: ArchitectureDiagram; index
             <span className="absolute bottom-3 right-3 inline-flex items-center gap-2 rounded-md border border-border bg-background px-3 py-2 text-xs font-medium text-foreground group-hover:text-primary"><Maximize2 size={14} />Enlarge diagram</span>
           </button>
         </DialogTrigger>
-        <DialogContent className="flex h-[90svh] max-h-[90svh] w-[calc(100%-2rem)] max-w-6xl min-w-0 flex-col gap-3 overflow-hidden p-4 sm:p-6">
+        <DialogContent className="nature-main project-detail flex h-[90svh] max-h-[90svh] w-[calc(100%-2rem)] max-w-6xl min-w-0 flex-col gap-3 overflow-hidden p-4 sm:p-6">
           <DialogTitle className="shrink-0 pr-8 leading-normal">{diagram.title}</DialogTitle>
           <DialogDescription className="max-h-[15svh] shrink-0 overflow-y-auto">{diagram.description}</DialogDescription>
           <div role="group" aria-label="Diagram zoom controls" className="flex shrink-0 items-center gap-2">
@@ -58,7 +58,7 @@ export const ArchitectureGallery = ({ diagrams }: { diagrams: ArchitectureDiagra
   return (
     <Accordion type="multiple" className="mt-8 space-y-4">
       {Object.entries(groups).map(([group, items]) => (
-        <AccordionItem key={group} value={group} className="glass-card border-primary/20">
+        <AccordionItem key={group} value={group} className="glass-card detail-border-feedback border-primary/20">
           <AccordionTrigger className="gap-4 rounded-lg px-5 py-5 text-left hover:no-underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring sm:px-6">
             <span className="flex items-center gap-3"><span className="text-lg font-semibold text-foreground">{group}</span><span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs text-primary">{items.length} diagrams</span></span>
           </AccordionTrigger>

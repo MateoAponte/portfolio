@@ -1,69 +1,44 @@
-export interface SkillTier {
+export interface SkillGroup {
   id: string;
   name: string;
   description: string;
-  icon: string;
   skills: string[];
 }
 
-export const skillTiers: SkillTier[] = [
+export const skillGroups: SkillGroup[] = [
   {
-    id: 'leadership',
-    name: 'Core Stack',
-    description: 'Languages, tools and concepts I work with across interfaces, APIs and data.',
-    icon: 'Target',
-    skills: [
-      'TypeScript',
-      'Node.js',
-      'React',
-      'PostgreSQL',
-      'Event Sourcing',
-      'CQRS',
-      'Microservices',
-      'API Design'
-    ]
+    id: 'architecture', name: 'Architecture',
+    description: 'Patterns and practices for structuring systems and guiding development.',
+    skills: ['Event Sourcing', 'CQRS', 'Microservices', 'DDD', 'SDD', 'TDD', 'Hexagonal Architecture', 'EDA'],
   },
   {
-    id: 'production',
-    name: 'Backend & Deployment',
-    description: 'Frameworks and infrastructure in my broader development toolkit.',
-    icon: 'Zap',
-    skills: [
-      'Next.js',
-      'NestJS',
-      'GraphQL',
-      'Redis',
-      'MongoDB',
-      'Docker',
-      'Kubernetes',
-      'AWS'
-    ]
+    id: 'frontend', name: 'Frontend',
+    description: 'Interfaces, layouts and styling for web applications.',
+    skills: ['React', 'Vue.js', 'Next.js', 'Tailwind CSS', 'SCSS'],
   },
   {
-    id: 'complementary',
-    name: 'Complementary Tools',
-    description: 'Tools for styling, testing, automation and observability.',
-    icon: 'Wrench',
-    skills: [
-      'Tailwind CSS',
-      'Framer Motion',
-      'Vitest',
-      'Playwright',
-      'OpenTelemetry',
-      'Grafana',
-      'GitHub Actions',
-      'Terraform'
-    ]
-  }
-];
-
-export const architecturePatterns = [
-  'Domain-Driven Design',
-  'Event Sourcing',
-  'CQRS',
-  'Hexagonal Architecture',
-  'Saga Pattern',
-  'Circuit Breaker',
-  'API Gateway',
-  'Event-Driven Architecture'
+    id: 'backend', name: 'Backend',
+    description: 'Services, APIs and the logic behind user flows.',
+    skills: ['NestJS', 'API Design', 'Node.js', 'GraphQL'],
+  },
+  {
+    id: 'data', name: 'Data Management',
+    description: 'Data storage, caching and event streaming.',
+    skills: ['PostgreSQL', 'MongoDB', 'Redis', 'Kafka'],
+  },
+  {
+    id: 'infra', name: 'Infrastructure',
+    description: 'Containers, cloud platforms and communication between services.',
+    skills: ['Docker', 'AWS', 'gRPC', 'Azure'],
+  },
+  {
+    id: 'quality', name: 'Quality',
+    description: 'Automated tests and tools for investigating application behavior.',
+    skills: ['Vitest', 'Playwright', 'Kibana', 'Selenium'],
+  },
+  {
+    id: 'ai', name: 'AI & Automation',
+    description: 'AI-assisted development, integrations and automated workflows.',
+    skills: ['Claude', 'Codex', 'Cursor', 'MCP', 'RAG', 'Agents', 'n8n'],
+  },
 ];

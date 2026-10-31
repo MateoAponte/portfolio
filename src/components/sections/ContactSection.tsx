@@ -1,23 +1,38 @@
+import { useState, type FormEvent } from 'react';
 import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
 import { BranchHero } from '@/components/BotanicalContours';
-import {
-  Mail,
-  Github,
-  Linkedin,
-  MapPin,
-  Send,
-  MessageCircle,
-} from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const ContactSection = () => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.1 });
 
+  const [draft, setDraft] = useState('');
+  const [error, setError] = useState('');
+  const prepareEmail = (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    setError('');
+    setDraft('');
+    const form = event.currentTarget;
+    const data = new FormData(form);
+    const name = String(data.get('name') ?? '').trim();
+    const email = String(data.get('email') ?? '').trim();
+    const message = String(data.get('message') ?? '').trim();
+    if (!name || !email || !message) {
+      setError('Please add your name, email and a message.');
+      return;
+    }
+    const subject = encodeURIComponent('Portfolio inquiry from ' + name);
+    const body = encodeURIComponent(
+      message + '\n\nFrom: ' + name + '\nReply to: ' + email,
+    );
+    setDraft(
+      'mailto:mateo2aponte@hotmail.com?subject=' + subject + '&body=' + body,
+    );
+  };
+
   return (
-    <section
-      id="contact"
-      className="py-24 md:py-32 relative overflow-hidden"
-    >
+    <section id="contact" className="py-24 md:py-32 relative overflow-hidden">
       {/* Ambient background glow - stronger for final section */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute -left-32 bottom-0 w-[600px] h-[600px] rounded-full blur-[120px] bg-primary/[0.08]" />
@@ -36,7 +51,8 @@ export const ContactSection = () => {
           <p
             className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
-            Have a project in mind or a role on your team? Tell me what you are building and where you need help.
+            Have a project in mind or a role on your team? Tell me what you are
+            building and where you need help.
           </p>
         </div>
 
@@ -79,7 +95,7 @@ export const ContactSection = () => {
 
             <div className="space-y-3">
               <a
-                href="mailto:hello@developer.com"
+                href="mailto:mateo2aponte@hotmail.com"
                 className="flex items-center gap-3 p-4 glass-card hover:border-primary/25 transition-colors"
               >
                 <div className="p-2.5 rounded-md bg-primary/10 text-primary">
@@ -100,7 +116,7 @@ export const ContactSection = () => {
                 <div>
                   <p className="text-xs text-muted-foreground">Location</p>
                   <p className="text-foreground text-sm font-medium">
-                    Remote / Global
+                    Remote / Colombia
                   </p>
                 </div>
               </div>
@@ -113,7 +129,7 @@ export const ContactSection = () => {
               </h4>
               <div className="flex gap-3">
                 <a
-                  href="https://github.com"
+                  href="https://github.com/MateoAponte"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-4 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
@@ -122,7 +138,7 @@ export const ContactSection = () => {
                   <Github size={20} />
                 </a>
                 <a
-                  href="https://linkedin.com"
+                  href="https://www.linkedin.com/in/mateo-aponte-murcia/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-4 py-4 rounded-xl text-xs font-semibold uppercase tracking-wider bg-primary/10 text-primary border border-primary/20 hover:bg-primary/20 hover:border-primary/40 transition-all duration-200"
@@ -138,7 +154,22 @@ export const ContactSection = () => {
           <div
             className={isVisible ? 'animate-slide-left stagger-4' : 'opacity-0'}
           >
-            <form className="glass-card p-5 space-y-5">
+            <form
+              onSubmit={prepareEmail}
+              onChange={() => {
+                setDraft('');
+                setError('');
+              }}
+              className="glass-card p-5 space-y-5"
+              aria-describedby="contact-email-help"
+            >
+              <p
+                id="contact-email-help"
+                className="text-sm leading-relaxed text-muted-foreground"
+              >
+                Prepare a draft, then open it in your email app to send it to
+                me.
+              </p>
               <div>
                 <label
                   htmlFor="name"
@@ -192,13 +223,46 @@ export const ContactSection = () => {
 
               <button type="submit" className="btn-primary w-full py-2.5">
                 <Send size={16} />
-                Send message
+                Prepare email
               </button>
+              <div
+                role="status"
+                aria-live="polite"
+                className="text-sm leading-relaxed"
+              >
+                {error && <p className="text-[#f5c874]">{error}</p>}
+                {draft && (
+                  <div className="space-y-3">
+                    <p className="text-muted-foreground">
+                      Your draft is ready. It has not been sent yet.
+                    </p>
+                    <a
+                      href={draft}
+                      className="inline-flex min-h-11 items-center text-[var(--nature-link)] underline underline-offset-4 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                    >
+                      Open email app
+                    </a>
+                    <p className="text-muted-foreground">
+                      If it does not open, email{' '}
+                      <a
+                        href="mailto:mateo2aponte@hotmail.com"
+                        className="text-[var(--nature-link)] underline underline-offset-4"
+                      >
+                        mateo2aponte@hotmail.com
+                      </a>{' '}
+                      directly. Your message stays in this form.
+                    </p>
+                  </div>
+                )}
+              </div>
             </form>
           </div>
         </div>
       </div>
-      <BranchHero flip="x" className="-right-40 bottom-0 h-[520px] w-[440px] text-[#a5ad80]/25" />
+      <BranchHero
+        flip="x"
+        className="-right-40 bottom-0 h-[520px] w-[440px] text-[#a5ad80]/25"
+      />
     </section>
   );
 };

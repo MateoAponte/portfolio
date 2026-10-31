@@ -7,6 +7,17 @@ const ornaments: Record<string, { leaf: LeafName; line: LineName }> = {
   Approach: { leaf: 'lance', line: 'vine' },
   'My Value': { leaf: 'round', line: 'fade' },
   Contact: { leaf: 'ginkgo', line: 'waveTriple' },
+  'Case Study': { leaf: 'pair', line: 'contour' },
+  Platform: { leaf: 'pair', line: 'contour' },
+  'The Problem': { leaf: 'lance', line: 'waveSingle' },
+  Solution: { leaf: 'round', line: 'waveTriple' },
+  Process: { leaf: 'fern', line: 'vine' },
+  'My Role': { leaf: 'pair', line: 'fade' },
+  'Key Tech Decisions': { leaf: 'ginkgo', line: 'contour' },
+  Architecture: { leaf: 'fern', line: 'waveSingle' },
+  Impact: { leaf: 'round', line: 'fade' },
+  'Challenges & Learnings': { leaf: 'lance', line: 'vine' },
+  'Tech Stack & Patterns': { leaf: 'classic', line: 'waveTriple' },
 };
 
 export const BotanicalSectionTag = ({ label, className = '' }: { label: string; className?: string }) => (

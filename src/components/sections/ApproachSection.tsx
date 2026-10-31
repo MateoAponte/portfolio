@@ -16,37 +16,37 @@ const principles = [
     icon: Lightbulb,
     title: 'Design before code',
     description:
-      'I invest time understanding the problem and designing the solution before writing the first line. The cheapest code to maintain is code that was never written.',
+      'I clarify the user flow and system constraints before choosing an implementation.',
   },
   {
     icon: GitBranch,
     title: 'Decisions with explicit trade-offs',
     description:
-      'Every architectural decision documents alternatives considered and reasons for rejection. Facilitates future reviews and onboarding.',
+      'I compare alternatives and record why a choice fits the current constraints.',
   },
   {
     icon: Shield,
     title: 'Maintainability over cleverness',
     description:
-      'I prioritize code that any team developer can understand and modify. Accidental complexity is hidden technical debt.',
+      'I choose code the team can understand, review and change.',
   },
   {
     icon: BookOpen,
     title: 'Documentation as product',
     description:
-      'ADRs, architecture diagrams and contribution guides are part of the deliverable. A system without documentation is a system with an expiration date.',
+      'I keep system diagrams and decision notes alongside the implementation.',
   },
   {
     icon: FileCode,
     title: 'DX as a multiplier',
     description:
-      'I invest in tooling, linting and automation. A team with good DX delivers faster with less friction.',
+      'I automate repeatable checks so reviews can focus on behavior and design.',
   },
   {
     icon: Users,
     title: 'Collaboration with product & design',
     description:
-      'I actively participate in product definition. Understanding the "why" allows proposing technical solutions that enable better user experience.',
+      'I discuss technical constraints with product and design before they become user-facing compromises.',
   },
 ];
 
@@ -147,29 +147,28 @@ export const ApproachSection = () => {
   return (
     <section
       id="approach"
-      className="py-24 md:py-32 relative overflow-hidden section-separator"
+      className="py-20 md:py-24 relative overflow-hidden section-separator"
     >
       {/* Ambient background glow */}
       <div className="ambient-glow ambient-glow-right" />
 
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
-        <div className="text-center mb-14">
+        <div className="text-center mb-10">
           <BotanicalSectionTag label="Approach" />
           <h2
             className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
           >
-            How I Make Technical Decisions
+            How I make decisions
           </h2>
           <p
             className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
-            Principles that guide my work and define how I approach complex
-            problems.
+            The questions and habits behind my technical choices.
           </p>
         </div>
 
-        <ol ref={trail} className="relative isolate mx-auto flex max-w-5xl flex-col gap-16 md:gap-20">
+        <ol ref={trail} className="relative isolate mx-auto flex max-w-5xl flex-col gap-10 md:gap-12">
           <svg aria-hidden="true" focusable="false" className="pointer-events-none absolute inset-0 -z-10 h-full w-full overflow-visible" fill="none" stroke="#a5ad80" strokeOpacity="0.4" strokeWidth="1.2">
             {connections.map((path, index) => <path data-trail-path key={index} d={path} />)}
           </svg>

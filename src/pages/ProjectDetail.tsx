@@ -1,6 +1,9 @@
+import { BotanicalAtmosphere } from '@/components/BotanicalAtmosphere';
+import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
+import { BranchHero } from '@/components/BotanicalContours';
 import { useEffect, useState, type ReactNode } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowDown, ArrowLeft, ExternalLink, Github, Code2, Monitor, ChevronRight, TriangleAlert, Settings2, Lightbulb } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ExternalLink, Github, Monitor, ChevronRight, TriangleAlert, Settings2, Lightbulb } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -21,14 +24,11 @@ const sections = [
   { id: 'tech-stack', label: 'Tech Stack & Patterns' },
 ];
 
-const CaseSection = ({ id, children, number }: { id: string; children: ReactNode; number?: number }) => {
+const CaseSection = ({ id, children }: { id: string; children: ReactNode }) => {
   const index = sections.findIndex(section => section.id === id);
   return (
-    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-28 border-t border-border/60 py-10 sm:py-12">
-      <div className="mb-6 flex items-baseline gap-4">
-        <span className="font-mono text-xs text-primary" aria-hidden="true">{String(number ?? index + 1).padStart(2, '0')}</span>
-        <h2 id={`${id}-title`} className="text-2xl font-bold text-foreground sm:text-3xl">{sections[index].label}</h2>
-      </div>
+    <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-10 sm:py-14">
+      <h2 id={`${id}-title`} className="mb-7"><BotanicalSectionTag label={sections[index].label} /></h2>
       {children}
     </section>
   );
@@ -67,7 +67,7 @@ const ProjectDetail = () => {
 
   if (!project) {
     return (
-      <div className="min-h-screen bg-background flex items-center justify-center px-6">
+      <div className="nature-main project-detail min-h-screen bg-background flex items-center justify-center px-6">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-foreground mb-4">Project not found</h1>
           <Link to="/#portfolio" className="btn-primary"><ArrowLeft size={16} />Back to Portfolio</Link>
@@ -77,35 +77,21 @@ const ProjectDetail = () => {
   }
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="nature-main project-detail min-h-screen bg-background text-foreground">
       <Header />
-      <main className="pb-16 pt-24">
-        <div className="container mx-auto px-6">
+      <main className="relative isolate pb-16 pt-24">
+        <BotanicalAtmosphere key={project.id} />
+        <div className="container relative z-20 mx-auto px-6 sm:px-10 xl:px-12">
           <Link to="/#portfolio" className="group inline-flex items-center gap-2 text-sm text-muted-foreground transition-colors hover:text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring">
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />Back to Portfolio
           </Link>
 
           <section aria-labelledby="project-title" className="relative isolate grid items-center gap-10 py-12 lg:min-h-[calc(100svh-9rem)] lg:grid-cols-2 lg:gap-14 lg:py-16">
-            <div className="pointer-events-none absolute -top-36 bottom-0 left-1/2 -z-10 w-[100vw] -translate-x-1/2 overflow-hidden bg-[radial-gradient(ellipse_at_90%_85%,hsl(var(--primary)/0.16),transparent_55%),linear-gradient(180deg,hsl(var(--primary)/0.22)_0%,hsl(var(--primary)/0.09)_50%,transparent_100%)]" aria-hidden="true">
-              {Array.from({ length: 32 }, (_, index) => (
-                <span
-                  key={index}
-                  className="project-hero-particle absolute rounded-full bg-primary"
-                  style={{
-                    left: `${index < 18 ? (index * 37 + 7) % 100 : 60 + (index * 13) % 38}%`,
-                    top: `${index < 18 ? (index * 23 + 11) % 100 : 62 + (index * 17) % 36}%`,
-                    width: `${3 + index % 3}px`,
-                    height: `${3 + index % 3}px`,
-                    animationDuration: `${12 + index % 7 * 2}s`,
-                    animationDelay: `-${index * 1.7}s`,
-                  }}
-                />
-              ))}
-            </div>
+            <BranchHero className="-left-40 top-0 -z-10 h-[500px] w-[440px] text-[#a5ad80]/20" />
             <div className="relative min-w-0">
-              <span className="section-badge mb-6"><Code2 size={14} />{project.presentation === 'platform' ? 'Deployed Platform' : 'About it · Case Study'}</span>
+              <BotanicalSectionTag label={project.presentation === 'platform' ? 'Platform' : 'Case Study'} className="mb-6" />
               <h1 id="project-title" className="text-4xl font-extrabold leading-tight tracking-tight text-foreground sm:text-5xl xl:text-6xl">{project.title}</h1>
-              <p className="mt-4 text-xl font-medium leading-relaxed text-primary sm:text-2xl">{project.shortDescription}</p>
+              <p className="mt-4 text-lg font-medium leading-relaxed text-[#d3dfc5] sm:text-xl">{project.shortDescription}</p>
               <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">{project.fullDescription}</p>
               <div className="mt-8 flex flex-wrap gap-3 [&>a]:focus-visible:outline [&>a]:focus-visible:outline-2 [&>a]:focus-visible:outline-offset-4 [&>a]:focus-visible:outline-ring">
                 {project.liveUrl ? (
@@ -121,9 +107,16 @@ const ProjectDetail = () => {
                 <a href="#problem" className="btn-secondary border-primary/40">{project.presentation === 'platform' ? 'Explore Project' : 'Explore Case Study'}<ArrowDown size={15} /></a>
               </div>
             </div>
-            {project.appShowcase ? (
-              <figure className="relative min-w-0">
-                <img src={project.appShowcase} alt={`${project.title} app: rewards, home and recovery management screens`} fetchPriority="high" className="h-auto w-full object-contain" />
+            {(project.appShowcase || project.thumbnail) ? (
+              <figure className="relative min-w-0 rounded-2xl bg-[radial-gradient(ellipse_at_50%_48%,#2b4935_0%,#203c2c_30%,#172b22_65%,#112119_100%)] p-4 sm:p-6">
+                <img src={project.appShowcase ?? project.thumbnail} alt={project.appShowcase ? `${project.title} app: rewards, home and recovery management screens` : `${project.title} shared login and dashboard shown on two laptops`} fetchPriority="high" className="h-auto w-full object-contain" />
+              </figure>
+            ) : project.image === '/placeholder.svg' ? (
+              <figure className="rounded-2xl bg-[#17271f] p-6 sm:p-10">
+                <figcaption className="mb-6 text-base font-medium text-[#b9cba3]">Architecture overview</figcaption>
+                <ol className="space-y-3 text-base text-foreground">
+                  {['Event ingestion', 'ClickHouse analytics', 'WebSocket updates', 'Virtualized interface'].map(stage => <li key={stage} className="rounded-lg bg-[#23372d] px-5 py-4">{stage}</li>)}
+                </ol>
               </figure>
             ) : <figure className="glass-card relative min-w-0 overflow-hidden shadow-xl">
               <div className="flex items-center gap-3 border-b border-border/60 bg-secondary/30 px-4 py-3">
@@ -140,12 +133,12 @@ const ProjectDetail = () => {
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_260px] xl:gap-20">
             <aside className="lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1">
               <nav aria-label={project.presentation === 'platform' ? 'Project sections' : 'Case study sections'} className="glass-card p-5 lg:max-h-[calc(100svh-7rem)] lg:overflow-y-auto lg:p-6">
-                <p className="mb-5 font-mono text-xs font-semibold uppercase tracking-[0.2em] text-muted-foreground">On this page</p>
+                <p className="mb-5 text-sm font-semibold text-muted-foreground">On this page</p>
                 <ol className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
                   {sections.filter(section => (section.id !== 'challenges' || project.challenges?.length) && (section.id !== 'tech-stack' || project.stack.length || project.patterns.length)).map((section, index) => (
                     <li key={section.id}>
                       <a href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined} className={`flex items-baseline gap-3 rounded-md border-l-2 px-3 py-2.5 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring ${activeSection === section.id ? 'border-primary bg-primary/10 text-primary' : 'border-transparent text-muted-foreground hover:bg-secondary/40 hover:text-foreground'}`}>
-                        <span className="font-mono text-[10px] opacity-60" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{section.label}
+                        <span className="text-xs opacity-60" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{section.label}
                       </a>
                     </li>
                   ))}
@@ -168,9 +161,9 @@ const ProjectDetail = () => {
               <CaseSection id="key-decisions">
                 <p className="mb-6 text-sm text-muted-foreground">Technical choices I owned and the reasoning behind each decision.</p>
                 <ol className="space-y-4">{project.technicalDecisions.map((decision, index) => (
-                  <li key={decision.decision} className="glass-card grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
+                  <li key={decision.decision} className="glass-card detail-border-feedback grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
                     <div className="flex flex-col items-center" aria-hidden="true">
-                      <span className="font-mono text-lg font-semibold leading-7 text-primary">{String(index + 1).padStart(2, '0')}</span>
+                      <span className="text-lg font-semibold leading-7 text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <div className="relative mt-2 w-px min-h-14 flex-1 bg-gradient-to-b from-primary/70 via-primary/30 to-transparent">
                         <span className="absolute -left-px top-0 h-[3px] w-[3px] rounded-full bg-primary" />
                         <span className="absolute -left-[2.5px] top-8 h-1.5 w-1.5 rounded-full bg-primary shadow-[0_0_10px_hsl(var(--primary)/0.35)]" />
@@ -196,7 +189,7 @@ const ProjectDetail = () => {
                   <div className="mb-8">
                     <h3 className="mb-4 text-lg font-semibold text-foreground">Key Research Insights</h3>
                     <ul className="space-y-4">{project.researchInsights.map(insight => (
-                      <li key={insight.finding} className="glass-card border-primary/20 p-5 sm:p-6">
+                      <li key={insight.finding} className="glass-card detail-border-feedback border-primary/20 p-5 sm:p-6">
                         <h4 className="font-semibold text-foreground">{insight.finding}</h4>
                         {insight.quote && <blockquote className="mt-3 border-l-2 border-primary/50 pl-4 text-sm italic leading-relaxed text-muted-foreground">{insight.quote}</blockquote>}
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground"><span className="font-medium text-primary">Design response: </span>{insight.designResponse}</p>
@@ -204,13 +197,13 @@ const ProjectDetail = () => {
                     ))}</ul>
                   </div>
                 )}
-                <ul className="grid gap-4 sm:grid-cols-2">{project.impact.map(item => <li key={item} className="glass-card border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</li>)}</ul>
+                <ul className="grid gap-4 sm:grid-cols-2">{project.impact.map(item => <li key={item} className="glass-card detail-border-feedback border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</li>)}</ul>
               </CaseSection>
               {!!project.challenges?.length && <CaseSection id="challenges">
                 <div className="space-y-8">{project.challenges.map((item, index) => (
-                  <article key={item.title} className="glass-card border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:p-7">
+                  <article key={item.title} className="glass-card detail-border-feedback border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:p-7">
                     <div className="mb-6 flex items-start gap-4">
-                      <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 font-mono text-sm font-semibold text-primary">{String(index + 1).padStart(2, '0')}</span>
+                      <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <h3 className="max-w-xl pt-0.5 text-base font-bold leading-snug text-foreground sm:text-lg">{item.title}</h3>
                     </div>
                     <dl className="relative ml-4 space-y-5 border-l border-primary/25 py-1 pl-5 sm:pl-6">
@@ -230,8 +223,8 @@ const ProjectDetail = () => {
                   </article>
                 ))}</div>
               </CaseSection>}
-              {!!(project.stack.length || project.patterns.length) && <CaseSection id="tech-stack" number={project.challenges?.length ? 9 : 8}>
-                <div className="space-y-6"><div><h3 className="mb-3 text-sm font-semibold text-foreground">Tech Stack</h3><ul className="flex flex-wrap gap-2">{project.stack.map(tech => <li key={tech} className="skill-tag inline-flex items-center gap-2.5"><TechIcon tech={tech} />{tech}</li>)}</ul></div><div><h3 className="mb-3 text-sm font-semibold text-foreground">Patterns</h3><ul className="flex flex-wrap gap-2">{project.patterns.map(pattern => <li key={pattern} className="skill-tag">{pattern}</li>)}</ul></div></div>
+              {!!(project.stack.length || project.patterns.length) && <CaseSection id="tech-stack">
+                <div className="space-y-6"><div><h3 className="mb-3 text-sm font-semibold text-foreground">Tech Stack</h3><ul className="flex flex-wrap gap-2">{project.stack.map(tech => <li key={tech} className="skill-chip inline-flex min-h-10 items-center gap-2.5 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]"><TechIcon tech={tech} />{tech}</li>)}</ul></div><div><h3 className="mb-3 text-sm font-semibold text-foreground">Patterns</h3><ul className="flex flex-wrap gap-2">{project.patterns.map(pattern => <li key={pattern} className="skill-chip inline-flex min-h-10 items-center rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]">{pattern}</li>)}</ul></div></div>
               </CaseSection>}
             </div>
           </div>

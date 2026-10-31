@@ -1,7 +1,29 @@
-import { Activity, BookOpen, Boxes, CircuitBoard, Cloud, Code2, Database, FlaskConical, GitBranch, Layers, Network, Route, Shield, Split, Theater, Waves, Workflow } from 'lucide-react';
+import { Bot, FileCode2, MousePointer2, Plug, Search, Sparkles, Terminal, Triangle, Bug, Activity, BookOpen, Boxes, CircuitBoard, Cloud, Code2, Database, FlaskConical, GitBranch, Layers, Network, Route, Shield, Split, Theater, Waves, Workflow } from 'lucide-react';
 
 // Semantic icons for tools without a bundled brand asset and architecture concepts.
 const conceptIcons: Record<string, typeof Code2> = {
+  'Vue.js': Triangle,
+  'AWS MicroFronts': Cloud,
+  S3: Database,
+  Notion: BookOpen,
+  SPA: Layers,
+  AES: Shield,
+  SCSS: FileCode2,
+  DDD: BookOpen,
+  SDD: FileCode2,
+  TDD: FlaskConical,
+  EDA: Activity,
+  gRPC: Network,
+  Azure: Cloud,
+  Kibana: Search,
+  Selenium: Bug,
+  Claude: Sparkles,
+  Codex: Terminal,
+  Cursor: MousePointer2,
+  MCP: Plug,
+  RAG: Search,
+  Agents: Bot,
+  n8n: Workflow,
   'Event Sourcing': GitBranch,
   CQRS: Split,
   Microservices: Network,
@@ -39,6 +61,7 @@ const techIcons: Record<string, string> = {
   GraphQL: 'graphql',
   ClickHouse: 'clickhouse',
   'Apache Kafka': 'kafka',
+  Kafka: 'kafka',
   'D3.js': 'd3',
   OpenTelemetry: 'opentelemetry',
   Prometheus: 'prometheus',

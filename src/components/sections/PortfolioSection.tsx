@@ -15,16 +15,17 @@ const ProjectMedia = ({ project }: { project: Project }) => {
     (project.image !== '/placeholder.svg' ? project.image : undefined);
   if (!src)
     return (
-      <div className="relative z-10 flex h-full flex-col justify-center px-3 py-5">
-        <p className="mb-3 text-sm font-medium text-[#b9cba3]">Data flow</p>
-        <div className="flex flex-col items-start gap-1 text-sm text-[#e5eddf]">
-          <p>Ingestion</p>
-          <ArrowDown size={12} className="text-[#809b86]" aria-hidden="true" />
-          <p>ClickHouse</p>
-          <ArrowDown size={16} className="text-[#809b86]" aria-hidden="true" />
-          <p>Live updates</p>
-        </div>
-      </div>
+      <figure aria-label="Analytics architecture overview" className="relative z-10 flex h-full flex-col justify-center gap-4 p-6 sm:p-8">
+        <figcaption className="text-sm font-medium text-[#b9cba3]">Architecture overview</figcaption>
+        <ol className="flex flex-col items-center text-center text-sm text-[#e5eddf]">
+          {['Event ingestion', 'ClickHouse analytics', 'WebSocket updates', 'Virtualized interface'].map((stage, index) => (
+            <li key={stage} className="flex w-full flex-col items-center">
+              {index > 0 && <ArrowDown size={18} className="my-1 text-[#809b86]" aria-hidden="true" />}
+              <span className="w-full max-w-56 rounded-lg bg-[#213c2d] px-4 py-2">{stage}</span>
+            </li>
+          ))}
+        </ol>
+      </figure>
     );
   return (
     <img
@@ -93,8 +94,8 @@ const ProjectEntry = ({ project, index }: { project: Project; index: number }) =
   return (
     <div ref={ref} className={`w-full md:w-[94%] lg:w-[90%] ${index % 2 ? 'self-end' : 'self-start'}`}>
       <article data-project={project.id} className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-x-0 motion-reduce:!opacity-100 focus-within:!translate-x-0 focus-within:!opacity-100 ${isVisible ? 'translate-x-0 opacity-100' : index % 2 ? 'translate-x-12 opacity-0' : '-translate-x-12 opacity-0'}`}>
-        <Link to={'/project/' + project.id} onClick={() => window.scrollTo(0, 0)} className={linkStyle + ' grid min-h-[48vh] grid-cols-[0.7fr_1.3fr] overflow-hidden sm:grid-cols-[1fr_1.2fr]'}>
-          <div className="relative min-w-0 overflow-hidden bg-[radial-gradient(ellipse_at_50%_48%,#2b4935_0%,#203c2c_30%,#172b22_65%,#112119_100%)]"><ProjectMedia project={project} /></div>
+        <Link to={'/project/' + project.id} onClick={() => window.scrollTo(0, 0)} className={linkStyle + ' grid grid-cols-1 overflow-hidden md:min-h-[48vh] md:grid-cols-[1fr_1.2fr]'}>
+          <div className="relative min-w-0 h-[clamp(20rem,65vw,24rem)] md:h-auto overflow-hidden bg-[radial-gradient(ellipse_at_50%_48%,#2b4935_0%,#203c2c_30%,#172b22_65%,#112119_100%)]"><ProjectMedia project={project} /></div>
           <ProjectCopy project={project} />
           <ProjectPlants />
         </Link>
