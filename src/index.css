@@ -614,3 +614,34 @@
   .project-detail .detail-screen-image,
   .project-detail .detail-process-item { transition: none; }
 }
+
+/* Touch devices draw each project's plants once its scroll reveal is reached. */
+@media (max-width: 767px), (hover: none) and (pointer: coarse) {
+  .project-card[data-project-visible="true"] .project-plants { opacity: 1; }
+  .project-card[data-project-visible="true"] .project-plants :is(path, circle) {
+    stroke-dashoffset: 0;
+    transition-duration: var(--draw-duration);
+    transition-delay: var(--draw-delay);
+  }
+}
+/* Focus and press mirror hover, including on touchscreens and external keyboards. */
+.nature-main :is(.skill-panel, .skill-chip, .approach-item, .value-item, .detail-border-feedback):focus-visible {
+  outline: 2px solid var(--nature-link);
+  outline-offset: 4px;
+}
+.skill-panel:is(:focus-within, :active) { border-color: hsl(var(--primary) / 0.25); }
+.skill-chip:is(:focus, :active) { border-color: var(--nature-active); color: var(--nature-active); }
+.project-card:active { border-color: #b9cba3; }
+.project-detail .detail-border-feedback:is(:focus-within, :active),
+.project-detail .detail-process-item:is(:focus, :active) { border-color: #b9cba3; }
+.project-detail .detail-screen button:is(:focus, :active) .detail-screen-enlarge { color: #b9cba3; border-color: #b9cba3; }
+@media (prefers-reduced-motion: no-preference) {
+  .approach-item:is(:focus-within, :active) .approach-hover { transform: scale(1.025); }
+  .value-item:is(:focus-within, :active) .value-hover { transform: translateX(6px); }
+  .project-detail .detail-screen button:is(:focus, :active) .detail-screen-image { transform: scale(1.025); }
+  .project-detail .detail-process-item:is(:focus, :active) { transform: translateX(3px); }
+  .project-card:active .project-image { transform: scale(1.05); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .project-card[data-project-visible="true"] .project-plants :is(path, circle) { transition: none; }
+}

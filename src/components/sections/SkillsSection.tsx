@@ -22,7 +22,7 @@ const SkillGroup = ({ title, description, skills, icon: Icon, wide = false }: Sk
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.15, rootMargin: '0px 0px -24px 0px' });
   return (
   <div ref={ref} data-skill-reveal className={`min-w-0 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-y-0 motion-reduce:!opacity-100 ${wide ? 'md:col-span-2' : ''} ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-8 opacity-0'}`}>
-  <article className="skill-panel h-full min-w-0 rounded-2xl border border-border/50 bg-[#17271f] p-6 sm:p-8">
+  <article tabIndex={0} className="skill-panel h-full min-w-0 rounded-2xl border border-border/50 bg-[#17271f] p-6 sm:p-8">
     <div className="flex items-start gap-4">
       <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#23392e] text-[#a4d9c6]">
         <Icon size={20} strokeWidth={1.7} aria-hidden="true" />
@@ -34,7 +34,7 @@ const SkillGroup = ({ title, description, skills, icon: Icon, wide = false }: Sk
     </div>
     <ul aria-label={title} className="mt-7 flex flex-wrap gap-2">
       {skills.map(skill => (
-        <li key={skill} className="skill-chip inline-flex min-h-10 max-w-full items-center gap-2 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm font-medium leading-snug text-[#c7ded2] [&>svg]:h-4 [&>svg]:w-4 [&>span[aria-hidden]]:h-4 [&>span[aria-hidden]]:w-4">
+        <li key={skill} tabIndex={0} className="skill-chip inline-flex min-h-10 max-w-full items-center gap-2 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm font-medium leading-snug text-[#c7ded2] [&>svg]:h-4 [&>svg]:w-4 [&>span[aria-hidden]]:h-4 [&>span[aria-hidden]]:w-4">
           <TechIcon tech={skill} />
           <span className="min-w-0 [overflow-wrap:anywhere]">{skill}</span>
         </li>

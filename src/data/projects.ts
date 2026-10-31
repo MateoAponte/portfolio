@@ -16,6 +16,7 @@ export interface Project {
   process: {
     title: string;
     description: string;
+    category?: 'Discovery' | 'Design' | 'Delivery';
     start?: number;
     width?: number;
   }[];
@@ -56,42 +57,49 @@ export const projects: Project[] = [
     process: [
       {
         title: 'Research',
+        category: 'Discovery',
         description: 'Collector interviews and research insights.',
         start: 1,
         width: 40,
       },
       {
         title: 'Actors & Flow',
+        category: 'Discovery',
         description: 'User roles, rewards and recycling habits.',
         start: 2,
         width: 25,
       },
       {
         title: 'Architecture',
+        category: 'Design',
         description: 'System boundaries, C4, UML, AI and SSE.',
         start: 4,
         width: 20,
       },
       {
         title: 'Visual Design',
+        category: 'Design',
         description: 'Color palette and look and feel.',
         start: 5,
         width: 20,
       },
       {
         title: 'Dev & AI',
+        category: 'Delivery',
         description: 'Frontend, backend and AI integration.',
         start: 7,
         width: 40,
       },
       {
         title: 'QA & Integration',
+        category: 'Delivery',
         description: 'Frontend feedback and application integration.',
         start: 9,
         width: 30,
       },
       {
         title: 'Deploy & Demo',
+        category: 'Delivery',
         description: 'Docker, Render, Android APK and recorded walkthrough.',
         start: 10,
         width: 20,
@@ -231,16 +239,19 @@ export const projects: Project[] = [
     process: [
       {
         title: 'Identify performance bottlenecks',
+        category: 'Discovery',
         description:
           'Slow analytical queries and browser crashes on large tables defined the constraints.',
       },
       {
         title: 'Design the data experience',
+        category: 'Design',
         description:
           'Connect streaming ingestion, analytical storage and virtualized visualizations.',
       },
       {
         title: 'Deliver real-time updates',
+        category: 'Delivery',
         description:
           'Combine delta updates, predictive caching and dynamic windowing.',
       },
@@ -319,36 +330,42 @@ export const projects: Project[] = [
     process: [
       {
         "title": "Scope and delivery plan",
+        category: 'Discovery',
         "description": "Review the existing infrastructure and delivery goals. Break the work into design, implementation, testing, documentation and iterations, then organize tasks and sprints in Notion.",
         "start": 1,
         "width": 45
       },
       {
         "title": "Login and home foundations",
+        category: 'Design',
         "description": "Create the two microfrontend projects and help connect them to the orchestrator and AWS infrastructure.",
         "start": 2,
         "width": 45
       },
       {
         "title": "Authentication flows",
+        category: 'Delivery',
         "description": "Diagram and implement login, password recovery, OTP and error views, followed by the shared URL-based error identification mechanism.",
         "start": 3,
         "width": 45
       },
       {
         "title": "Tests and guidelines",
+        category: 'Delivery',
         "description": "Set up Vitest unit tests and Playwright integration tests, with fixtures and guidelines for extending the test suite.",
         "start": 5,
         "width": 45
       },
       {
         "title": "Configurable dashboard",
+        category: 'Design',
         "description": "Identify stakeholders, check product combinations against the designs, then build layouts and configurable widgets for tables, charts and custom overviews.",
         "start": 7,
         "width": 40
       },
       {
         "title": "Integration and iterations",
+        category: 'Delivery',
         "description": "Add frontend notifications, integrate encryption with the backend and iterate on the experience within the agreed deadline.",
         "start": 9,
         "width": 30

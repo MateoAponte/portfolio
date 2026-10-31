@@ -76,9 +76,14 @@ const ProjectDetail = () => {
     );
   }
 
+  const visibleSections = sections.filter(section =>
+    (section.id !== 'challenges' || project.challenges?.length) &&
+    (section.id !== 'tech-stack' || project.stack.length || project.patterns.length)
+  );
+
   return (
     <div className="nature-main project-detail min-h-screen bg-background text-foreground">
-      <Header />
+      <Header key={project.id} projectLinks={visibleSections.map(section => ({ href: `#${section.id}`, label: section.label }))} activeSection={activeSection} />
       <main className="relative isolate pb-16 pt-24">
         <BotanicalAtmosphere key={project.id} />
         <div className="container relative z-20 mx-auto px-6 sm:px-10 xl:px-12">
@@ -135,7 +140,7 @@ const ProjectDetail = () => {
               <nav aria-label={project.presentation === 'platform' ? 'Project sections' : 'Case study sections'} className="glass-card p-5 lg:max-h-[calc(100svh-7rem)] lg:overflow-y-auto lg:p-6">
                 <p className="mb-5 text-sm font-semibold text-muted-foreground">On this page</p>
                 <ol className="grid gap-1 sm:grid-cols-2 lg:grid-cols-1">
-                  {sections.filter(section => (section.id !== 'challenges' || project.challenges?.length) && (section.id !== 'tech-stack' || project.stack.length || project.patterns.length)).map((section, index) => (
+                  {visibleSections.map((section, index) => (
                     <li key={section.id}>
                       <a href={`#${section.id}`} aria-current={activeSection === section.id ? 'location' : undefined} className={`flex items-baseline gap-3 rounded-md border-l-2 px-3 py-2.5 text-sm transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring ${activeSection === section.id ? 'border-primary bg-primary/10 text-primary' : 'border-transparent text-muted-foreground hover:bg-secondary/40 hover:text-foreground'}`}>
                         <span className="text-xs opacity-60" aria-hidden="true">{String(index + 1).padStart(2, '0')}</span>{section.label}
@@ -161,7 +166,7 @@ const ProjectDetail = () => {
               <CaseSection id="key-decisions">
                 <p className="mb-6 text-sm text-muted-foreground">Technical choices I owned and the reasoning behind each decision.</p>
                 <ol className="space-y-4">{project.technicalDecisions.map((decision, index) => (
-                  <li key={decision.decision} className="glass-card detail-border-feedback grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
+                  <li key={decision.decision} tabIndex={0} className="glass-card detail-border-feedback grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
                     <div className="flex flex-col items-center" aria-hidden="true">
                       <span className="text-lg font-semibold leading-7 text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <div className="relative mt-2 w-px min-h-14 flex-1 bg-gradient-to-b from-primary/70 via-primary/30 to-transparent">
@@ -189,7 +194,7 @@ const ProjectDetail = () => {
                   <div className="mb-8">
                     <h3 className="mb-4 text-lg font-semibold text-foreground">Key Research Insights</h3>
                     <ul className="space-y-4">{project.researchInsights.map(insight => (
-                      <li key={insight.finding} className="glass-card detail-border-feedback border-primary/20 p-5 sm:p-6">
+                      <li key={insight.finding} tabIndex={0} className="glass-card detail-border-feedback border-primary/20 p-5 sm:p-6">
                         <h4 className="font-semibold text-foreground">{insight.finding}</h4>
                         {insight.quote && <blockquote className="mt-3 border-l-2 border-primary/50 pl-4 text-sm italic leading-relaxed text-muted-foreground">{insight.quote}</blockquote>}
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground"><span className="font-medium text-primary">Design response: </span>{insight.designResponse}</p>
@@ -197,11 +202,11 @@ const ProjectDetail = () => {
                     ))}</ul>
                   </div>
                 )}
-                <ul className="grid gap-4 sm:grid-cols-2">{project.impact.map(item => <li key={item} className="glass-card detail-border-feedback border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</li>)}</ul>
+                <ul className="grid gap-4 sm:grid-cols-2">{project.impact.map(item => <li key={item} tabIndex={0} className="glass-card detail-border-feedback border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</li>)}</ul>
               </CaseSection>
               {!!project.challenges?.length && <CaseSection id="challenges">
                 <div className="space-y-8">{project.challenges.map((item, index) => (
-                  <article key={item.title} className="glass-card detail-border-feedback border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:p-7">
+                  <article key={item.title} tabIndex={0} className="glass-card detail-border-feedback border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:p-7">
                     <div className="mb-6 flex items-start gap-4">
                       <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <h3 className="max-w-xl pt-0.5 text-base font-bold leading-snug text-foreground sm:text-lg">{item.title}</h3>
@@ -224,7 +229,7 @@ const ProjectDetail = () => {
                 ))}</div>
               </CaseSection>}
               {!!(project.stack.length || project.patterns.length) && <CaseSection id="tech-stack">
-                <div className="space-y-6"><div><h3 className="mb-3 text-sm font-semibold text-foreground">Tech Stack</h3><ul className="flex flex-wrap gap-2">{project.stack.map(tech => <li key={tech} className="skill-chip inline-flex min-h-10 items-center gap-2.5 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]"><TechIcon tech={tech} />{tech}</li>)}</ul></div><div><h3 className="mb-3 text-sm font-semibold text-foreground">Patterns</h3><ul className="flex flex-wrap gap-2">{project.patterns.map(pattern => <li key={pattern} className="skill-chip inline-flex min-h-10 items-center rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]">{pattern}</li>)}</ul></div></div>
+                <div className="space-y-6"><div><h3 className="mb-3 text-sm font-semibold text-foreground">Tech Stack</h3><ul className="flex flex-wrap gap-2">{project.stack.map(tech => <li key={tech} tabIndex={0} className="skill-chip inline-flex min-h-10 items-center gap-2.5 rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]"><TechIcon tech={tech} />{tech}</li>)}</ul></div><div><h3 className="mb-3 text-sm font-semibold text-foreground">Patterns</h3><ul className="flex flex-wrap gap-2">{project.patterns.map(pattern => <li key={pattern} tabIndex={0} className="skill-chip inline-flex min-h-10 items-center rounded-md border border-transparent bg-[#23372d] px-3 py-2 text-sm text-[#c7ded2]">{pattern}</li>)}</ul></div></div>
               </CaseSection>}
             </div>
           </div>

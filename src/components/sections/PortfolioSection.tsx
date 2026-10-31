@@ -94,7 +94,7 @@ const ProjectEntry = ({ project, index }: { project: Project; index: number }) =
   return (
     <div ref={ref} className={`w-full md:w-[94%] lg:w-[90%] ${index % 2 ? 'self-end' : 'self-start'}`}>
       <article data-project={project.id} className={`transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-x-0 motion-reduce:!opacity-100 focus-within:!translate-x-0 focus-within:!opacity-100 ${isVisible ? 'translate-x-0 opacity-100' : index % 2 ? 'translate-x-12 opacity-0' : '-translate-x-12 opacity-0'}`}>
-        <Link to={'/project/' + project.id} onClick={() => window.scrollTo(0, 0)} className={linkStyle + ' grid grid-cols-1 overflow-hidden md:min-h-[48vh] md:grid-cols-[1fr_1.2fr]'}>
+        <Link to={'/project/' + project.id} onClick={() => window.scrollTo(0, 0)} data-project-visible={isVisible} className={linkStyle + ' grid grid-cols-1 overflow-hidden md:min-h-[48vh] md:grid-cols-[1fr_1.2fr]'}>
           <div className="relative min-w-0 h-[clamp(20rem,65vw,24rem)] md:h-auto overflow-hidden bg-[radial-gradient(ellipse_at_50%_48%,#2b4935_0%,#203c2c_30%,#172b22_65%,#112119_100%)]"><ProjectMedia project={project} /></div>
           <ProjectCopy project={project} />
           <ProjectPlants />

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Menu, X } from 'lucide-react';
 
 const navLinks = [
@@ -9,7 +9,13 @@ const navLinks = [
   { href: '/#contact', label: 'Contact' },
 ];
 
-export const Header = () => {
+interface HeaderProps {
+  projectLinks?: { href: string; label: string }[];
+  activeSection?: string;
+}
+
+export const Header = ({ projectLinks, activeSection }: HeaderProps) => {
+  const menuButton = useRef<HTMLButtonElement>(null);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -23,6 +29,12 @@ export const Header = () => {
 
   return (
     <header
+      onKeyDown={event => {
+        if (event.key === 'Escape' && isMobileMenuOpen) {
+          setIsMobileMenuOpen(false);
+          menuButton.current?.focus();
+        }
+      }}
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         isScrolled
           ? 'bg-background/90 backdrop-blur-xl border-b border-border/40'
@@ -63,6 +75,8 @@ export const Header = () => {
 
           {/* Mobile Menu Button */}
           <button
+            ref={menuButton}
+            type="button"
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden flex h-11 w-11 items-center justify-center text-foreground"
             aria-label={isMobileMenuOpen ? "Close menu" : "Open menu"}
@@ -75,12 +89,13 @@ export const Header = () => {
 
         {/* Mobile Navigation */}
         {isMobileMenuOpen && (
-          <div id="project-mobile-navigation" className="md:hidden absolute top-full left-0 right-0 bg-background/95 backdrop-blur-xl border-b border-border/40">
+          <div id="project-mobile-navigation" className="md:hidden absolute top-full left-0 right-0 max-h-[calc(100svh-4rem)] overflow-y-auto overscroll-contain bg-background/95 backdrop-blur-xl border-b border-border/40">
             <ul className="flex flex-col py-3">
-              {navLinks.map((link) => (
+              {(projectLinks ?? navLinks).map((link) => (
                 <li key={link.href}>
                   <a
                     href={link.href}
+                    aria-current={link.href === `#${activeSection}` ? 'location' : undefined}
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="block px-6 py-3 text-muted-foreground hover:text-foreground hover:bg-secondary/30 transition-colors text-sm"
                   >
@@ -90,11 +105,11 @@ export const Header = () => {
               ))}
               <li className="px-6 py-3">
                 <a
-                  href="/#contact"
+                  href={projectLinks ? '/#portfolio' : '/#contact'}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className="btn-primary w-full text-center text-sm"
                 >
-                  Let's Talk
+                  {projectLinks ? 'Back to Portfolio' : 'Let?s Talk'}
                 </a>
               </li>
             </ul>

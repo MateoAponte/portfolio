@@ -175,7 +175,7 @@ export const ApproachSection = () => {
           {principles.map((principle, index) => {
             const Icon = principle.icon;
             return (
-              <li key={principle.title} className={`approach-item w-full md:w-[calc(50%-1.5rem)] ${index % 2 ? 'self-end' : 'self-start'}`}>
+              <li key={principle.title} tabIndex={0} className={`approach-item w-full md:w-[calc(50%-1.5rem)] ${index % 2 ? 'self-end' : 'self-start'}`}>
                 <div className="flex items-start gap-4">
                   <div data-thought-node className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#52664c] bg-[#14251e] text-primary">
                     <Icon size={18} aria-hidden="true" />

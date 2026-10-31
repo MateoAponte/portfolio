@@ -28,7 +28,7 @@ const ValueItem = ({ value }: { value: typeof values[number] }) => {
   const { ref, isVisible } = useScrollAnimation({ threshold: 0.2, rootMargin: '0px 0px -24px 0px' });
   const Icon = value.icon;
   return (
-    <div ref={ref} data-value-item className={`value-item transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-x-0 motion-reduce:!opacity-100 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
+    <div ref={ref} tabIndex={0} data-value-item className={`value-item transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-x-0 motion-reduce:!opacity-100 ${isVisible ? 'translate-x-0 opacity-100' : 'translate-x-8 opacity-0'}`}>
       <div className="value-hover flex items-start gap-4">
       <Icon size={24} className="text-primary mt-1 shrink-0" aria-hidden="true" />
       <div>
