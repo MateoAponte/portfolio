@@ -3,7 +3,6 @@ import { useEffect, useRef, useState } from 'react';
 import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
 import {
   GitBranch,
-  FileCode,
   Users,
   BookOpen,
   Lightbulb,
@@ -14,39 +13,33 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 const principles = [
   {
     icon: Lightbulb,
-    title: 'Design before code',
+    title: 'Understand the context',
     description:
-      'I clarify the user flow and system constraints before choosing an implementation.',
+      'I work with stakeholders to understand customer needs and business constraints, then define an MVP the team can deliver and learn from.',
   },
   {
     icon: GitBranch,
-    title: 'Decisions with explicit trade-offs',
+    title: 'Design before code',
     description:
-      'I compare alternatives and record why a choice fits the current constraints.',
+      'I clarify user flows and software boundaries with product and design. I weigh user experience, delivery effort and maintenance before choosing an implementation.',
   },
   {
     icon: Shield,
-    title: 'Maintainability over cleverness',
+    title: 'Build for reliable delivery',
     description:
-      'I choose code the team can understand, review and change.',
+      'I combine clear architecture with tests, QA and recovery safeguards. I use AI and automation to support engineering judgment and help the team deliver consistently.',
   },
   {
     icon: BookOpen,
-    title: 'Documentation as product',
+    title: 'Keep the system understandable',
     description:
-      'I keep system diagrams and decision notes alongside the implementation.',
-  },
-  {
-    icon: FileCode,
-    title: 'DX as a multiplier',
-    description:
-      'I automate repeatable checks so reviews can focus on behavior and design.',
+      'I treat documentation as part of the product. Diagrams, decision notes and monitoring help the team understand system behavior and make informed changes.',
   },
   {
     icon: Users,
-    title: 'Collaboration with product & design',
+    title: 'Keep improving after launch',
     description:
-      'I discuss technical constraints with product and design before they become user-facing compromises.',
+      'After deployment, I work with product and design to review feedback and production behavior. We address technical constraints early and use what we learn to guide the next iteration.',
   },
 ];
 
@@ -147,7 +140,7 @@ export const ApproachSection = () => {
   return (
     <section
       id="approach"
-      className="py-20 md:py-24 relative overflow-hidden section-separator"
+      className="py-12 md:py-24 relative overflow-hidden section-separator"
     >
       {/* Ambient background glow */}
       <div className="ambient-glow ambient-glow-right" />
@@ -155,16 +148,16 @@ export const ApproachSection = () => {
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-10">
-          <BotanicalSectionTag label="Approach" />
+          <BotanicalSectionTag label="Engineering approach" />
           <h2
             className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
           >
-            How I make decisions
+            How I work
           </h2>
           <p
             className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
-            The questions and habits behind my technical choices.
+            I question assumptions and connect user experience with software design, keeping each iteration focused on business value.
           </p>
         </div>
 

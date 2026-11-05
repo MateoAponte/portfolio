@@ -74,11 +74,11 @@ export const ContactSection = () => {
 
               <div className="space-y-3">
                 {[
-                  'Full-stack development roles',
-                  'Frontend interfaces and user flows',
-                  'Backend services and API integrations',
-                  'Code reviews and technical decisions',
-                  'Prototypes and product development',
+                  'Full-stack and AI engineering roles',
+                  'User experience and product planning',
+                  'Software architecture and API integrations',
+                  'Testing, QA and delivery automation',
+                  'MVPs and ongoing product improvement',
                 ].map((topic, index) => (
                   <div
                     key={index}

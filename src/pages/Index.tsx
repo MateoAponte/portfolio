@@ -5,12 +5,11 @@ import { HeroSection } from '@/components/sections/HeroSection';
 import { PortfolioSection } from '@/components/sections/PortfolioSection';
 import { SkillsSection } from '@/components/sections/SkillsSection';
 import { ApproachSection } from '@/components/sections/ApproachSection';
-import { ValueSection } from '@/components/sections/ValueSection';
 import { ContactSection } from '@/components/sections/ContactSection';
 import { LeafDivider } from '@/components/BotanicalContours';
 
-const SectionDivider = () => (
-  <div aria-hidden="true" className="pointer-events-none relative z-20 mx-6 h-0">
+const SectionDivider = ({ desktopOnly = false }: { desktopOnly?: boolean }) => (
+  <div aria-hidden="true" className={`pointer-events-none relative z-20 mx-6 h-0 ${desktopOnly ? 'hidden md:block' : ''}`}>
     <LeafDivider className="left-1/2 top-0 w-full max-w-3xl -translate-x-1/2 -translate-y-1/2 text-[#a5ad80]/60" />
   </div>
 );
@@ -25,10 +24,8 @@ const Index = () => {
         <PortfolioSection />
         <SectionDivider />
         <SkillsSection />
-        <SectionDivider />
+        <SectionDivider desktopOnly />
         <ApproachSection />
-        <SectionDivider />
-        <ValueSection />
         <SectionDivider />
         <ContactSection />
       </main>

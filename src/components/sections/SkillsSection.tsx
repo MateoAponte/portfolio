@@ -50,11 +50,11 @@ const SkillGroup = ({
     <div
       ref={ref}
       data-skill-reveal
-      className={`min-w-0 shrink-0 basis-[88%] snap-start translate-y-0 opacity-80 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-y-0 md:motion-reduce:!opacity-100 ${wide ? 'md:col-span-2' : ''} ${isVisible ? 'md:translate-y-0 md:opacity-100' : 'md:translate-y-8 md:opacity-100'}`}
+      className={`min-w-0 shrink-0 basis-[88%] snap-start translate-y-0 opacity-100 transition-[opacity,transform] duration-700 ease-out motion-reduce:transition-none motion-reduce:!translate-y-0 ${wide ? 'md:col-span-2' : ''} ${isVisible ? 'md:translate-y-0' : 'md:translate-y-8'}`}
     >
       <article
         tabIndex={0}
-        className="skill-panel h-full min-w-0 rounded-2xl border border-border/50 bg-[#17271f] p-6 sm:p-8"
+        className="skill-panel h-full min-w-0 rounded-2xl border border-border/50 bg-[#17271f]/80 p-6 sm:p-8 md:bg-[#17271f]"
       >
         <div className="flex items-start gap-4">
           <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-[#23392e] text-[#a4d9c6]">
@@ -132,7 +132,7 @@ export const SkillsSection = () => {
     <section
       id="skills"
       aria-labelledby="skills-heading"
-      className="relative isolate overflow-hidden py-20 md:py-28"
+      className="relative isolate overflow-hidden pb-12 pt-20 md:py-28"
     >
       <ContourWaves className="-right-20 bottom-0 -z-10 w-[700px] text-[#b69b5e]/20" />
       <div className="container mx-auto px-6 sm:px-10 xl:px-12">

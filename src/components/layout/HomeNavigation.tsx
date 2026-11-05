@@ -1,12 +1,11 @@
 ﻿import { useEffect, useState, useRef } from 'react';
-import { Home, Folder, Layers, Workflow, Sparkles, Mail, Menu, X } from 'lucide-react';
+import { Home, Folder, Layers, Workflow, Mail, Menu, X } from 'lucide-react';
 
 const links = [
   { id: 'home', label: 'Home', icon: Home },
   { id: 'portfolio', label: 'Portfolio', icon: Folder },
   { id: 'skills', label: 'Skills', icon: Layers },
-  { id: 'approach', label: 'Approach', icon: Workflow },
-  { id: 'value', label: 'My Value', icon: Sparkles },
+  { id: 'approach', label: 'How I work', icon: Workflow },
   { id: 'contact', label: 'Contact', icon: Mail },
 ];
 
