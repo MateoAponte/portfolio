@@ -15,9 +15,9 @@ import { ProjectProcess } from '@/components/ProjectProcess';
 const sections = [
   { id: 'problem', label: 'The Problem' },
   { id: 'solution', label: 'Solution' },
-  { id: 'process', label: 'Process' },
   { id: 'my-role', label: 'My Role' },
   { id: 'key-decisions', label: 'Key Tech Decisions' },
+  { id: 'process', label: 'Process' },
   { id: 'architecture', label: 'Architecture' },
   { id: 'impact', label: 'Impact' },
   { id: 'challenges', label: 'Challenges & Learnings' },
@@ -155,10 +155,6 @@ const ProjectDetail = () => {
               <CaseSection id="problem"><p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.problem}</p></CaseSection>
               <CaseSection id="solution">
                 <p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.solution}</p>
-                {project.screenshots && <ProjectScreenshots screenshots={project.screenshots} name={project.title} format={project.screenshotFormat} />}
-              </CaseSection>
-              <CaseSection id="process">
-                <ProjectProcess steps={project.process} />
               </CaseSection>
               <CaseSection id="my-role">
                 <ul className="space-y-4">{project.ownership.map(item => <li key={item} className="flex items-start gap-3 text-muted-foreground"><ChevronRight size={17} className="mt-1 shrink-0 text-primary" /><span className="leading-relaxed">{item}</span></li>)}</ul>
@@ -183,6 +179,10 @@ const ProjectDetail = () => {
                     </div>
                   </li>
                 ))}</ol>
+              </CaseSection>
+              <CaseSection id="process">
+                <ProjectProcess steps={project.process} />
+                {project.screenshots && <ProjectScreenshots screenshots={project.screenshots} name={project.title} format={project.screenshotFormat} />}
               </CaseSection>
               <CaseSection id="architecture">
                 <p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.architecture}</p>
