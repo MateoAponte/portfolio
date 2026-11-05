@@ -115,7 +115,7 @@ export const PortfolioSection = () => (
         <p className="max-w-md text-base leading-relaxed text-[#c1cdc5] sm:text-lg [text-wrap:pretty]">What I built, the decisions I made and where I contributed to each project.</p>
       </div>
       <div className="flex flex-col gap-12 md:gap-20">
-        {projects.map((project, index) => <ProjectEntry key={project.id} project={project} index={index} />)}
+        {projects.filter(project => !project.hidden).map((project, index) => <ProjectEntry key={project.id} project={project} index={index} />)}
       </div>
     </div>
   </section>

@@ -57,7 +57,7 @@ export const BotanicalAtmosphere = () => {
   }, []);
 
   return (
-    <div ref={host} aria-hidden="true" className="pointer-events-none absolute inset-0 z-10 overflow-hidden select-none">
+    <div ref={host} aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10 overflow-hidden select-none">
       {accents.map((accent, index) => {
         const Leaf = leafVariants[index % leafVariants.length];
         return (

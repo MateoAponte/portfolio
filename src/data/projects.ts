@@ -49,6 +49,7 @@ export interface Project {
   presentation?: 'case-study' | 'platform';
   hideSource?: boolean;
   featured: boolean;
+  hidden?: boolean;
 }
 
 export const projects: Project[] = [
@@ -236,6 +237,7 @@ export const projects: Project[] = [
   },
   {
     id: 'saas-dashboard',
+    hidden: true,
     process: [
       {
         title: 'Identify performance bottlenecks',
