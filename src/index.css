@@ -511,6 +511,7 @@
 /* Scrollbar styling */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -523,6 +524,17 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-muted-foreground/30;
+}
+
+.project-screen-thumbnails::-webkit-scrollbar-button {
+  display: none;
+}
+
+@supports not selector(::-webkit-scrollbar) {
+  .project-screen-thumbnails {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--secondary)) hsl(var(--background));
+  }
 }
 
 :root {

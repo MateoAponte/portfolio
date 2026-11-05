@@ -11,6 +11,7 @@ export interface Project {
   title: string;
   shortDescription: string;
   fullDescription: string;
+  summary?: { role: string; scope: string; duration?: string; status: string };
   problem: string;
   solution: string;
   process: {
@@ -38,7 +39,8 @@ export interface Project {
   stack: string[];
   technicalDecisions: TechnicalDecision[];
   patterns: string[];
-  ownership: string[];
+  roleIntro?: string;
+  ownership: (string | { title: string; description: string })[];
   image: string;
   thumbnail?: string;
   appShowcase?: string;
@@ -55,6 +57,7 @@ export interface Project {
 export const projects: Project[] = [
   {
     id: 'ecogiro',
+    summary: { role: 'Backend, AI integration & architecture', scope: 'Recycling mobile prototype', duration: '3 months', status: 'Hackathon demo' },
     process: [
       {
         title: 'Research',
@@ -140,7 +143,7 @@ export const projects: Project[] = [
       },
     ],
     shortDescription:
-      'I built an escalable fullstack solutionwith AI integration for a team recycling prototype.',
+      'I designed the architecture and built the backend and AI integration for a mobile recycling prototype.',
     fullDescription:
       'Prototype built to recognize the work of waste collectors, support more dignified working conditions and help citizens develop a recycling habit through AI-assisted guidance, pickup coordination and rewards.',
     problem:
@@ -226,11 +229,12 @@ export const projects: Project[] = [
       'Strategy Pattern',
       'Component Composition',
     ],
+    roleIntro: 'I connected the system design, backend and AI integration, helping the team bring the mobile prototype together.',
     ownership: [
-      'Contributed to research, defined system boundaries and designed the architecture.',
-      'Reviewed the frontend as QA and provided feedback on the user experience and behavior.',
-      'Developed the backend and integrated the AI services.',
-      'Coordinated team responsibilities and helped integrate the application.',
+      { title: 'Research & architecture', description: 'Contributed to research, defined system boundaries and designed the architecture.' },
+      { title: 'Frontend QA', description: 'Reviewed the frontend and provided feedback on user experience and behavior.' },
+      { title: 'Backend & AI', description: 'Developed the backend and integrated the AI services.' },
+      { title: 'Team coordination', description: 'Coordinated responsibilities and helped integrate the application.' },
     ],
     image: '/projects/ecogiro/screens/home.jpeg',
     featured: true,
@@ -321,6 +325,7 @@ export const projects: Project[] = [
   },
   {
     id: "cpaas",
+    summary: { role: 'Login & home microfrontend development', scope: 'Shared access & configurable dashboard', duration: '1 year', status: 'Production platform' },
     title: "CPaaS - MicroFront",
     presentation: "platform",
     hideSource: true,
@@ -373,13 +378,14 @@ export const projects: Project[] = [
         "width": 30
       }
     ],
+    roleIntro: 'I owned delivery of the shared login and home microfrontends, from planning and implementation to testing and integration.',
     ownership: [
-      "Planned my own sprints and tasks against an agreed deadline, using Notion to track implementation, testing, documentation and iterations.",
-      "Built the Vue.js login and home microfrontends and helped set up their infrastructure and orchestration.",
-      "Diagrammed and implemented authentication, password recovery, OTP and error flows.",
-      "Created a shared dashboard layout and configurable widget system for product-specific overviews.",
-      "Set up Vitest and Playwright tests, reusable fixtures and testing guidelines.",
-      "Implemented frontend notifications and coordinated application-level encryption with the backend."
+      { title: 'Delivery planning', description: 'Planned my sprints in Notion against an agreed deadline, including testing, documentation and iterations.' },
+      { title: 'Microfrontend development', description: 'Built the Vue.js login and home applications and helped set up their infrastructure and orchestration.' },
+      { title: 'Authentication flows', description: 'Diagrammed and implemented sign-in, password recovery, OTP and error flows.' },
+      { title: 'Dashboard foundations', description: 'Created the shared layout and configurable widgets for product-specific overviews.' },
+      { title: 'Testing foundation', description: 'Set up Vitest and Playwright tests, reusable fixtures and team testing guidelines.' },
+      { title: 'Backend integration', description: 'Implemented frontend notifications and coordinated application-level encryption with the backend.' }
     ],
     technicalDecisions: [
       {
@@ -424,13 +430,11 @@ export const projects: Project[] = [
         "learning": "Flow diagrams and shared test setup make the transitions between authentication screens easier to reason about and verify."
       }
     ],
-    impactContext: "Reported results after platform unification include customer satisfaction survey scores and client retention. These are platform-level outcomes; my contribution focused on the shared login, configurable home, test setup and supporting microfrontend infrastructure.",
+    impactContext: "Platform activity recorded in Sentry audit logs included more than 2,500 users logging in daily. Over one year, the platform migrated more than 500,000 users and added 600 new users. These figures describe platform activity; my contribution focused on the shared login, configurable home, tests and microfrontend integration.",
     impact: [
-      "Customer satisfaction rose from 56% to 88% in surveys, a gain of 32 percentage points.",
-      "Client retention increased by 62% following platform unification.",
-      "A central CPaaS brought platforms and processes from three companies into a shared experience.",
-      "Products from different companies began converging on the same platform while remaining separate frontend applications.",
-      "Shared layout rules and configurable widgets supported product-specific tables, charts and overviews."
+      "2,500+ users logging in daily.",
+      "500,000+ users migrated over one year.",
+      "600 new users added over one year."
     ],
     stack: [
       "Vue.js",

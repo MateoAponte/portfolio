@@ -1,5 +1,5 @@
 ﻿import { useRef, useState } from 'react';
-import { ExternalLink, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ExternalLink, Maximize2, ZoomIn, ZoomOut, RotateCcw } from 'lucide-react';
 import type { ArchitectureDiagram } from '@/data/architecture';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import { Dialog, DialogContent, DialogDescription, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
@@ -48,6 +48,49 @@ const DiagramFigure = ({ diagram, index }: { diagram: ArchitectureDiagram; index
   );
 };
 
+const DiagramCarousel = ({ diagrams, name }: { diagrams: ArchitectureDiagram[]; name: string }) => {
+  const [active, setActive] = useState(0);
+  const thumbnails = useRef<HTMLDivElement>(null);
+  const select = (index: number, focus = false) => {
+    setActive(index);
+    const button = thumbnails.current?.children[index] as HTMLButtonElement | undefined;
+    if (focus) button?.focus({ preventScroll: true });
+    if (button && thumbnails.current) {
+      const strip = thumbnails.current;
+      strip.scrollTo({ left: button.offsetLeft - (strip.clientWidth - button.offsetWidth) / 2, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    }
+  };
+  const controls = 'inline-flex h-11 w-11 items-center justify-center rounded-lg text-foreground hover:bg-secondary focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring disabled:opacity-35 disabled:cursor-not-allowed';
+
+  return (
+    <section aria-label={`${name} diagrams`} aria-roledescription="carousel" className="min-w-0">
+      <div className="mb-4 flex items-center justify-end gap-1">
+        <span role="status" aria-live="polite" aria-atomic="true" className="mr-2 text-sm tabular-nums text-muted-foreground"><span className="sr-only">Diagram </span>{active + 1} / {diagrams.length}</span>
+        <button type="button" aria-label="Previous diagram" disabled={active === 0} onClick={() => select(active - 1)} className={controls}><ArrowLeft size={18} aria-hidden="true" /></button>
+        <button type="button" aria-label="Next diagram" disabled={active === diagrams.length - 1} onClick={() => select(active + 1)} className={controls}><ArrowRight size={18} aria-hidden="true" /></button>
+      </div>
+      <DiagramFigure key={diagrams[active].id} diagram={diagrams[active]} index={active} />
+      <div ref={thumbnails} role="group" aria-label="Choose a diagram" className="project-screen-thumbnails relative mt-4 flex min-w-0 gap-3 overflow-x-auto overscroll-x-contain px-1 pb-3 pt-1" onKeyDown={event => {
+        let next = active;
+        if (event.key === 'ArrowRight') next = Math.min(diagrams.length - 1, active + 1);
+        else if (event.key === 'ArrowLeft') next = Math.max(0, active - 1);
+        else if (event.key === 'Home') next = 0;
+        else if (event.key === 'End') next = diagrams.length - 1;
+        else return;
+        event.preventDefault();
+        select(next, true);
+      }}>
+        {diagrams.map((diagram, index) => (
+          <button key={diagram.id} type="button" aria-label={`Show ${diagram.title}`} aria-pressed={index === active} onClick={() => select(index)} className={`flex w-24 shrink-0 flex-col gap-2 rounded-lg p-1.5 text-left transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-ring sm:w-28 ${index === active ? 'bg-primary/15 text-foreground ring-2 ring-primary' : 'text-muted-foreground hover:bg-secondary hover:text-foreground'}`}>
+            <img src={diagram.src} alt="" loading="lazy" decoding="async" className="h-14 w-full rounded bg-white object-contain sm:h-16" />
+            <span className="line-clamp-2 text-xs font-medium leading-snug">{diagram.title}</span>
+          </button>
+        ))}
+      </div>
+    </section>
+  );
+};
+
 export const ArchitectureGallery = ({ diagrams }: { diagrams: ArchitectureDiagram[] }) => {
   const groups = diagrams.reduce<Record<string, ArchitectureDiagram[]>>((result, diagram) => {
     const group = diagram.category.split('/')[0].trim();
@@ -63,7 +106,7 @@ export const ArchitectureGallery = ({ diagrams }: { diagrams: ArchitectureDiagra
             <span className="flex items-center gap-3"><span className="text-lg font-semibold text-foreground">{group}</span><span className="rounded-full bg-primary/10 px-2.5 py-1 text-xs text-primary">{items.length} diagrams</span></span>
           </AccordionTrigger>
           <AccordionContent className="space-y-6 px-4 pb-4 sm:px-6 sm:pb-6">
-            {items.map((diagram, index) => <DiagramFigure key={diagram.id} diagram={diagram} index={index} />)}
+            <DiagramCarousel diagrams={items} name={group} />
           </AccordionContent>
         </AccordionItem>
       ))}

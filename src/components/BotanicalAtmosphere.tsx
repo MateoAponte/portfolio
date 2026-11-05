@@ -2,14 +2,14 @@ import { useEffect, useRef } from 'react';
 import type { gsap } from 'gsap';
 import { LeafClassic, LeafLance, LeafRound, LeafPair, LeafGinkgo } from '@/components/SectionTagOrnaments';
 
-// Density 5/10: 30 dispersed accents, with 20 retained on small screens.
+// Sparse accents keep the botanical identity behind the actual work.
 // Deterministic variation avoids placement changes on remount.
 const leafVariants = [LeafClassic, LeafLance, LeafRound, LeafPair, LeafGinkgo];
-const accents = Array.from({ length: 30 }, (_, index) => {
+const accents = Array.from({ length: 9 }, (_, index) => {
   const leaf = index % 4 !== 1;
   const size = leaf ? [40, 58, 78, 96, 52, 66][index % 6] : [6, 9, 12][index % 3];
   return {
-    x: [2, 94, 6, 91, 3, 96][index % 6], y: 2 + index * 3.25,
+    x: [2, 94, 6, 91, 3, 96][index % 6], y: 3 + index * 11,
     leaf, size, angle: (index * 47) % 80 - 40,
   };
 });

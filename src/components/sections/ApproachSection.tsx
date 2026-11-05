@@ -1,190 +1,86 @@
-import type { gsap } from 'gsap';
-import { useEffect, useRef, useState } from 'react';
-import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
-import {
-  GitBranch,
-  Users,
-  BookOpen,
-  Lightbulb,
-  Shield,
-} from 'lucide-react';
+import { GitBranch, Users, BookOpen, Lightbulb, Shield } from 'lucide-react';
+import { useEffect, useRef } from 'react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 const principles = [
-  {
-    icon: Lightbulb,
-    title: 'Understand the context',
-    description:
-      'I work with stakeholders to understand customer needs and business constraints, then define an MVP the team can deliver and learn from.',
-  },
-  {
-    icon: GitBranch,
-    title: 'Design before code',
-    description:
-      'I clarify user flows and software boundaries with product and design. I weigh user experience, delivery effort and maintenance before choosing an implementation.',
-  },
-  {
-    icon: Shield,
-    title: 'Build for reliable delivery',
-    description:
-      'I combine clear architecture with tests, QA and recovery safeguards. I use AI and automation to support engineering judgment and help the team deliver consistently.',
-  },
-  {
-    icon: BookOpen,
-    title: 'Keep the system understandable',
-    description:
-      'I treat documentation as part of the product. Diagrams, decision notes and monitoring help the team understand system behavior and make informed changes.',
-  },
-  {
-    icon: Users,
-    title: 'Keep improving after launch',
-    description:
-      'After deployment, I work with product and design to review feedback and production behavior. We address technical constraints early and use what we learn to guide the next iteration.',
-  },
+  { icon: Lightbulb, title: 'Understand the context', description: 'I clarify customer needs and business constraints with stakeholders, then define an MVP the team can deliver and learn from.' },
+  { icon: GitBranch, title: 'Design before code', description: 'I map user flows and system boundaries with product and design, weighing delivery effort, user experience and maintenance.' },
+  { icon: Shield, title: 'Build for reliable delivery', description: 'I pair clear architecture with tests and QA. AI and automation support engineering judgment and help the team deliver consistently.' },
+  { icon: BookOpen, title: 'Make systems understandable', description: 'I keep diagrams and decision notes alongside the code, using monitoring to understand behavior and guide changes.' },
+  { icon: Users, title: 'Keep improving after launch', description: 'I review feedback and production behavior with product and design, turning what we learn into the next iteration.' },
 ];
 
-export const ApproachSection = () => {
-  const { ref, isVisible } = useScrollAnimation({ threshold: 0.05 });
-  const trail = useRef<HTMLOListElement>(null);
-  const revealed = useRef(new Set<number>());
-  const [connections, setConnections] = useState<string[]>([]);
-  useEffect(() => {
-    const host = trail.current;
-    if (!host) return;
-    const measure = () => {
-      const bounds = host.getBoundingClientRect();
-      const nodes = [...host.querySelectorAll<HTMLElement>('[data-thought-node]')];
-      const rows = [...host.children].filter(x => x.tagName === 'LI');
-      setConnections(nodes.slice(0, -1).map((node, index) => {
-        const from = node.getBoundingClientRect();
-        const to = nodes[index + 1].getBoundingClientRect();
-        const row = rows[index].getBoundingClientRect();
-        const next = rows[index + 1].getBoundingClientRect();
-        const x1 = from.left + from.width / 2 - bounds.left;
-        const x2 = to.left + to.width / 2 - bounds.left;
-        const y1 = from.bottom - bounds.top;
-        const y2 = to.top - bounds.top;
-        const mid = (row.bottom + next.top) / 2 - bounds.top;
-        if (Math.abs(x2 - x1) < 1) return 'M' + x1 + ' ' + y1 + 'V' + y2;
-        const d = x2 > x1 ? 1 : -1;
-        return 'M' + x1 + ' ' + y1 + 'V' + (mid - 12) + 'Q' + x1 + ' ' + mid + ' ' + (x1 + d * 12) + ' ' + mid + 'H' + (x2 - d * 12) + 'Q' + x2 + ' ' + mid + ' ' + x2 + ' ' + (mid + 12) + 'V' + y2;
-      }));
-    };
-    const observer = new ResizeObserver(measure);
-    observer.observe(host);
-    host.querySelectorAll('li').forEach(node => observer.observe(node));
-    measure();
-    return () => observer.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const host = trail.current;
-    if (!host || !connections.length) return;
-    let disposed = false;
-    let media: ReturnType<typeof gsap.matchMedia> | undefined;
-    void import('gsap').then(({ gsap }) => {
-      if (disposed) return;
-      media = gsap.matchMedia();
-      media.add('(prefers-reduced-motion: no-preference)', () => {
-        const nodes = [...host.querySelectorAll<HTMLElement>('[data-thought-node]')];
-        const content = [...host.querySelectorAll<HTMLElement>('[data-thought-content]')];
-        const paths = [...host.querySelectorAll<SVGPathElement>('[data-trail-path]')];
-        const drawing = paths.map(path => {
-          const length = path.getTotalLength();
-          const start = path.getPointAtLength(0).y;
-          const end = path.getPointAtLength(length).y;
-          gsap.set(path, { strokeDasharray: length });
-          const tween = gsap.fromTo(path, { strokeDashoffset: length }, { strokeDashoffset: 0, duration: 1, ease: 'none', paused: true });
-          return { tween, start, end };
-        });
-        const entrances = content.map((element, index) => {
-          if (revealed.current.has(index)) {
-            gsap.set([element, nodes[index]], { opacity: 1 });
-            gsap.set(element, { x: 0 });
-            return null;
-          }
-          const entrance = gsap.timeline({ paused: true });
-          entrance.fromTo(nodes[index], { opacity: 0 }, { opacity: 1, duration: 0.35 }, 0);
-          entrance.fromTo(element, { opacity: 0, x: index % 2 ? 28 : -28 }, { opacity: 1, x: 0, duration: 0.65, ease: 'power2.out' }, 0);
-          return entrance;
-        });
-        let frame = 0;
-        const update = () => {
-          frame = 0;
-          const readingLine = window.innerHeight * 0.65;
-          const cursor = readingLine - host.getBoundingClientRect().top;
-          drawing.forEach(({ tween, start, end }) => {
-            tween.progress(gsap.utils.clamp(0, 1, (cursor - start) / Math.max(1, end - start)));
-          });
-          nodes.forEach((node, index) => {
-            if (!revealed.current.has(index) && node.getBoundingClientRect().top <= readingLine) {
-              revealed.current.add(index);
-              entrances[index]?.play();
-            }
-          });
-        };
-        const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
-        window.addEventListener('scroll', schedule, { passive: true });
-        window.addEventListener('resize', schedule);
-        update();
-        return () => {
-          cancelAnimationFrame(frame);
-          window.removeEventListener('scroll', schedule);
-          window.removeEventListener('resize', schedule);
-        };
-      }, host);
-    }).catch(() => { /* The complete static trail remains available without GSAP. */ });
-    return () => { disposed = true; media?.revert(); };
-  }, [connections]);
-
+const PrincipleContent = ({ principle, index }: { principle: typeof principles[number]; index: number }) => {
+  const { ref, isVisible } = useScrollAnimation({ threshold: 0.15, rootMargin: '0px 0px -24px 0px' });
+  const Icon = principle.icon;
   return (
-    <section
-      id="approach"
-      className="py-12 md:py-24 relative overflow-hidden section-separator"
-    >
-      {/* Ambient background glow */}
-      <div className="ambient-glow ambient-glow-right" />
+    <div ref={ref} className={`min-w-0 transition-[opacity,transform] duration-700 ease-out motion-reduce:!translate-x-0 motion-reduce:!opacity-100 motion-reduce:transition-none md:py-1 ${index % 2 === 0 ? 'md:col-start-1 md:pr-4' : 'md:col-start-2 md:pl-4'} ${isVisible ? 'translate-x-0 opacity-100' : index % 2 === 0 ? '-translate-x-8 opacity-0' : 'translate-x-8 opacity-0'}`}>
+      <Icon size={20} className="mb-3 text-primary" aria-hidden="true" />
+      <h3 className="text-xl font-semibold leading-tight text-foreground">{principle.title}</h3>
+      <p className="mt-2 max-w-xl text-base leading-relaxed text-muted-foreground">{principle.description}</p>
+    </div>
+  );
+};
 
-      <div ref={ref} className="container mx-auto px-6 relative z-10">
-        {/* Section Header */}
-        <div className="text-center mb-10">
-          <BotanicalSectionTag label="Engineering approach" />
-          <h2
-            className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
-          >
-            How I work
-          </h2>
-          <p
-            className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
-          >
-            I question assumptions and connect user experience with software design, keeping each iteration focused on business value.
-          </p>
-        </div>
-
-        <ol ref={trail} className="relative isolate mx-auto flex max-w-5xl flex-col gap-10 md:gap-12">
-          <svg aria-hidden="true" focusable="false" className="pointer-events-none absolute inset-0 -z-10 h-full w-full overflow-visible" fill="none" stroke="#a5ad80" strokeOpacity="0.4" strokeWidth="1.2">
-            {connections.map((path, index) => <path data-trail-path key={index} d={path} />)}
-          </svg>
-          {principles.map((principle, index) => {
-            const Icon = principle.icon;
-            return (
-              <li key={principle.title} tabIndex={0} className={`approach-item w-full md:w-[calc(50%-1.5rem)] ${index % 2 ? 'self-end' : 'self-start'}`}>
-                <div className="flex items-start gap-4">
-                  <div data-thought-node className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#52664c] bg-[#14251e] text-primary">
-                    <Icon size={18} aria-hidden="true" />
-                  </div>
-                  <div data-thought-content className="min-w-0 pt-1">
-                    <div className="approach-hover origin-top-left">
-                    <h3 className="mb-3 text-xl font-semibold text-foreground">{principle.title}</h3>
-                    <p className="text-base leading-relaxed text-muted-foreground">{principle.description}</p>
-                    </div>
-                  </div>
-                </div>
-              </li>
-            );
-          })}
-        </ol>
+export const ApproachSection = () => {
+  const timelineRef = useRef<HTMLDivElement>(null);
+  const progressRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!timelineRef.current || !progressRef.current) return;
+      const { top, height } = timelineRef.current.getBoundingClientRect();
+      const progress = motion.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.65 - top) / height));
+      progressRef.current.style.transform = `scaleY(${progress})`;
+      timelineRef.current.querySelectorAll<SVGPathElement>('[data-connector-progress]').forEach(path => {
+        const bounds = path.closest('svg')!.getBoundingClientRect();
+        const filled = motion.matches ? 1 : Math.max(0, Math.min(1, (innerHeight * 0.65 - bounds.top) / bounds.height));
+        path.style.strokeDashoffset = String(1 - filled);
+      });
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    const observer = new ResizeObserver(schedule);
+    if (timelineRef.current) observer.observe(timelineRef.current);
+    window.addEventListener('scroll', schedule, { passive: true });
+    window.addEventListener('resize', schedule);
+    motion.addEventListener('change', schedule);
+    update();
+    return () => {
+      cancelAnimationFrame(frame);
+      observer.disconnect();
+      window.removeEventListener('scroll', schedule);
+      window.removeEventListener('resize', schedule);
+      motion.removeEventListener('change', schedule);
+    };
+  }, []);
+  return (
+  <section id="approach" aria-labelledby="approach-heading" className="relative overflow-hidden py-12 md:py-24">
+    <div className="container mx-auto px-6 sm:px-10 xl:px-12">
+      <div>
+        <h2 id="approach-heading" className="text-3xl font-bold text-foreground md:text-4xl">How I work</h2>
+        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground lg:text-lg">I question assumptions and connect user experience with software design, keeping each iteration focused on business value.</p>
       </div>
-    </section>
+      <div ref={timelineRef} className="relative mt-10 md:mt-14">
+        <div aria-hidden="true" className="absolute bottom-0 left-2 top-0 w-px md:hidden">
+          <div ref={progressRef} className="h-full w-full origin-top bg-primary" />
+        </div>
+      <ol className="space-y-8 md:space-y-20">
+        {principles.map((principle, index) => (
+          <li key={principle.title} className="relative pl-10 md:grid md:grid-cols-2 md:gap-16 md:pl-0">
+            <span aria-hidden="true" className="absolute left-[3px] top-2 h-[11px] w-[11px] rounded-full border border-primary bg-background md:hidden" />
+            <PrincipleContent principle={principle} index={index} />
+            {index < principles.length - 1 && (
+              <svg aria-hidden="true" viewBox="0 0 1000 80" preserveAspectRatio="none" className={`pointer-events-none absolute -bottom-16 left-[20%] hidden h-12 w-[60%] overflow-visible text-primary md:block ${index % 2 ? '-scale-x-100' : ''}`} fill="none" stroke="currentColor" strokeWidth="1" >
+                <path data-connector-progress pathLength="1" strokeDasharray="1" strokeDashoffset="1" d="M 0 0 V 8 Q 0 40 48 40 H 952 Q 1000 40 1000 72 V 80" vectorEffect="non-scaling-stroke" />
+              </svg>
+            )}
+          </li>
+        ))}
+      </ol>
+      </div>
+    </div>
+  </section>
   );
 };

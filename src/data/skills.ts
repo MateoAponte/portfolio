@@ -12,6 +12,11 @@ export const skillGroups: SkillGroup[] = [
     skills: ['Event Sourcing', 'CQRS', 'Microservices', 'DDD', 'SDD', 'TDD', 'Hexagonal Architecture', 'EDA'],
   },
   {
+    id: 'ai', name: 'AI & Automation',
+    description: 'AI-assisted development, integrations and automated workflows.',
+    skills: ['Claude', 'Codex', 'Cursor', 'MCP', 'RAG', 'Agents', 'n8n'],
+  },
+  {
     id: 'frontend', name: 'Frontend',
     description: 'Interfaces, layouts and styling for web applications.',
     skills: ['React', 'Vue.js', 'Next.js', 'Tailwind CSS', 'SCSS'],
@@ -35,10 +40,5 @@ export const skillGroups: SkillGroup[] = [
     id: 'quality', name: 'Quality',
     description: 'Automated tests and tools for investigating application behavior.',
     skills: ['Vitest', 'Playwright', 'Kibana', 'Selenium'],
-  },
-  {
-    id: 'ai', name: 'AI & Automation',
-    description: 'AI-assisted development, integrations and automated workflows.',
-    skills: ['Claude', 'Codex', 'Cursor', 'MCP', 'RAG', 'Agents', 'n8n'],
   },
 ];

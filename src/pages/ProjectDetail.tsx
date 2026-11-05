@@ -3,7 +3,7 @@ import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
 import { BranchHero } from '@/components/BotanicalContours';
 import { useEffect, useState, type ReactNode } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowDown, ArrowLeft, ExternalLink, Github, Monitor, ChevronRight, TriangleAlert, Settings2, Lightbulb } from 'lucide-react';
+import { ArrowDown, ArrowLeft, ExternalLink, Github, Monitor, TriangleAlert, Settings2, Lightbulb } from 'lucide-react';
 import { projects } from '@/data/projects';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
@@ -11,6 +11,12 @@ import { ArchitectureGallery } from '@/components/ArchitectureGallery';
 import { TechIcon } from '@/components/TechIcon';
 import { ProjectScreenshots } from '@/components/ProjectScreenshots';
 import { ProjectProcess } from '@/components/ProjectProcess';
+import { ProjectRole } from '@/components/ProjectRole';
+import { CpaasArchitecture } from '@/components/CpaasArchitecture';
+import { EcogiroAIFlow } from '@/components/EcogiroAIFlow';
+import { ProjectCardCarousel } from '@/components/ProjectCardCarousel';
+import { CpaasProductFlow } from '@/components/CpaasProductFlow';
+import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 
 const sections = [
   { id: 'problem', label: 'The Problem' },
@@ -28,7 +34,7 @@ const CaseSection = ({ id, children }: { id: string; children: ReactNode }) => {
   const index = sections.findIndex(section => section.id === id);
   return (
     <section id={id} aria-labelledby={`${id}-title`} className="scroll-mt-24 py-10 sm:py-14">
-      <h2 id={`${id}-title`} className="mb-7"><BotanicalSectionTag label={sections[index].label} /></h2>
+      <h2 id={`${id}-title`} className="mb-6 text-2xl font-bold text-foreground sm:text-3xl">{sections[index].label}</h2>
       {children}
     </section>
   );
@@ -135,6 +141,12 @@ const ProjectDetail = () => {
             </figure>}
           </section>
 
+          {project.summary && <dl aria-label="Project overview" className="detail-border-feedback mb-8 grid grid-cols-2 gap-5 rounded-2xl border border-transparent bg-secondary/30 p-5 sm:p-7 lg:grid-cols-4">
+            {[['My role', project.summary.role], ['Scope', project.summary.scope], ...(project.summary.duration ? [['Duration', project.summary.duration]] : []), ['Status', project.summary.status]].map(([label, value]) => (
+              <div key={label}><dt className="text-sm text-muted-foreground">{label}</dt><dd className="mt-1 text-base font-medium leading-relaxed text-foreground">{value}</dd></div>
+            ))}
+          </dl>}
+
           <div className="grid items-start gap-8 lg:grid-cols-[minmax(0,1fr)_260px] xl:gap-20">
             <aside className="lg:sticky lg:top-24 lg:col-start-2 lg:row-start-1">
               <nav aria-label={project.presentation === 'platform' ? 'Project sections' : 'Case study sections'} className="glass-card p-5 lg:max-h-[calc(100svh-7rem)] lg:overflow-y-auto lg:p-6">
@@ -155,14 +167,16 @@ const ProjectDetail = () => {
               <CaseSection id="problem"><p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.problem}</p></CaseSection>
               <CaseSection id="solution">
                 <p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.solution}</p>
+                {project.id === 'ecogiro' && <EcogiroAIFlow />}
+                {project.id === 'cpaas' && <CpaasProductFlow />}
               </CaseSection>
               <CaseSection id="my-role">
-                <ul className="space-y-4">{project.ownership.map(item => <li key={item} className="flex items-start gap-3 text-muted-foreground"><ChevronRight size={17} className="mt-1 shrink-0 text-primary" /><span className="leading-relaxed">{item}</span></li>)}</ul>
+                <ProjectRole project={project} />
               </CaseSection>
               <CaseSection id="key-decisions">
                 <p className="mb-6 text-sm text-muted-foreground">Technical choices I owned and the reasoning behind each decision.</p>
-                <ol className="space-y-4">{project.technicalDecisions.map((decision, index) => (
-                  <li key={decision.decision} tabIndex={0} className="glass-card detail-border-feedback grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
+                <ProjectCardCarousel label="Key Tech Decisions">{project.technicalDecisions.map((decision, index) => (
+                  <article key={decision.decision} tabIndex={0} className="glass-card detail-border-feedback grid grid-cols-[1.5rem_minmax(0,1fr)] gap-4 border-primary/20 bg-gradient-to-br from-primary/[0.035] to-transparent p-5 sm:grid-cols-[2rem_minmax(0,1fr)] sm:gap-6 sm:p-7">
                     <div className="flex flex-col items-center" aria-hidden="true">
                       <span className="text-lg font-semibold leading-7 text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <div className="relative mt-2 w-px min-h-14 flex-1 bg-gradient-to-b from-primary/70 via-primary/30 to-transparent">
@@ -177,8 +191,7 @@ const ProjectDetail = () => {
                         {decision.alternative && <div><dt className="font-medium text-foreground">Alternative considered</dt><dd className="mt-1 text-muted-foreground">{decision.alternative}</dd></div>}
                       </dl>
                     </div>
-                  </li>
-                ))}</ol>
+                  </article>))}</ProjectCardCarousel>
               </CaseSection>
               <CaseSection id="process">
                 <ProjectProcess steps={project.process} />
@@ -186,23 +199,24 @@ const ProjectDetail = () => {
               </CaseSection>
               <CaseSection id="architecture">
                 <p className="text-base leading-8 text-muted-foreground sm:text-lg">{project.architecture}</p>
+                {project.id === 'cpaas' && <CpaasArchitecture />}
                 {project.architectureDiagrams && <ArchitectureGallery diagrams={project.architectureDiagrams} />}
               </CaseSection>
               <CaseSection id="impact">
                 {project.impactContext && <p className="mb-6 text-base leading-8 text-muted-foreground">{project.impactContext}</p>}
+                {project.id === 'cpaas' && <p className="mb-6 text-sm font-medium text-primary">Source: Sentry audit logs. Migration and new-user totals cover one year; login activity is reported per day.</p>}
                 {!!project.researchInsights?.length && (
                   <div className="mb-8">
                     <h3 className="mb-4 text-lg font-semibold text-foreground">Key Research Insights</h3>
-                    <ul className="space-y-4">{project.researchInsights.map(insight => (
-                      <li key={insight.finding} tabIndex={0} className="glass-card detail-border-feedback border-primary/20 p-5 sm:p-6">
+                    <ProjectCardCarousel label="Key Research Insights">{project.researchInsights.map(insight => (
+                      <article key={insight.finding} tabIndex={0} className="glass-card detail-border-feedback border-primary/20 p-5 sm:p-6">
                         <h4 className="font-semibold text-foreground">{insight.finding}</h4>
                         {insight.quote && <blockquote className="mt-3 border-l-2 border-primary/50 pl-4 text-sm italic leading-relaxed text-muted-foreground">{insight.quote}</blockquote>}
                         <p className="mt-3 text-sm leading-relaxed text-muted-foreground"><span className="font-medium text-primary">Design response: </span>{insight.designResponse}</p>
-                      </li>
-                    ))}</ul>
+                      </article>))}</ProjectCardCarousel>
                   </div>
                 )}
-                <ul className="grid gap-4 sm:grid-cols-2">{project.impact.map(item => <li key={item} tabIndex={0} className="glass-card detail-border-feedback border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</li>)}</ul>
+                {!!project.impact.length && <ProjectCardCarousel label="Impact">{project.impact.map(item => <article key={item} tabIndex={0} className="glass-card detail-border-feedback border-t-2 border-t-primary/60 p-6 text-base font-medium leading-relaxed text-foreground">{item}</article>)}</ProjectCardCarousel>}
               </CaseSection>
               {!!project.challenges?.length && <CaseSection id="challenges">
                 <div className="space-y-8">{project.challenges.map((item, index) => (
@@ -211,7 +225,23 @@ const ProjectDetail = () => {
                       <span aria-hidden="true" className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-sm font-semibold text-primary">{String(index + 1).padStart(2, '0')}</span>
                       <h3 className="max-w-xl pt-0.5 text-base font-bold leading-snug text-foreground sm:text-lg">{item.title}</h3>
                     </div>
-                    <dl className="relative ml-4 space-y-5 border-l border-primary/25 py-1 pl-5 sm:pl-6">
+                    <Tabs defaultValue="Challenge" className="min-w-0 sm:hidden">
+                      <TabsList aria-label={`${item.title}: details`} className="grid h-auto w-full grid-cols-3 gap-1 bg-background/40 p-1">
+                        {['Challenge', 'Approach', 'Learning'].map(label => (
+                          <TabsTrigger key={label} value={label} className="min-h-11 px-1 text-xs data-[state=active]:bg-primary/15 data-[state=active]:text-primary data-[state=active]:shadow-none">{label}</TabsTrigger>
+                        ))}
+                      </TabsList>
+                      {[
+                        { label: 'Challenge', text: item.challenge },
+                        { label: 'Approach', text: item.approach },
+                        { label: 'Learning', text: item.learning },
+                      ].map(({ label, text }) => (
+                        <TabsContent key={label} value={label} className="mt-4 text-sm leading-relaxed text-muted-foreground">
+                          <p>{text}</p>
+                        </TabsContent>
+                      ))}
+                    </Tabs>
+                    <dl className="relative ml-4 hidden space-y-5 border-l border-primary/25 py-1 pl-5 sm:block sm:pl-6">
                       {[
                         { label: 'Challenge', text: item.challenge, icon: TriangleAlert },
                         { label: 'Approach', text: item.approach, icon: Settings2 },

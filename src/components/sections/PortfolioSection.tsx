@@ -1,11 +1,8 @@
-import { BranchDecoration, VineDecoration, TwigDecoration } from '@/components/ProjectPlantDecorations';
-import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { Link } from 'react-router-dom';
 import { ArrowRight, ArrowDown } from 'lucide-react';
 import { projects, type Project } from '@/data/projects';
 import { TechIcon } from '@/components/TechIcon';
-import { CornerRipples, LeafScatter } from '@/components/BotanicalContours';
 
 const linkStyle =
   'project-card relative isolate group block rounded-2xl border border-transparent bg-[#182722] text-[#f0f3eb] transition-colors duration-150 active:bg-[#253b30] focus-visible:bg-[#20332b] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#b9cba3] motion-reduce:transition-none';
@@ -44,14 +41,6 @@ const ProjectMedia = ({ project }: { project: Project }) => {
   );
 };
 
-const ProjectPlants = () => (
-  <div aria-hidden="true" className="project-plants pointer-events-none absolute inset-0 z-0 overflow-hidden text-[#b9cba3]">
-    <TwigDecoration className="absolute bottom-0 right-0 w-[30%] max-w-36" />
-    <VineDecoration className="absolute left-1/2 top-0 w-[42%] max-w-72 -translate-x-1/2" />
-    <BranchDecoration className="absolute left-0 top-0 w-[35%] max-w-44" />
-  </div>
-);
-
 const ProjectCopy = ({ project }: { project: Project }) => (
   <div className="relative z-10 flex min-w-0 flex-col justify-center p-5 sm:p-9 lg:p-12">
     <h3 className="text-2xl min-[360px]:text-3xl sm:text-4xl lg:text-5xl font-bold leading-snug tracking-tight [text-wrap:balance] group-hover:text-[var(--nature-link-hover)]">
@@ -67,7 +56,7 @@ const ProjectCopy = ({ project }: { project: Project }) => (
       {project.stack.slice(0, 3).map((tech) => (
         <li
           key={tech}
-          className="inline-flex items-center gap-1.5 rounded-md bg-[#24352e] px-2 py-1.5"
+          className="skill-chip inline-flex items-center gap-1.5 rounded-md border border-transparent bg-[#24352e] px-2 py-1.5"
         >
           <TechIcon tech={tech} />
           {tech}
@@ -75,7 +64,7 @@ const ProjectCopy = ({ project }: { project: Project }) => (
       ))}
       {project.stack.length > 3 && (
         <li
-          className="inline-flex items-center rounded-md bg-[#24352e] px-2 py-1.5"
+          className="skill-chip inline-flex items-center rounded-md border border-transparent bg-[#24352e] px-2 py-1.5"
           aria-label={String(project.stack.length - 3) + ' more technologies'}
         >
           +{project.stack.length - 3}
@@ -97,7 +86,6 @@ const ProjectEntry = ({ project, index }: { project: Project; index: number }) =
         <Link to={'/project/' + project.id} onClick={() => window.scrollTo(0, 0)} data-project-visible={isVisible} className={linkStyle + ' grid grid-cols-1 overflow-hidden md:min-h-[48vh] md:grid-cols-[1fr_1.2fr]'}>
           <div className="relative min-w-0 h-[clamp(20rem,65vw,24rem)] md:h-auto overflow-hidden bg-[radial-gradient(ellipse_at_50%_48%,#2b4935_0%,#203c2c_30%,#172b22_65%,#112119_100%)]"><ProjectMedia project={project} /></div>
           <ProjectCopy project={project} />
-          <ProjectPlants />
         </Link>
       </article>
     </div>
@@ -106,10 +94,7 @@ const ProjectEntry = ({ project, index }: { project: Project; index: number }) =
 
 export const PortfolioSection = () => (
   <section id="portfolio" aria-labelledby="portfolio-heading" className="relative isolate overflow-hidden bg-[#101c19] py-20 text-[#f0f3eb] md:py-28">
-    <CornerRipples className="left-0 top-0 -z-10 w-64 text-[#a5ad80]/30" />
-    <LeafScatter className="-right-12 bottom-0 -z-10 w-64 text-[#a5ad80]/35" />
     <div className="container mx-auto px-6 sm:px-10 xl:px-12">
-      <BotanicalSectionTag label="Portfolio" className="mb-6" />
       <div className="mb-12 flex flex-col gap-5 lg:mb-16 lg:flex-row lg:items-end lg:justify-between lg:gap-12">
         <h2 id="portfolio-heading" className="text-4xl font-bold leading-tight tracking-[-0.03em] sm:text-5xl [text-wrap:balance]">Selected projects</h2>
         <p className="max-w-md text-base leading-relaxed text-[#c1cdc5] sm:text-lg [text-wrap:pretty]">What I built, the decisions I made and where I contributed to each project.</p>

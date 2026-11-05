@@ -1,7 +1,6 @@
 import { useState, type FormEvent } from 'react';
-import { BotanicalSectionTag } from '@/components/BotanicalSectionTag';
 import { BranchHero } from '@/components/BotanicalContours';
-import { Mail, Github, Linkedin, MapPin, Send } from 'lucide-react';
+import { Mail, Github, Linkedin, MapPin, Send, FileText, Download } from 'lucide-react';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
 export const ContactSection = () => {
@@ -42,7 +41,6 @@ export const ContactSection = () => {
       <div ref={ref} className="container mx-auto px-6 relative z-10">
         {/* Section Header */}
         <div className="text-center mb-14">
-          <BotanicalSectionTag label="Contact" />
           <h2
             className={`mt-4 text-3xl md:text-4xl font-bold text-foreground ${isVisible ? 'animate-fade-up stagger-1' : 'opacity-0'}`}
           >
@@ -51,8 +49,7 @@ export const ContactSection = () => {
           <p
             className={`mt-4 lg:text-lg text-base text-muted-foreground max-w-2xl mx-auto ${isVisible ? 'animate-fade-up stagger-2' : 'opacity-0'}`}
           >
-            Have a project in mind or a role on your team? Tell me what you are
-            building and where you need help.
+            My work spans IT support, frontend development and backend integration. I’m interested in Full-stack and AI engineering opportunities where I can help shape and deliver a product.
           </p>
         </div>
 
@@ -94,6 +91,29 @@ export const ContactSection = () => {
             </div>
 
             <div className="space-y-3">
+              <div className="glass-card p-4">
+                <a
+                  href="/documents/mateo-aponte-cv.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex min-h-11 items-center gap-3 rounded-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                >
+                  <div className="rounded-md bg-primary/10 p-2.5 text-primary">
+                    <FileText size={18} aria-hidden="true" />
+                  </div>
+                  <div>
+                    <p className="text-xs text-muted-foreground">Experience & background</p>
+                    <p className="text-sm font-medium text-foreground hover:text-primary">View my CV <span className="text-xs text-muted-foreground">(PDF)</span></p>
+                  </div>
+                </a>
+                <a
+                  href="/documents/mateo-aponte-cv.pdf"
+                  download="Mateo Aponte - CV.pdf"
+                  className="mt-2 inline-flex min-h-11 items-center gap-2 rounded-sm text-sm font-medium text-primary underline-offset-4 hover:underline focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-ring"
+                >
+                  <Download size={16} aria-hidden="true" /> Download CV
+                </a>
+              </div>
               <a
                 href="mailto:mateo2aponte@hotmail.com"
                 className="flex items-center gap-3 p-4 glass-card hover:border-primary/25 transition-colors"

@@ -52,7 +52,7 @@ export const Header = ({ projectLinks, activeSection }: HeaderProps) => {
           </a>
 
           {/* Desktop Navigation */}
-          <ul className="hidden md:flex items-center gap-7">
+          <ul className={projectLinks ? 'hidden' : 'hidden md:flex items-center gap-7'}>
             {navLinks.map((link) => (
               <li key={link.href}>
                 <a
